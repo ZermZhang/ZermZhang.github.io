@@ -1,0 +1,308 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>使用Bayesian Optimization进行参数搜索 | 潦草小窝</title>
+<link rel="shortcut icon" href="https://ZermZhang.github.io/favicon.ico?v=1593424428761">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://ZermZhang.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="使用Bayesian Optimization进行参数搜索 | 潦草小窝 - Atom Feed" href="https://ZermZhang.github.io/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="1. 相关工具
+1.1 Hyperopt
+
+
+搜索空间
+
+hp.choice(label, options)
+
+options：python列表或元组
+返回options中的其中一个选项
+
+
+hp.uniform(label, min, m..." />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://ZermZhang.github.io">
+  <img class="avatar" src="https://ZermZhang.github.io/images/avatar.png?v=1593424428761" alt="">
+  </a>
+  <h1 class="site-title">
+    潦草小窝
+  </h1>
+  <p class="site-description">
+    温故而知新
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              使用Bayesian Optimization进行参数搜索
+            </h2>
+            <div class="post-info">
+              <span>
+                2020-06-29
+              </span>
+              <span>
+                3 min read
+              </span>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <h2 id="1-相关工具">1. 相关工具</h2>
+<h3 id="11-hyperopt">1.1 Hyperopt</h3>
+<ol>
+<li>
+<p>搜索空间</p>
+<ol>
+<li>hp.choice(label, options)
+<ol>
+<li>options：python列表或元组</li>
+<li>返回options中的其中一个选项</li>
+</ol>
+</li>
+<li>hp.uniform(label, min, max)
+<ol>
+<li>min和max是范围的上下界</li>
+</ol>
+</li>
+<li>hp.normal(label, mu, sigma)
+<ol>
+<li>mu和sigma分别是均值和标准差</li>
+</ol>
+</li>
+<li>hp.randint(label, upper)
+<ol>
+<li>返回范围[0, upper]中的随机整数</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>
+<p>信息捕获</p>
+<blockquote>
+<p>可以通过trials进行信息的捕获</p>
+</blockquote>
+<p><code>Trials</code> 允许我们在每个时间存储信息，然后打印出来</p>
+</li>
+<li>
+<p>FMin优化函数</p>
+<pre><code class="language-python">fmin(
+    fn,	# 需要优化的函数，优化指标是最小化函数返回值
+    space,	# 超参空间
+    algo,	# 搜索算法 {`hyperopt.rand.suggest` , `hyperopt.tpe.suggest`···}
+    max_evals=9223372036854775807,	# 最大搜索次数
+    timeout=None,	# 最大搜索时间
+    loss_threshold=None,	
+    trials=None,
+    rstate=None,
+    allow_trials_fmin=True,
+    pass_expr_memo_ctrl=None,
+    catch_eval_exceptions=False,
+    verbose=True,
+    return_argmin=True,
+    points_to_evaluate=None,
+    max_queue_len=1,
+    show_progressbar=True,
+)
+</code></pre>
+</li>
+<li>
+<p>使用例子</p>
+<ol>
+<li>以lightgbmwei例子</li>
+</ol>
+<pre><code class="language-python">from sklearn.model_selection import train_test_split
+from sklearn.metrics import precision_recall_curve, average_precision_score, roc_curve, auc
+
+import lightgbm as lgb
+
+from hyperopt import fmin, tpe, hp, Trials
+
+# 从原始的数据集中生成训练集和评估集
+X_train, X_eval, y_train, y_eval = train_test_split(df[feature_cols], df[label], test_size=0.1, random_state=0)
+
+# 构建参数空间
+params = {
+    &quot;objective&quot;: &quot;binary&quot;, &quot;metric&quot;: &quot;binary_logloss,auc&quot;, 
+    &quot;max_depth&quot;: hp.randint('max_depth', 200), 
+    &quot;num_leaves&quot;: hp.randint('num_leaves', 500), 
+    &quot;learning_rate&quot;: hp.uniform('learning_rate', 0.001, 0.2), 
+    &quot;feature_fraction&quot;: hp.uniform('feature_fraction', 0.6, 1.0), 
+    &quot;min_child_samples&quot;: hp.randint('min_child_samples', 10, 50), 
+    &quot;min_child_weight&quot;: hp.uniform('min_cild_weight', 0.0001, 0.1), 
+    &quot;reg_alpha&quot;: hp.uniform('reg_alpha', 0.001, 0.1), 
+    &quot;reg_lambda&quot;: hp.uniform('reg_lambda', 0.001, 0.1),
+    &quot;num_iterations&quot;: hp.randint('num_iterations', 500)
+         }
+
+# 构建优化函数
+def model_factory(params):
+
+    model = lgb.LGBMRegressor(**params)
+    model.fit(X_train, y_train)
+    
+    prediction = model.predict(X_eval)
+    fpr, tpr, thresholds = roc_curve((y_eval != 0.0), prediction)
+    roc_auc = auc(fpr, tpr)
+    
+    # 注意使用fmin的时候获取的是最小值，希望auc最大的时候要取负值
+    return -roc_auc
+
+# 开始超参搜索
+trials = Trials()
+
+best = fmin(
+    fn=model_factory, 
+    space=params, 
+    algo=tpe.suggest, 
+    max_evals=100, 
+    trials=trials
+)
+</code></pre>
+<ul>
+<li>运行中输出：<br>
+<img src="https://ZermZhang.github.io/post-images/1593423559457.png" alt="Hyperopt中间输出" loading="lazy"></li>
+<li>结果输出<br>
+<img src="https://ZermZhang.github.io/post-images/1593424394334.png" alt="Hyperopt结果输出" loading="lazy"></li>
+<li>trial输出：<br>
+<img src="https://ZermZhang.github.io/post-images/1593424415265.png" alt="Hyperopt的trial输出" loading="lazy"></li>
+</ul>
+</li>
+</ol>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#1-%E7%9B%B8%E5%85%B3%E5%B7%A5%E5%85%B7">1. 相关工具</a>
+<ul>
+<li><a href="#11-hyperopt">1.1 Hyperopt</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://ZermZhang.github.io/post/tensorflow-zhong-feature_columns-dui-array-te-zheng-de-chu-li-luo-ji/">
+              <h3 class="post-title">
+                tensorflow中feature_columns对array特征的处理逻辑
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+  <a class="rss" href="https://ZermZhang.github.io/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

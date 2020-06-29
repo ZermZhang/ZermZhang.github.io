@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ZermZhang.github.io</id>
     <title>潦草小窝</title>
-    <updated>2020-06-28T11:04:11.162Z</updated>
+    <updated>2020-06-29T09:53:56.870Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://ZermZhang.github.io"/>
     <link rel="self" href="https://ZermZhang.github.io/atom.xml"/>
@@ -10,6 +10,135 @@
     <logo>https://ZermZhang.github.io/images/avatar.png</logo>
     <icon>https://ZermZhang.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, 潦草小窝</rights>
+    <entry>
+        <title type="html"><![CDATA[使用Bayesian Optimization进行参数搜索]]></title>
+        <id>https://ZermZhang.github.io/post/shi-yong-bayesian-optimization-jin-xing-can-shu-sou-suo/</id>
+        <link href="https://ZermZhang.github.io/post/shi-yong-bayesian-optimization-jin-xing-can-shu-sou-suo/">
+        </link>
+        <updated>2020-06-29T09:37:28.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="1-相关工具">1. 相关工具</h2>
+<h3 id="11-hyperopt">1.1 Hyperopt</h3>
+<ol>
+<li>
+<p>搜索空间</p>
+<ol>
+<li>hp.choice(label, options)
+<ol>
+<li>options：python列表或元组</li>
+<li>返回options中的其中一个选项</li>
+</ol>
+</li>
+<li>hp.uniform(label, min, max)
+<ol>
+<li>min和max是范围的上下界</li>
+</ol>
+</li>
+<li>hp.normal(label, mu, sigma)
+<ol>
+<li>mu和sigma分别是均值和标准差</li>
+</ol>
+</li>
+<li>hp.randint(label, upper)
+<ol>
+<li>返回范围[0, upper]中的随机整数</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>
+<p>信息捕获</p>
+<blockquote>
+<p>可以通过trials进行信息的捕获</p>
+</blockquote>
+<p><code>Trials</code> 允许我们在每个时间存储信息，然后打印出来</p>
+</li>
+<li>
+<p>FMin优化函数</p>
+<pre><code class="language-python">fmin(
+    fn,	# 需要优化的函数，优化指标是最小化函数返回值
+    space,	# 超参空间
+    algo,	# 搜索算法 {`hyperopt.rand.suggest` , `hyperopt.tpe.suggest`···}
+    max_evals=9223372036854775807,	# 最大搜索次数
+    timeout=None,	# 最大搜索时间
+    loss_threshold=None,	
+    trials=None,
+    rstate=None,
+    allow_trials_fmin=True,
+    pass_expr_memo_ctrl=None,
+    catch_eval_exceptions=False,
+    verbose=True,
+    return_argmin=True,
+    points_to_evaluate=None,
+    max_queue_len=1,
+    show_progressbar=True,
+)
+</code></pre>
+</li>
+<li>
+<p>使用例子</p>
+<ol>
+<li>以lightgbmwei例子</li>
+</ol>
+<pre><code class="language-python">from sklearn.model_selection import train_test_split
+from sklearn.metrics import precision_recall_curve, average_precision_score, roc_curve, auc
+
+import lightgbm as lgb
+
+from hyperopt import fmin, tpe, hp, Trials
+
+# 从原始的数据集中生成训练集和评估集
+X_train, X_eval, y_train, y_eval = train_test_split(df[feature_cols], df[label], test_size=0.1, random_state=0)
+
+# 构建参数空间
+params = {
+    &quot;objective&quot;: &quot;binary&quot;, &quot;metric&quot;: &quot;binary_logloss,auc&quot;, 
+    &quot;max_depth&quot;: hp.randint('max_depth', 200), 
+    &quot;num_leaves&quot;: hp.randint('num_leaves', 500), 
+    &quot;learning_rate&quot;: hp.uniform('learning_rate', 0.001, 0.2), 
+    &quot;feature_fraction&quot;: hp.uniform('feature_fraction', 0.6, 1.0), 
+    &quot;min_child_samples&quot;: hp.randint('min_child_samples', 10, 50), 
+    &quot;min_child_weight&quot;: hp.uniform('min_cild_weight', 0.0001, 0.1), 
+    &quot;reg_alpha&quot;: hp.uniform('reg_alpha', 0.001, 0.1), 
+    &quot;reg_lambda&quot;: hp.uniform('reg_lambda', 0.001, 0.1),
+    &quot;num_iterations&quot;: hp.randint('num_iterations', 500)
+         }
+
+# 构建优化函数
+def model_factory(params):
+
+    model = lgb.LGBMRegressor(**params)
+    model.fit(X_train, y_train)
+    
+    prediction = model.predict(X_eval)
+    fpr, tpr, thresholds = roc_curve((y_eval != 0.0), prediction)
+    roc_auc = auc(fpr, tpr)
+    
+    # 注意使用fmin的时候获取的是最小值，希望auc最大的时候要取负值
+    return -roc_auc
+
+# 开始超参搜索
+trials = Trials()
+
+best = fmin(
+    fn=model_factory, 
+    space=params, 
+    algo=tpe.suggest, 
+    max_evals=100, 
+    trials=trials
+)
+</code></pre>
+<ul>
+<li>运行中输出：<br>
+<img src="https://ZermZhang.github.io/post-images/1593423559457.png" alt="Hyperopt中间输出" loading="lazy"></li>
+<li>结果输出<br>
+<img src="https://ZermZhang.github.io/post-images/1593424394334.png" alt="Hyperopt结果输出" loading="lazy"></li>
+<li>trial输出：<br>
+<img src="https://ZermZhang.github.io/post-images/1593424415265.png" alt="Hyperopt的trial输出" loading="lazy"></li>
+</ul>
+</li>
+</ol>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[tensorflow中feature_columns对array特征的处理逻辑]]></title>
         <id>https://ZermZhang.github.io/post/tensorflow-zhong-feature_columns-dui-array-te-zheng-de-chu-li-luo-ji/</id>
