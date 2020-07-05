@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ZermZhang.github.io</id>
     <title>潦草小窝</title>
-    <updated>2020-07-05T14:05:13.374Z</updated>
+    <updated>2020-07-05T14:25:01.138Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://ZermZhang.github.io"/>
     <link rel="self" href="https://ZermZhang.github.io/atom.xml"/>
@@ -10,6 +10,59 @@
     <logo>https://ZermZhang.github.io/images/avatar.png</logo>
     <icon>https://ZermZhang.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, 潦草小窝</rights>
+    <entry>
+        <title type="html"><![CDATA[多git同步配置]]></title>
+        <id>https://ZermZhang.github.io/post/duo-git-tong-bu-pei-zhi/</id>
+        <link href="https://ZermZhang.github.io/post/duo-git-tong-bu-pei-zhi/">
+        </link>
+        <updated>2020-07-05T14:07:15.000Z</updated>
+        <content type="html"><![CDATA[<blockquote>
+<p>背景：</p>
+<p>工作相关的代码和工程需要同步到公司的gitlab服务器上，而自己的代码和工程需要同步到个人github上。</p>
+<p>如果通过全局配置的邮箱和账户进行同步的话，同步邮箱和git配置的邮箱不同会导致无法在git的展示板上显示，导致某一个（工作/个人）git上无法显示历史的commit频次信息，对创建个人名片有负影响</p>
+<p>所以，需要实现使用工作邮箱账号提交代码到工作环境的gitlab上，使用个人邮箱账号提交代码到个人github上。</p>
+</blockquote>
+<h3 id="1-检查全局配置">1. 检查全局配置</h3>
+<ul>
+<li>
+<p>检查个人的配置，是否设置了全局的user.name, user.email</p>
+<pre><code class="language-shell">git config --global --list
+</code></pre>
+</li>
+<li>
+<p>如果有，则取消全局配置</p>
+<pre><code class="language-shell">git config --global --unset user.name
+</code></pre>
+</li>
+</ul>
+<figure data-type="image" tabindex="1"><img src="https://ZermZhang.github.io/post-images/1593959034597.png" alt="取消git全局配置" loading="lazy"></figure>
+<h3 id="2-设置不同的ssh密钥">2. 设置不同的ssh密钥</h3>
+<blockquote>
+<p>针对不同的邮箱账号设置不同的ssh密钥</p>
+</blockquote>
+<ol>
+<li>生成key</li>
+</ol>
+<pre><code class="language-shell">ssh-keygen -t rsa -C &quot;${email_name}&quot;
+# 将${email_name}替换为个人邮箱 
+</code></pre>
+<ol start="2">
+<li>给密钥文件名命名，例：id_rsa_github<br>
+<img src="https://ZermZhang.github.io/post-images/1593959057761.png" alt="" loading="lazy"></li>
+<li>生成id_rsa_github, id_rsa_github.pub</li>
+</ol>
+<h3 id="3-配置config文件">3. 配置config文件</h3>
+<blockquote>
+<p>位置：~/.ssh/config</p>
+</blockquote>
+<p>格式：</p>
+<pre><code class="language-shell">Host ${name}	# 当前Host的名称
+	HostName ${url}	# 同步git的url
+	PreferredAuthentications publickey
+	IdentityFile &quot;${path}&quot;	# 对应url的密钥的绝对路径
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[RankNet实践说明]]></title>
         <id>https://ZermZhang.github.io/post/ranknet-shi-jian-shuo-ming/</id>
