@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ZermZhang.github.io</id>
     <title>潦草小窝</title>
-    <updated>2020-07-17T01:40:27.267Z</updated>
+    <updated>2020-07-17T01:54:02.034Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://ZermZhang.github.io"/>
     <link rel="self" href="https://ZermZhang.github.io/atom.xml"/>
@@ -523,7 +523,44 @@ for ele in predictions:
 <li>通过在Gridea中配置的域名即可访问你的博客了</li>
 </ol>
 <figure data-type="image" tabindex="1"><img src="https://ZermZhang.github.io/post-images/1593256388743.png" alt="初始化页面" loading="lazy"></figure>
-<h2 id="3-相关参考">3. 相关参考</h2>
+<h2 id="3-针对gridea写作的一些说明">3. 针对Gridea写作的一些说明</h2>
+<ol>
+<li>
+<p>Gridea的文件结构<br>
+<img src="https://ZermZhang.github.io/post-images/1594950476573.png" alt="Gridea的文件结构" loading="lazy"></p>
+<ul>
+<li>config：基本配置文件</li>
+<li>images：图片存储位置</li>
+<li>output：经过处理的博客源文件[也就是会同步到github上的文件夹]</li>
+<li>post-images：关联的图片文件</li>
+<li>posts：文章存储位置</li>
+<li>static：404页面</li>
+<li>themes：主题</li>
+</ul>
+</li>
+<li>
+<p>使用其他编辑器编辑文章内容</p>
+<ul>
+<li>可以通过Gridea创建了文章之后使用其他的编辑器打开文章进行编辑</li>
+<li>也可以使用其他编辑器编辑之后将.md文件移动到/posts文件加下面
+<ul>
+<li>注意：文章标题格式需要使用如下格式</li>
+</ul>
+<pre><code class="language-shell">---
+title: 'chang-jian-shell-ming-ling'
+date: 2018-12-12 00:00:00
+tags: [Gridea]
+published: true
+hideInList: true
+feature: 
+isTop: false
+---
+</code></pre>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="4-相关参考">4. 相关参考</h2>
 <ol>
 <li><a href="https://fehey.com/post/hve-notes-start/">Gridea 小白上手教程</a></li>
 <li><a href="https://gridea.dev/gridea-start/">Gridea文档</a></li>
