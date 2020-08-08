@@ -2,20 +2,30 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>多git同步配置 | 潦草小窝</title>
+<title>python常见变量命名法 | 潦草小窝</title>
 <link rel="shortcut icon" href="https://ZermZhang.github.io/favicon.ico?v=1596897647108">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://ZermZhang.github.io/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="多git同步配置 | 潦草小窝 - Atom Feed" href="https://ZermZhang.github.io/atom.xml">
+<link rel="alternate" type="application/atom+xml" title="python常见变量命名法 | 潦草小窝 - Atom Feed" href="https://ZermZhang.github.io/atom.xml">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 
 
-    <meta name="description" content="
-背景：
-工作相关的代码和工程需要同步到公司的gitlab服务器上，而自己的代码和工程需要同步到个人github上。
-如果通过全局配置的邮箱和账户进行同步的话，同步邮箱和git配置的邮箱不同会导致无法在git的展示板上显示，导致某一个（工作..." />
-    <meta name="keywords" content="git" />
+    <meta name="description" content="1. 常见命名法和说明
+
+
+驼峰命名法(camel case)
+
+单词首字母区分大小写，eg: littleCat, LittleDog
+
+
+小驼峰命名法：第一个字母小写，后面的首字母大写
+大驼峰命名法：所有单词的首字母大写
+
+
+
+蛇形命名..." />
+    <meta name="keywords" content="" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
     <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
   </head>
@@ -77,69 +87,82 @@
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              多git同步配置
+              python常见变量命名法
             </h2>
             <div class="post-info">
               <span>
-                2020-07-05
+                2020-08-08
               </span>
               <span>
-                2 min read
+                1 min read
               </span>
-              
-                <a href="https://ZermZhang.github.io/tag/LGqJEKlOH/" class="post-tag">
-                  # git
-                </a>
               
             </div>
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <blockquote>
-<p>背景：</p>
-<p>工作相关的代码和工程需要同步到公司的gitlab服务器上，而自己的代码和工程需要同步到个人github上。</p>
-<p>如果通过全局配置的邮箱和账户进行同步的话，同步邮箱和git配置的邮箱不同会导致无法在git的展示板上显示，导致某一个（工作/个人）git上无法显示历史的commit频次信息，对创建个人名片有负影响</p>
-<p>所以，需要实现使用工作邮箱账号提交代码到工作环境的gitlab上，使用个人邮箱账号提交代码到个人github上。</p>
-</blockquote>
-<h3 id="1-检查全局配置">1. 检查全局配置</h3>
-<ul>
-<li>
-<p>检查个人的配置，是否设置了全局的user.name, user.email</p>
-<pre><code class="language-shell">git config --global --list
-</code></pre>
-</li>
-<li>
-<p>如果有，则取消全局配置</p>
-<pre><code class="language-shell">git config --global --unset user.name
-</code></pre>
-</li>
-</ul>
-<figure data-type="image" tabindex="1"><img src="https://ZermZhang.github.io/post-images/1593959034597.png" alt="取消git全局配置" loading="lazy"></figure>
-<h3 id="2-设置不同的ssh密钥">2. 设置不同的ssh密钥</h3>
-<blockquote>
-<p>针对不同的邮箱账号设置不同的ssh密钥</p>
-</blockquote>
+                <h3 id="1-常见命名法和说明">1. 常见命名法和说明</h3>
 <ol>
-<li>生成key</li>
-</ol>
-<pre><code class="language-shell">ssh-keygen -t rsa -C &quot;${email_name}&quot;
-# 将${email_name}替换为个人邮箱 
-</code></pre>
-<ol start="2">
-<li>给密钥文件名命名，例：id_rsa_github<br>
-<img src="https://ZermZhang.github.io/post-images/1593959057761.png" alt="" loading="lazy"></li>
-<li>生成id_rsa_github, id_rsa_github.pub</li>
-</ol>
-<h3 id="3-配置config文件">3. 配置config文件</h3>
+<li>
+<p>驼峰命名法(camel case)</p>
 <blockquote>
-<p>位置：~/.ssh/config</p>
+<p>单词首字母区分大小写，eg: littleCat, LittleDog</p>
 </blockquote>
-<p>格式：</p>
-<pre><code class="language-shell">Host ${name}	# 当前Host的名称
-	HostName ${url}	# 同步git的url
-	PreferredAuthentications publickey
-	IdentityFile &quot;${path}&quot;	# 对应url的密钥的绝对路径
-</code></pre>
+<ul>
+<li>小驼峰命名法：第一个字母小写，后面的首字母大写</li>
+<li>大驼峰命名法：所有单词的首字母大写</li>
+</ul>
+</li>
+<li>
+<p>蛇形命名法(snake case)</p>
+<blockquote>
+<p>使用下划线分割不同的单词，eg: little_cat</p>
+</blockquote>
+</li>
+<li>
+<p>脊柱命名法(spinal case)</p>
+<blockquote>
+<p>使用‘-’进行单词的分隔，eg: little-cat</p>
+</blockquote>
+</li>
+</ol>
+<h3 id="2-推荐的命名规则">2. 推荐的命名规则</h3>
+<ol start="0">
+<li>避免用来命名的字母
+<ol>
+<li>永远不要使用'l'(小写的l)，‘O’（大写的o），‘I’（大写的i）</li>
+<li>原因：某些字体下难以区分</li>
+</ol>
+</li>
+<li>包和模块名
+<ol>
+<li>模块名应该尽量的端</li>
+<li>全部使用小写字母</li>
+<li>下划线尽在能有效改善可读性的时候使用</li>
+</ol>
+</li>
+<li>类名
+<ol>
+<li>使用驼峰命名法</li>
+</ol>
+</li>
+<li>类型变量
+<ol>
+<li>使用驼峰命名法</li>
+</ol>
+</li>
+<li>异常exception
+<ol>
+<li>使用驼峰命名法</li>
+</ol>
+</li>
+<li>函数和变量名
+<ol>
+<li>全部使用小写字母</li>
+<li>下划线在尽可能改善可读性的时候使用</li>
+</ol>
+</li>
+</ol>
 
               </div>
               <div class="toc-container">
@@ -148,9 +171,8 @@
 <ul>
 <li>
 <ul>
-<li><a href="#1-%E6%A3%80%E6%9F%A5%E5%85%A8%E5%B1%80%E9%85%8D%E7%BD%AE">1. 检查全局配置</a></li>
-<li><a href="#2-%E8%AE%BE%E7%BD%AE%E4%B8%8D%E5%90%8C%E7%9A%84ssh%E5%AF%86%E9%92%A5">2. 设置不同的ssh密钥</a></li>
-<li><a href="#3-%E9%85%8D%E7%BD%AEconfig%E6%96%87%E4%BB%B6">3. 配置config文件</a></li>
+<li><a href="#1-%E5%B8%B8%E8%A7%81%E5%91%BD%E5%90%8D%E6%B3%95%E5%92%8C%E8%AF%B4%E6%98%8E">1. 常见命名法和说明</a></li>
+<li><a href="#2-%E6%8E%A8%E8%8D%90%E7%9A%84%E5%91%BD%E5%90%8D%E8%A7%84%E5%88%99">2. 推荐的命名规则</a></li>
 </ul>
 </li>
 </ul>
@@ -165,9 +187,9 @@
         
           <div class="next-post">
             <div class="next">下一篇</div>
-            <a href="https://ZermZhang.github.io/post/ranknet-shi-jian-shuo-ming/">
+            <a href="https://ZermZhang.github.io/post/gou-che-li-cheng/">
               <h3 class="post-title">
-                RankNet实践说明
+                购车历程
               </h3>
             </a>
           </div>

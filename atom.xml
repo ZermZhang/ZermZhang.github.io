@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ZermZhang.github.io</id>
     <title>潦草小窝</title>
-    <updated>2020-07-21T07:15:55.960Z</updated>
+    <updated>2020-08-08T14:41:03.954Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://ZermZhang.github.io"/>
     <link rel="self" href="https://ZermZhang.github.io/atom.xml"/>
@@ -10,6 +10,76 @@
     <logo>https://ZermZhang.github.io/images/avatar.png</logo>
     <icon>https://ZermZhang.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, 潦草小窝</rights>
+    <entry>
+        <title type="html"><![CDATA[python常见变量命名法]]></title>
+        <id>https://ZermZhang.github.io/post/python-chang-jian-bian-liang-ming-ming-fa/</id>
+        <link href="https://ZermZhang.github.io/post/python-chang-jian-bian-liang-ming-ming-fa/">
+        </link>
+        <updated>2020-08-08T14:22:43.000Z</updated>
+        <content type="html"><![CDATA[<h3 id="1-常见命名法和说明">1. 常见命名法和说明</h3>
+<ol>
+<li>
+<p>驼峰命名法(camel case)</p>
+<blockquote>
+<p>单词首字母区分大小写，eg: littleCat, LittleDog</p>
+</blockquote>
+<ul>
+<li>小驼峰命名法：第一个字母小写，后面的首字母大写</li>
+<li>大驼峰命名法：所有单词的首字母大写</li>
+</ul>
+</li>
+<li>
+<p>蛇形命名法(snake case)</p>
+<blockquote>
+<p>使用下划线分割不同的单词，eg: little_cat</p>
+</blockquote>
+</li>
+<li>
+<p>脊柱命名法(spinal case)</p>
+<blockquote>
+<p>使用‘-’进行单词的分隔，eg: little-cat</p>
+</blockquote>
+</li>
+</ol>
+<h3 id="2-推荐的命名规则">2. 推荐的命名规则</h3>
+<ol start="0">
+<li>避免用来命名的字母
+<ol>
+<li>永远不要使用'l'(小写的l)，‘O’（大写的o），‘I’（大写的i）</li>
+<li>原因：某些字体下难以区分</li>
+</ol>
+</li>
+<li>包和模块名
+<ol>
+<li>模块名应该尽量的端</li>
+<li>全部使用小写字母</li>
+<li>下划线尽在能有效改善可读性的时候使用</li>
+</ol>
+</li>
+<li>类名
+<ol>
+<li>使用驼峰命名法</li>
+</ol>
+</li>
+<li>类型变量
+<ol>
+<li>使用驼峰命名法</li>
+</ol>
+</li>
+<li>异常exception
+<ol>
+<li>使用驼峰命名法</li>
+</ol>
+</li>
+<li>函数和变量名
+<ol>
+<li>全部使用小写字母</li>
+<li>下划线在尽可能改善可读性的时候使用</li>
+</ol>
+</li>
+</ol>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[购车历程]]></title>
         <id>https://ZermZhang.github.io/post/gou-che-li-cheng/</id>
