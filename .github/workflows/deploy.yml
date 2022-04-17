@@ -56,7 +56,7 @@ jobs:
           GITHUB_REPO: github.com/ZermZhang/ZermZhang.github.io
         # 将编译后的博客文件推送到指定仓库
         run: |
-          ls -R
+          ls
           cd ./public && git init && git add .
           git config user.name "ZermZhang"
           git config user.email "zhang371312@126.com"
