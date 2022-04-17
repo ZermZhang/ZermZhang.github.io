@@ -12,6 +12,24 @@ jobs:
     steps:
       - name: Checkout source
         uses: actions/checkout@v2
+        with:
+          ref: source-files
+
+      - name: Configration hexo repo
+        env:
+          ACTION_DEPLOY_KEY: ${{ secrets.MY_SECRET }}
+        run: |
+          mkdir -p ~/.ssh/
+          echo "$ACTION_DEPLOY_KEY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
+          git config --global user.email "zhang371312@126.com"
+          git config --global user.name "ZermZhang"
+
+      - name: Checkout submodules
+        run: |
+          git submodule init
+          git submodule update
 
       - name: Setup Node.js
         uses: actions/setup-node@v1
@@ -40,4 +58,4 @@ jobs:
           git config user.email "zhang371312@126.com"
           git add .
           git commit -m "GitHub Actions Auto Builder at $(date +'%Y-%m-%d %H:%M:%S')"
-          git push --force --quiet "https://${{ secrets.ACCESS_TOKEN }}@$GITHUB_REPO" master:master
+          git push --force --quiet "https://${{ secrets.MY_SECRET }}@$GITHUB_REPO" master:master
