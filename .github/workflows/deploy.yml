@@ -45,7 +45,7 @@ jobs:
           hexo init myblog
           cd myblog
           npm install
-          mv ../source/ ./source/
+          mv ../source/ ./source/_post/
           hexo clean
           hexo generate
 
