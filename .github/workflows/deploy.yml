@@ -1,9 +1,8 @@
 name: Hexo Deploy
-
 on:
   push:
     branches:
-      - master
+      - source-files
 
 jobs:
   build:
