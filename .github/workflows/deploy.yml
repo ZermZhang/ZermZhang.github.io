@@ -39,12 +39,16 @@ jobs:
       - name: Setup Hexo
         run: |
           npm install -g hexo-cli
-          npm install
 
       - name: Generate files
         run: |
+          hexo init myblog
+          cd myblog
+          npm install
+          mv ../source/ ./source/
           hexo clean
           hexo generate
+          ls -R
 
       - name: Deploy hexo blog
         env:
