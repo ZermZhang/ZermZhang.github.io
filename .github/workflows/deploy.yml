@@ -48,7 +48,6 @@ jobs:
           mv ../source/ ./source/
           hexo clean
           hexo generate
-          ls -R
 
       - name: Deploy hexo blog
         env:
@@ -57,7 +56,7 @@ jobs:
         # 将编译后的博客文件推送到指定仓库
         run: |
           ls
-          cd ./public && git init && git add .
+          cd ./myblog/public && git init && git add .
           git config user.name "ZermZhang"
           git config user.email "zhang371312@126.com"
           git add .
