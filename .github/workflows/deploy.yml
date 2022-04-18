@@ -47,7 +47,6 @@ jobs:
           npm install
           git clone https://github.com/theme-next/hexo-theme-next themes/next
 
-          mv ../source/* ./source/_posts/
           cp -r ../sites/* ./
           hexo clean
           hexo generate
