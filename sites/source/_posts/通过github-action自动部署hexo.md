@@ -38,3 +38,74 @@ tags: ['github','Hexo','blog','自动化','CICD']
 2. 将准备好的文件同步到线上指定的仓库或分支里。
 
 ## 线上github-action的workflow编写
+这里是整个部署过程的核心部分，在github-action的运行过程中，我们会集成和Hexo相关的操作，包括`hexo clean`和`hexo generate`和主题安装的过程。
+目的就是为了将过去我们需要手动处理的流程，全部通过github-action进行自动化处理。
+```yml
+name: Hexo Deploy
+
+on:   # 指定在什么条件下执行当前workflow
+  push:   # 在push的时候触发workflow，可选值也包括pull_request
+    branches:
+      - source-files  # 推送到分支source-files的时候执行当前worklflow
+
+jobs:
+  build:
+    runs-on: ubuntu-18.04   # 基于ubuntu-18.04执行下述任务
+    if: github.event.repository.owner.id == github.event.sender.id  # 只有当推送owner和当前仓库owner一致是运行
+
+    steps:
+      - name: Checkout source   # check到source-files分支
+        uses: actions/checkout@v2
+        with:
+          ref: source-files
+
+      - name: Configration hexo repo    # 配置github密钥
+        env:
+          ACTION_DEPLOY_KEY: ${{ secrets.MY_SECRET }}
+        run: |
+          mkdir -p ~/.ssh/
+          echo "$ACTION_DEPLOY_KEY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
+          git config --global user.email "zhang371312@126.com"
+          git config --global user.name "ZermZhang"
+
+      - name: Checkout submodules
+        run: |
+          git submodule init
+          git submodule update
+
+      - name: Setup Node.js     # 安装node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12'
+
+      - name: Setup Hexo    # 安装hexo
+        run: |
+          npm install -g hexo-cli
+
+      - name: Generate files    # 构建hexo博客工程
+        run: |
+          hexo init myblog
+          cd myblog
+          npm install
+          git clone https://github.com/theme-next/hexo-theme-next themes/next
+
+          cp -r ../sites/* ./
+          hexo clean
+          hexo generate
+
+      - name: Deploy hexo blog    # 将生成的工程文件上传到master分支
+        env:
+          # Github 仓库
+          GITHUB_REPO: github.com/${user-name}/${user-name}.github.io
+        # 将编译后的博客文件推送到指定仓库
+        run: |
+          ls
+          cd ./myblog/public && git init && git add .
+          git config user.name "${user-name}"
+          git config user.email "${user-mail}"
+          git add .
+          git commit -m "GitHub Actions Auto Builder at $(date +'%Y-%m-%d %H:%M:%S')"
+          git push --force --quiet "https://${{ secrets.MY_SECRET }}@$GITHUB_REPO" master:master
+```
