@@ -1,6 +1,7 @@
 ---
 title: hexo自动化部署
 tags: ['github','Hexo','blog','自动化','CICD']
+date: 2022-04-19
 categories: ['git']
 ---
 

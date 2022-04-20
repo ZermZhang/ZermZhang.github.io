@@ -48,6 +48,7 @@ jobs:
           git clone https://github.com/theme-next/hexo-theme-next themes/next
 
           cp -r ../sites/* ./
+          rm ./source/_posts/hello-world.md
           hexo clean
           hexo generate
 
