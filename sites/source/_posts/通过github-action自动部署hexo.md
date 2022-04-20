@@ -1,6 +1,7 @@
 ---
 title: 通过github-action自动部署Hexo
 tags: ['github','Hexo','blog','自动化','CICD']
+categories: ['git']
 ---
 
 ## github action
