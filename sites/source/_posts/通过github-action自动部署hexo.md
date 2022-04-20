@@ -6,8 +6,9 @@ tags: ['github','Hexo','blog','自动化','CICD']
 ## github action
 > github action 是一个持续集成（Continuous intergration）和持续交付（Continuous deluvery）的平台，他可以做到自动化构建、测试、部署。
 
-![github action官方仓库](../images/deploy-hexo-with-github-action/github-actions.jpg)
 <!--more-->
+
+![github action官方仓库](../images/deploy-hexo-with-github-action/github-actions.jpg)
 我们可以通过github action的逻辑自动化部署位于git-pages上的个人博客，省去频繁的个人同步的操作。
 而且针对其他难以在个人电脑上进行编译的庞大宫成，也可以历史github action提供的runner进行编译。
 接下来的内容是我通过github action进行自动化部署hexo个人blog的经验。
