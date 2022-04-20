@@ -9,6 +9,8 @@ Livy是Apache Spark的一个REST服务，通过Livy，可以实现在任意的�
 * 通过livy提交的spark任务，对原始的spark脚本没有任何入侵
 * livy支持多用户、多任务并行的和spark集群进行交互
 * 可以在python、scala、java中通过livy进行spark批任务的处理
+<!--more-->
+
 
 ## Livy部署
 Livy的部署只需要在spark集群的master节点上进行部署即可。
