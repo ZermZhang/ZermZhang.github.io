@@ -1,12 +1,13 @@
 ---
 title: oh-my-zsh安装和使用
 tags: ['zsh','linux']
-date: 2022-04-19
+date: 2022-04-21
 categories: ['linux']
 ---
 
 ## oh-my-zsh安装
 oh-my-zsh是是针对zsh命令行环境的配置包装框架，通过它，我们可以省去针对zsh繁琐的配置过程，几乎达到开箱即用的地步。
+<!--more-->
 oh-my-zsh可以通过脚本进行安装：
 ```shell
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
