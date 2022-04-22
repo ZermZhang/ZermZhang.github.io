@@ -1,7 +1,7 @@
 ---
 title: airflow简单部署
 tags: ['airflow','调度器']
-date: 2022-04-19
+date: 2022-04-22
 categories: ['airflow']
 ---
 > airflow是airbnb开源的一套可以灵活管理工作流的自动化和调度系统
@@ -50,6 +50,7 @@ airflow是一个apache孵化的开源的基于有向无环图调度和监控平�
 9. Scheduler -> Database: 存储DAG运行的信息和相关任务
 10. Scheduler -> Celery's Result backend: 获取已经执行的的任务信息，状态
 11. Scheduler -> Celery's Queue broker: 发送任务执行命令到Celery's broker
+
 
 ## 本地docker部署
 ```dockerfile
@@ -133,7 +134,9 @@ for option in options:
     branching >> t >> dummy_follow >> join
 ```
 
+
 ## airflow使用过程的注意事项
+
 #### 时区问题
 * 为了防止不同集群内部时区的差异，airflow全局统一使用UTC时间。
 * 2.0中可以通过配置实现指定时区
