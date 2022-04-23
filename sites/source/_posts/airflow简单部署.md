@@ -38,7 +38,7 @@ airflow是一个apache孵化的开源的基于有向无环图调度和监控平�
         2. Result Backend存储完成执行命令的状态信息
 
 #### 各组件之间的通信逻辑
-> 数字和上图一一对应
+* 数字和上图一一对应
 
 |服务|链接服务|说明|
 |--|--|--|
@@ -53,6 +53,8 @@ airflow是一个apache孵化的开源的基于有向无环图调度和监控平�
 |Scheduler|Database|存储DAG运行的信息和相关任务|
 |Scheduler|Celery's Result backend|获取已经执行的的任务信息，状态|
 |Scheduler|Celery's Queue broker|发送任务执行命令到Celery's broker|
+
+
 
 
 ## 本地docker部署
