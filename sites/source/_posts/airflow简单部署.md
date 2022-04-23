@@ -39,17 +39,20 @@ airflow是一个apache孵化的开源的基于有向无环图调度和监控平�
 
 #### 各组件之间的通信逻辑
 > 数字和上图一一对应
-1. Web server -> Workers：获取任务执行的日志信息
-2. Webserver -> DAG files：从dags文件夹的dag配置文件中读取dag结构并展示
-3. Webserver -> Database: 获取任务状态信息
-4. Workers -> DAG files: 执行任务
-5. Workers -> Database: 读取和写入connections、Xcoms等信息
-6. Workers -> Celery's Result backend: 存储任务执行信息，任务状态等
-7. Workers -> Celery's Queue broker: 存储执行的命令
-8. Scheduler -> DAG files: 存储DAG的结构和任务调度时间等，并控制任务执行
-9. Scheduler -> Database: 存储DAG运行的信息和相关任务
-10. Scheduler -> Celery's Result backend: 获取已经执行的的任务信息，状态
-11. Scheduler -> Celery's Queue broker: 发送任务执行命令到Celery's broker
+
+|服务|链接服务|说明|
+|--|--|--|
+|Web server|Workers|获取任务执行的日志信息|
+|Webserver|DAG file|从dags文件夹的dag配置文件中读取dag结构并展示|
+|Webserver|Database|获取任务状态信息|
+|Workers|DAG files|执行任务|
+|Workers|Database|读取和写入connections、Xcoms等信息|
+|Workers|Celery's Result backend|存储任务执行信息，任务状态等|
+|Workers|Celery's Queue broker|存储执行的命令|
+|Scheduler|DAG files|存储DAG的结构和任务调度时间等，并控制任务执行|
+|Scheduler|Database|存储DAG运行的信息和相关任务|
+|Scheduler|Celery's Result backend|获取已经执行的的任务信息，状态|
+|Scheduler|Celery's Queue broker|发送任务执行命令到Celery's broker|
 
 
 ## 本地docker部署
