@@ -51,3 +51,50 @@ airflow中的状态标识蕾丝红绿灯的状态区分，主要分成了红、�
 * airflow scheduler会上报当前任务failed壮体啊，和下游任务的UPSTREAM_FAILED状态
 * executor执行完成对应任务
 * 颜色：红色
+
+### 2.4 UPSTREAM_FAILED（red｜task｜finished）
+![airflow-upstream_upfailed-state](../images/airflow-states/airflow-upstream-failed-state.png)
+* upstream_failed状态说明当前任务的上游任务发生错误，上有task处于FAILED状态，当前任务并没有开始执行
+* airflow scheduler会直接上报当前任务状态，不会再将当前任务进行调度
+* executor没有执行对应的任务
+* 颜色：棕黄色
+
+### 2.5 SKIPPED（red｜task｜finished）
+![airflow-skipped-state](../images/airflow-states/airflow-skipped-state.png)
+* skipped状态代表当前任务被跳过，没有进行执行，经常发生在branchOperator未触发的分支上
+* airflow scheduler绕过了当前任务，并没有调度
+* executor没有执行对应的任务
+* 颜色：浅红色
+
+### 2.6 UP_FOR_RETRY（yellow｜task｜unfinished）
+![airflow-up_for_retry-state](../images/airflow-states/airflow-up-for-retry-state.png)
+* up_for_retry代表当前任务执行失败并在等待重试中
+* airflow scheduler会在retry interval之后，下一次heartbeat到达时重新调度该任务
+* executor上次执行对应任务失败，上次执行过程已经结束，当前没有执行对应任务
+* 颜色：黄色
+
+### 2.7 UP_FOR_RESCHEDULE（green｜task｜unfinished）
+![airflow-up_for_reschedule-state](../images/airflow-states/airflow-up_for_reschedule-state.png)
+* up_for_reschedule是在airflow1.10.2中引入的心状态，常用在Sensor中，可以防止过度消耗slots
+* airflow scheduler会对当前的任务进行定时尝试，防止因为长时间处在调度过程中而占据worker slots，从而导致worker锁死，无法执行其他任务
+* executor定时执行对应任务
+* 颜色：浅绿色
+
+### 2.8 QUEUED（grey｜task｜unfinished）
+![airflow-queued-state](../images/airflow-states/airflow-queued-state.png)
+* queued状态代表当前任务已经被调度，但是正在等待一个可用的executor slots
+* airflow scheduler已经将该任务调度，正在排队中，当前的pool中没用slots为0
+* executor没有空闲的slots执行该任务，或者提交到指定的executor的concurrency已经最大，无法在接受新任务
+* 颜色：灰色
+
+### 2.9 NO_STATUS（no｜task｜unfinished）
+![airflow-no_status-state](../images/airflow-states/airflow-no_status-state.png)
+* no_status代表当前任务还没有被调度到，前面任务正在执行
+* 颜色：无颜色
+
+### 2.10 SCHEDULED（yellow｜task｜unfinished）
+![airflow-scheduled-state](../images/airflow-states/airflow-scheduled-state.png)
+* scheduled状态代表该任务已经被触发
+* airflow scheduler调度该任务，但是并没有open slots（=all_slots - running_slots - queued_slots），正在轮询状态中
+* excutor没有空闲的slots执行该任务
+* 颜色：棕色
