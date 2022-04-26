@@ -13,125 +13,100 @@ categories: ['tensorflow']
 本文主要是记录一些通过preprocessing进行特征处理的过程，以及从feature_column迁移到preprocessing的过程中需要注意的事项。
 
 # 2. preprocessing过程构建
+> 通过调用preprocessing对特征处理的逻辑和feture_column基本类似
+> 这里主要涉及到两个过程，一个是直接声明preprocessing-layers，方便对原始数据进行处理
+> 另外一个是inputs格式的声明，方便通过summary可视化分析模型和export模型
 
+1. build_encoded_features
+该函数会根据原始特征的格式不同进行不同的preprocessing layer的声明，方便后续的特征处理。
+2. build_inputs
+该函数负责生成不同特征的指定格式，方便输出可视化模型结构
 
 ```python
-class FeatureBaseBuilder:
-    """
-    feature_params: the params for preprocessingLayer for input features
-    emb_layer_params: the params for embedding layer
-    use_emb_layer: use the layers.Embedding or not
-        when yes: return the embedding features
-        when no: return the feature after preprocessing layer
-    """
-    def __init__(self, feature_params: dict, emb_params: dict = None,
-                 use_emb_layer: bool = True):
-        self.feature_params = feature_params
-        self.emb_params = emb_params
-        self.use_emb_layer = use_emb_layer
-
-    def input_layer(self):
-        return preprocessing.PreprocessingLayer(**self.feature_params)
-
-    def __call__(self, inputs):
-        if self.use_emb_layer:
-            if self.emb_params:
-                return layers.Embedding(**self.emb_params)(self.input_layer()(inputs))
-            else:
-                input_dim = (
-                    self.feature_params['num_bins']
-                    if 'num_bins' in self.feature_params else
-                    len(self.feature_params['bin_boundaries'])
-                )
-
-                emb_params = {
-                    'input_dim': input_dim,
-                    'output_dim': 8
-                }
-                return layers.Embedding(**emb_params)(self.input_layer()(inputs))
-
-        else:
-            return self.input_layer()(inputs)
-
-
-class HashEmbeddingBuilder(FeatureBaseBuilder):
-    def input_layer(self):
-        return preprocessing.Hashing(**self.feature_params)
-
-
-class VocabEmbeddingBuilder(FeatureBaseBuilder):
-    def input_layer(self):
-        return preprocessing.StringLookup(**self.feature_params)
-
-
-class NumericalBuilder(FeatureBaseBuilder):
-    def input_layer(self):
-        return preprocessing.Discretization(**self.feature_params)
-
-
-class CrossedBuilder(FeatureBaseBuilder):
-    def input_layer(self):
-        return tf.keras.layers.experimental.preprocessing.HashedCrossing(**self.feature_params)
-
-
 class EncodedFeatureBuilder:
-    def __init__(self, config: dict):
-        self.config = config
-        self.all_inputs = []
-        self.encoded_features = []
-        self.feature_builder()
+    @staticmethod
+    def build_encoded_features(feature_config):
+        feature_encoder_type = feature_config['type']
+        feature_encoder_params = feature_config['config']
+        feature_embedding_params = feature_config.get('embed_config', None)
+        if feature_encoder_type == 'hashing':
+            encoding_layer = HashEmbeddingBuilder(
+                feature_params=feature_encoder_params,
+                emb_params=feature_embedding_params
+            )
+            return encoding_layer
+        elif feature_encoder_type == 'vocabulary':
+            encoding_layer = VocabEmbeddingBuilder(
+                feature_params=feature_encoder_params,
+                emb_params=feature_embedding_params
+            )
+            return encoding_layer
+        elif feature_encoder_type == 'numerical':
+            encoding_layer = NumericalBuilder(
+                feature_params=feature_encoder_params,
+                emb_params=feature_embedding_params
+            )
+            return encoding_layer
+        elif feature_encoder_type == 'pre-trained':
+            raise Exception("There is no preprocessing layer for type: {}".format(feature_encoder_type))
+            pass
+        elif feature_encoder_type == 'crossed':
+            encoding_layer = CrossedBuilder(
+                feature_params=feature_encoder_params,
+                emb_params=feature_embedding_params
+            )
+            return encoding_layer
+        else:
+            raise Exception("There is no preprocessing layer for type: {}".format(feature_encoder_type))
+            pass
 
-    def feature_builder(self) -> None:
-        for feature_name, feature_config in self.config.items():
-            if feature_config['type'] == 'hashing':
-                input_col = tf.keras.Input(shape=(1,), name=feature_name, dtype=tf.string)
-                encoding_layer = HashEmbeddingBuilder(feature_params=feature_config['config'])
-                self.all_inputs.append(input_col)
-                self.encoded_features.append(encoding_layer(input_col))
-            elif feature_config['type'] == 'vocabulary':
-                input_col = tf.keras.Input(shape=(1,), name=feature_name, dtype=tf.string)
-                encoding_layer = VocabEmbeddingBuilder(feature_params=feature_config['config'])
-                self.all_inputs.append(input_col)
-                self.encoded_features.append(encoding_layer(input_col))
-            elif feature_config['type'] == 'numerical':
-                input_col = tf.keras.Input(shape=(1,), name=feature_name, dtype=tf.float32)
-                encoding_layer = NumericalBuilder(feature_params=feature_config['config'])
-                self.all_inputs.append(input_col)
-                self.encoded_features.append(encoding_layer(input_col))
-            elif feature_config['type'] == 'pre-trained':
-                raise Exception("There is no preprocessing layer for type: {}".format(feature_config['feature_type']))
-                pass
-            elif feature_config['type'] == 'crossed':
-                input_col = tf.keras.Input(shape=(1,), name=feature_name, dtype=tf.string)
-                encoding_layer = CrossedBuilder(feature_params=feature_config['config'])
-                self.all_inputs.append(input_col)
-                self.encoded_features.append(encoding_layer(input_col))
-            else:
-                raise Exception("There is no preprocessing layer for type: {}".format(feature_config['feature_type']))
-                pass
+    @staticmethod
+    def build_inputs(feature_name, feature_config):
+        feature_encoder_type = feature_config['type']
+        if feature_encoder_type in ('hashing', 'vocabulary'):
+            input_col = tf.keras.Input(shape=(1,), name=feature_name, dtype=tf.string)
+            return input_col
+        elif feature_encoder_type in {'numerical'}:
+            input_col = tf.keras.Input(shape=(1,), name=feature_name, dtype=tf.float32)
+            return input_col
+        else:
+            raise Exception("There is no preprocessing layer for type: {}".format(feature_encoder_type))
+            pass
 ```
 
 # 3. 模型结构
 ```python
 class MLP(tf.keras.Model):
-    def __init__(self, feature_encoder):
+    def __init__(self, config):
         super(MLP, self).__init__()
+        # init the feature config info
+        self.config = config
+        # definite the layers
+        self.feature_encoder_layers = EncodedFeatureBuilder()
         self.dense_layer = tf.keras.layers.Dense(32, activation='relu')
         self.dropout_layer = tf.keras.layers.Dropout(0.5)
         self.output_layer = tf.keras.layers.Dense(1)
-        self.feature_encoder = feature_encoder
 
     def call(self, inputs):
-        x = tf.keras.layers.concatenate(inputs)
+        encoded_features = []
+        for feature_name, feature_config in self.config.items():
+            encoded_features.append(
+                self.feature_encoder_layers.build_encoded_features(feature_config)(inputs[feature_name])
+            )
+        x = tf.keras.layers.concatenate(encoded_features)
         x = self.dense_layer(x)
         x = self.dropout_layer(x)
         x = self.output_layer(x)
         return x
-    
-    def build_graph(self, shapes=None):
+
+    def build_graph(self):
+        all_inputs = {}
+        for feature_name, feature_config in self.config.items():
+            all_inputs[feature_name] = self.feature_encoder_layers.build_inputs(feature_name, feature_config)
         return tf.keras.models.Model(
-            inputs=self.feature_encoder.all_inputs,
-            outputs=self.call(self.feature_encoder.encoded_features))
+            inputs=all_inputs,
+            outputs=self.call(all_inputs)
+        )
 ```
 
 # 4. 调用流程
