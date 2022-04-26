@@ -7,6 +7,8 @@ categories: ['tensorflow']
 # 1. 背景
 > tf2.x里增加了一类特殊的keras layers, 可以替代`tf.feature_column`进行特征处理，这一类的layers就是`preprocessing layers`
 
+<!--more-->
+
 通过preprocessing对特征进行处理，在实现逻辑上，相对feature_column要更统一一些。
 本文主要是记录一些通过preprocessing进行特征处理的过程，以及从feature_column迁移到preprocessing的过程中需要注意的事项。
 
