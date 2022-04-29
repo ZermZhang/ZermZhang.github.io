@@ -7,6 +7,8 @@ categories: ['tensorflow']
 # 0. 背景
 tf2版本中，提供了三种不同的模型构建逻辑。
 
+<!--more-->
+
 1. sequential API
 适用于层叠式的模型层结构，并且每层都只有一个明确的输入tensor和输出tensor
 2. functional API
