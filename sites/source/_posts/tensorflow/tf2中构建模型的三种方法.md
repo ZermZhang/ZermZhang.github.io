@@ -17,7 +17,7 @@ tf2版本中，提供了三种不同的模型构建逻辑。
 3. model subclassing API
 model subclassing API具有更大的自由度，可以让开发者控制模型、layer以及训练过程
 
-![diff-api](../images/tensorflow/introduce/diff-api.jpeg)
+![diff-api](https://raw.githubusercontent.com/ZermZhang/pictures/main/diff-api.jpeg)
 
 # 1. Sequential API
 ## 1.1 构建方法
