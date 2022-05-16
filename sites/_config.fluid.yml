@@ -123,7 +123,7 @@ index:
   slogan:
     enable: true
     text: 这里是我的记录自留地
-  post_url_target: _blank
+  post_url_target: _self
 
 code:
   copy_btn: true
@@ -134,3 +134,8 @@ code:
     prismjs:
       style: "default"
       preprocess: true
+
+about:
+  icons:
+    - { class: 'iconfont icon-github-fill', link: 'https://github.com/ZermZhang', tip: 'Github' }
+    - { class: 'iconfont icon-zhihu-file', link: 'https://www.zhihu.com/people/zhang-zhen-91-77', tip: 'Zhihu'}
