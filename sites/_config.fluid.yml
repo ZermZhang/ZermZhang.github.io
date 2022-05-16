@@ -61,7 +61,7 @@ prismjs:
 # per_page: Posts displayed per page. (0 = disable pagination)
 # order_by: Posts order. (Order by date descending by default)
 index_generator:
-  path: '/about/'
+  path: '/ccc/'
   per_page: 10
   order_by: -date
 
@@ -97,23 +97,40 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: next
+# theme: next
+theme: fluid
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: ''
 
-search:
-  path: search.xml
-  field: post
-  format: html
-  limit: 10000
+navbar:
+  blog_title: 潦草小窝
+  menu:
+    - { key: '首页', link: '/', icon: 'iconfont icon-home-fill' }
+    - { key: '文章', link: '/ccc/', icon: 'iconfont icon-books' }
+    - { key: '标签', link: '/tags/', icon: 'iconfont icon-tags-fill' }
+    - { key: '归档', link: '/archives/', icon: 'iconfont icon-archive-fill' }
+    - { key: '分类', link: '/categories/', icon: 'iconfont icon-category-fill' }
+    - { key: '关于', link: '/about/', icon: 'iconfont icon-user-fill', name: '联系我' }
 
-# hexo-generator-sitemap
-## https://github.com/hexojs/hexo-generator-sitemap
-sitemap:
-  path: sitemap.xml
-  rel: true
-  tags: false
-  categories: false
+
+
+banner_img: https://static.zkqiang.cn/example.jpg
+
+index:
+  slogan:
+    enable: true
+    text: 这里是我的记录自留地
+  post_url_target: _blank
+
+code:
+  copy_btn: true
+  highlight:
+    enable: true
+    line_number: true
+    lib: "prismjs"
+    prismjs:
+      style: "default"
+      preprocess: true
