@@ -1,4 +1,9 @@
-<span style="font-size: 40px;">欢迎</span>
+---
+title: 欢迎
+banner_img_height: 30
+---
+
+<!--<span style="font-size: 40px;">欢迎</span>-->
 
 > 这里是我在日常生活中进行记录的地方，包括又不限于工作、生活、知识、娱乐等方方面面。
 
@@ -10,4 +15,4 @@
 * <span style="font-size: 35px; color: #F9D171;">码农</span>，日常写代码。
 * <span style="font-size: 35px; color: #AD2625;">普通人</span>，自我感觉没有出众的地方。
 
-请开始[<span style="font-size: 35px; color: rgb(44, 218, 376);">阅读</span>](/about/)我的blog吧。
+请开始[<span style="font-size: 35px; color: rgb(44, 218, 376);">阅读</span>](/articles/)我的blog吧。
