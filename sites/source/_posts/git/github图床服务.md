@@ -26,9 +26,6 @@ categories: ['git']
 这一步比较简单，生成一个新的仓库，用来存储需要用到的图片，除了仓库权限需要是public的之外，其他的并没有什么要求，全部默认即可。
 ![register-repository](https://raw.githubusercontent.com/ZermZhang/pictures/main/20220430082824.png)
 
-![register-repository-2](https://cdn.jsdelivr.net/gh/ZermZhang/pictures/main/20220430082824.png)
-
-
 ## 2.2 上传图片
 > 图片上传方式可以使用传统的git同步逻辑，但是相对比较繁琐，所有推荐使用工具进行图片上传，常用的工具是PicGO
 
