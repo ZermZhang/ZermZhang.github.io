@@ -10,7 +10,8 @@ categories: ['blog']
 
 <!--more-->
 
-![github action官方仓库](../images/deploy-hexo-with-github-action/github-actions.jpg)
+![github action官方仓库](https://cdn.jsdelivr.net/gh/ZermZhang/pictures@main/PicX/github-actions.67mq8c0v6xk0.webp)
+
 我们可以通过github action的逻辑自动化部署位于git-pages上的个人博客，省去频繁的个人同步的操作。
 而且针对其他难以在个人电脑上进行编译的庞大宫成，也可以历史github action提供的runner进行编译。
 接下来的内容是我通过github action进行自动化部署hexo个人blog的经验。
@@ -18,7 +19,7 @@ categories: ['blog']
 ## 依赖准备
 针对hexo，我们需要提供必要的md文件，剩余的内容可以通过hexo进行自动生成和部署，具体需要部署的内容是经过了`hexo generate`之后生成`public`文件夹。
 将生成完成的`public`文件夹同步到名为`${user-name}.github.io`github工程的master分支后，github会自动将该内容发布到`http://${user-name}.github.io`的网页上，方便进行查看。
-![github.io](../images/deploy-hexo-with-github-action/github.io.png)
+![github.io](https://cdn.jsdelivr.net/gh/ZermZhang/pictures@main/PicX/github.3xvjh9pmt1w0.webp)
 ### 仓库准备
 因此，我们至少需要准备两个仓库（或者分支）。
 1. 存储`public`文件夹
@@ -37,7 +38,7 @@ categories: ['blog']
 ### 本地文件准备和同步
 1. 准备好本地文件。
     具体的文件夹结构可以参考下图:
-    ![source-files-struct](../images/deploy-hexo-with-github-action/source-files-struct.png)
+    ![source-files-struct](https://cdn.jsdelivr.net/gh/ZermZhang/pictures@main/PicX/source-files-struct.4axb9h4v4bw0.webp)
 2. 将准备好的文件同步到线上指定的仓库或分支里。
 
 ## 线上github-action的workflow编写

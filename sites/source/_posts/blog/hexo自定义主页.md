@@ -9,8 +9,7 @@ categories: ['blog']
 这个时候，blog的主页根据你选择的主题会有一定的不同，但是大多是以文章列表作为主页，如下图：
 
 <!--more-->
-
-![原始主页](https://raw.githubusercontent.com/ZermZhang/pictures/main/20220517084558.png)
+![原始主页](https://cdn.jsdelivr.net/gh/ZermZhang/pictures@main/20220517084558.png)
 但是，像我们这种喜欢折腾的人，怎么能接受一直使用默认的页面作为主页呢？那么这时候，自定义主页的需求就开始提上日程了。
 这里主要介绍一种简单的自定义hexo主页的方法，这种方法其实是通过将一个文章内容作为首页展示的这种方案。
 
@@ -48,4 +47,4 @@ index_generator:
 
 # 3. 调整结果
 经过了上述调整后，你的自定义主页就可以生效了，尽情的享受与众不同的快乐吧！
-![自定义主页](https://raw.githubusercontent.com/ZermZhang/pictures/main/20220517085426.png)
+![自定义主页](https://cdn.jsdelivr.net/gh/ZermZhang/pictures@main/20220517085426.png)
