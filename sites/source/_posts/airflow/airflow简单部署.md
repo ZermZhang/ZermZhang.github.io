@@ -6,7 +6,7 @@ categories: ['airflow']
 ---
 > airflow是airbnb开源的一套可以灵活管理工作流的自动化和调度系统
 <!--more-->
-![airflow-show](../images/deploy-airflow/airflow-show.jpeg)
+![airflow-show](https://cdn.jsdelivr.net/gh/ZermZhang/pictures@main/PicX/airflow-show.59g4ioncbzs0.webp)
 
 ## 简介
 #### 基本功能
@@ -19,7 +19,7 @@ airflow是一个apache孵化的开源的基于有向无环图调度和监控平�
     1. 工作流上的每个task都是可以独立重试的。一个工作流的某个task失败不需要从头开始
 
 #### 主要组成部分
-![airflow-struct](../images/deploy-airflow/struct-airflow.jpeg)
+![airflow-struct](https://cdn.jsdelivr.net/gh/ZermZhang/pictures@main/PicX/struct-airflow.6fhpplr7k640.webp)
 
 1. 界面展示和监控（webserver）
     1. 进行web段的dag/task，log等信息的展示

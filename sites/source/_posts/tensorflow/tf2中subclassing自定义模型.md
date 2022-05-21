@@ -55,11 +55,11 @@ test_model = MLP()
 # 通过summary观察模型结构
 test_model.build_graph(input_shape=(16,)).summary()
 ```
-![summary-output](../images/tensorflow/subclassing-introduce/summary-output.png)
+![summary-output](https://cdn.jsdelivr.net/gh/ZermZhang/pictures@main/PicX/summary-output.73utxot6e5s0.webp)
 
 ## 3.2 plot_model输出
 ```python
 # 通过plot_model观察模型结构
 tf.keras.utils.plot_model(test_model.build_graph(input_shape=(16,)), to_file='./test_model.png', show_shapes=True)
 ```
-![plot_model-output](../images/tensorflow/subclassing-introduce/plot_model-output.png)
+![plot_model-output](https://cdn.jsdelivr.net/gh/ZermZhang/pictures@main/PicX/plot_model-output.4hufd4olsw40.webp)

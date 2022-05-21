@@ -10,7 +10,7 @@ categories: ['airflow']
 <!--more-->
 
 # 1. airflow状态说明
-![airflow-all-state](../images/airflow-states/airflow-all-state.png)
+![airflow-all-state](https://cdn.jsdelivr.net/gh/ZermZhang/pictures@main/PicX/airflow-all-state.2g0opkilfqck.webp)
 
 ## 1.1 通过颜色区分
 airflow中的状态标识蕾丝红绿灯的状态区分，主要分成了红、黄、绿三种基础状态。在此基础上，针对三种不同的颜色范围，进行了进一步的细化标识来表明不同的细化状态。
@@ -31,14 +31,14 @@ airflow中的状态标识蕾丝红绿灯的状态区分，主要分成了红、�
 # 2. airflow状态的详细介绍
 
 ### 2.1 SUCCESS（green｜dagrun｜task｜finished）
-![airflow-success-state](../images/airflow-states/airflow-success-state.png)
+![airflow-success-state](https://cdn.jsdelivr.net/gh/ZermZhang/pictures@main/PicX/airflow-success-state.2n720i3oq4u0.webp)
 * success状态说明当前任务在执行过程中没有检测到错误信息，并正常完成。
 * airflow scheduler上报状态后，释放针对当前任务的监控。
 * excutor执行完成对应任务
 * 颜色：墨绿色
 
 ### 2.2 RUNNING（green｜dagrun｜task｜unfinished）
-![airflow-running-state](../images/airflow-states/airflow-running-state.png)
+![airflow-running-state](https://cdn.jsdelivr.net/gh/ZermZhang/pictures@main/PicX/airflow-running-state.2hjc0rbgou60.webp)
 * running状态代表当前的任务执行执行中
 * airflow scheduler将该任务提交到了executor上，并对当前任务通过heartbeat进行监控
 * executor正在对对应的实际任务进行执行
@@ -46,54 +46,54 @@ airflow中的状态标识蕾丝红绿灯的状态区分，主要分成了红、�
 * 后续状态：SUCCESS、RETRY、FAILED
 
 ### 2.3 FAILED（red｜dagrun｜task｜finished）
-![airflow-failed-state](../images/airflow-states/airflow-failed-state.png)
+![airflow-failed-state](https://cdn.jsdelivr.net/gh/ZermZhang/pictures@main/PicX/airflow-failed-state.6vbtjqjxw8g0.webp)
 * failed状态说明当前任务执行失败，返回了错误状态码，airflow监控到了当前错误，表现在web上
 * airflow scheduler会上报当前任务failed壮体啊，和下游任务的UPSTREAM_FAILED状态
 * executor执行完成对应任务
 * 颜色：红色
 
 ### 2.4 UPSTREAM_FAILED（red｜task｜finished）
-![airflow-upstream_upfailed-state](../images/airflow-states/airflow-upstream-failed-state.png)
+![airflow-upstream_upfailed-state](https://cdn.jsdelivr.net/gh/ZermZhang/pictures@main/PicX/airflow-upstream-failed-state.3m701qkvfc80.webp)
 * upstream_failed状态说明当前任务的上游任务发生错误，上有task处于FAILED状态，当前任务并没有开始执行
 * airflow scheduler会直接上报当前任务状态，不会再将当前任务进行调度
 * executor没有执行对应的任务
 * 颜色：棕黄色
 
 ### 2.5 SKIPPED（red｜task｜finished）
-![airflow-skipped-state](../images/airflow-states/airflow-skipped-state.png)
+![airflow-skipped-state](https://cdn.jsdelivr.net/gh/ZermZhang/pictures@main/PicX/airflow-skipped-state.2oekru2jpa60.webp)
 * skipped状态代表当前任务被跳过，没有进行执行，经常发生在branchOperator未触发的分支上
 * airflow scheduler绕过了当前任务，并没有调度
 * executor没有执行对应的任务
 * 颜色：浅红色
 
 ### 2.6 UP_FOR_RETRY（yellow｜task｜unfinished）
-![airflow-up_for_retry-state](../images/airflow-states/airflow-up-for-retry-state.png)
+![airflow-up_for_retry-state](https://cdn.jsdelivr.net/gh/ZermZhang/pictures@main/PicX/airflow-up-for-retry-state.h2tpvfwe4lc.webp)
 * up_for_retry代表当前任务执行失败并在等待重试中
 * airflow scheduler会在retry interval之后，下一次heartbeat到达时重新调度该任务
 * executor上次执行对应任务失败，上次执行过程已经结束，当前没有执行对应任务
 * 颜色：黄色
 
 ### 2.7 UP_FOR_RESCHEDULE（green｜task｜unfinished）
-![airflow-up_for_reschedule-state](../images/airflow-states/airflow-up_for_reschedule-state.png)
+![airflow-up_for_reschedule-state](https://cdn.jsdelivr.net/gh/ZermZhang/pictures@main/PicX/airflow-up_for_reschedule-state.1bo58g36z6qo.webp)
 * up_for_reschedule是在airflow1.10.2中引入的心状态，常用在Sensor中，可以防止过度消耗slots
 * airflow scheduler会对当前的任务进行定时尝试，防止因为长时间处在调度过程中而占据worker slots，从而导致worker锁死，无法执行其他任务
 * executor定时执行对应任务
 * 颜色：浅绿色
 
 ### 2.8 QUEUED（grey｜task｜unfinished）
-![airflow-queued-state](../images/airflow-states/airflow-queued-state.png)
+![airflow-queued-state](https://cdn.jsdelivr.net/gh/ZermZhang/pictures@main/PicX/airflow-queued-state.13weqa9jfna8.webp)
 * queued状态代表当前任务已经被调度，但是正在等待一个可用的executor slots
 * airflow scheduler已经将该任务调度，正在排队中，当前的pool中没用slots为0
 * executor没有空闲的slots执行该任务，或者提交到指定的executor的concurrency已经最大，无法在接受新任务
 * 颜色：灰色
 
 ### 2.9 NO_STATUS（no｜task｜unfinished）
-![airflow-no_status-state](../images/airflow-states/airflow-no_status-state.png)
+![airflow-no_status-state](https://cdn.jsdelivr.net/gh/ZermZhang/pictures@main/PicX/airflow-no_status-state.3b4t9j1ta8k0.webp)
 * no_status代表当前任务还没有被调度到，前面任务正在执行
 * 颜色：无颜色
 
 ### 2.10 SCHEDULED（yellow｜task｜unfinished）
-![airflow-scheduled-state](../images/airflow-states/airflow-scheduled-state.png)
+![airflow-scheduled-state](https://cdn.jsdelivr.net/gh/ZermZhang/pictures@main/PicX/airflow-scheduled-state.7io0ibe2l5s0.webp)
 * scheduled状态代表该任务已经被触发
 * airflow scheduler调度该任务，但是并没有open slots（=all_slots - running_slots - queued_slots），正在轮询状态中
 * excutor没有空闲的slots执行该任务

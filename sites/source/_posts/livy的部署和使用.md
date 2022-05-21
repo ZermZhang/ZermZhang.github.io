@@ -74,7 +74,7 @@ livy默认的接口为8998, 在配置文件没有显式的声明其他端口的�
 curl -H "Content-Type: application/json" -X POST -d '{"driverMemory": "20G","numExecutors": 60,"executorCores": 4,"executorMemory": "25G","conf": {"spark.dynamicAllocation.enabled": "False","spark.default.arallelism": "2000","spark.sql.shuffle.partitions": "200","spark.memory.fraction": "0.8","spark.port.maxRetries": "256"},"file": "${file_path_on_hdfs}","args": ["--date=20220420"]}' http://${spark-master-url}:8998/batches/ | python -m json.tool
 ```
 通过上述命令提交后，返回如下，会包含生成的livy-session的id。
-![livy-submit-return](../images/deploy-usage-of-livy/livy-submit-return.png)
+![livy-submit-return](https://cdn.jsdelivr.net/gh/ZermZhang/pictures@main/PicX/livy-submit-return.4gg7kd0zu8w0.webp)
 
 ```shell
 # 获取指定batch_id的session状态
