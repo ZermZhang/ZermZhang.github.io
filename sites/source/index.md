@@ -1,7 +1,7 @@
 ---
 title: 欢迎
 banner_img: /images/bg/mountains-6753786_1280.webp
-banner_img_height: 30
+banner_img_height: 40
 ---
 
 <!--<span style="font-size: 40px;">欢迎</span>-->
