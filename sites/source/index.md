@@ -8,7 +8,7 @@ banner_img_height: 40
 
 > 这里是我在日常生活中进行记录的地方，包括又不限于工作、生活、知识、娱乐等方方面面。
 
-<img src="https://s2.loli.net/2022/05/14/kJga8xRWGnB4Ueo.png" style="border-radius: 50%; box-shadow: rgb(221, 222, 222) 0px 0px 0px 5px, white 0px 0px 30px; width: 20%; display: inline-block; float: right;">
+<img src="../imgages/avatar/avatar.PNG" style="border-radius: 50%; box-shadow: rgb(221, 222, 222) 0px 0px 0px 5px, white 0px 0px 30px; width: 20%; display: inline-block; float: right;">
 这里是<span style="font-size: 35px; color: #E76D34;">zermzhang</span>的个人博客。 一个毕业于普通学校的普通人。
 
 ## 我是：

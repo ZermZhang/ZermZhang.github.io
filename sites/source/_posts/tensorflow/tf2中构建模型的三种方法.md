@@ -31,7 +31,7 @@ model = tf.keras.Sequential(
     ]
 )
 ```
-![show](../images/tensorflow/introduce/show.jpeg)
+![show](https://cdn.jsdelivr.net/gh/ZermZhang/pictures@main/PicX/show.5w4zduij7tw0.webp)
 
 ## 1.2 其他构建方法
 * 除了直接通过sequential constructor对layers list进行模型构建外，也可以通过sequential constructor的add属性逐层进行构建
