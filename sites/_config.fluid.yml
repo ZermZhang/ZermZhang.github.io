@@ -133,7 +133,7 @@ code:
       preprocess: true
 
 about:
-  avatar: /imgages/avatar/avatar.PNG
+  avatar: /images/avatar/avatar.PNG
   name: 知白
   into: 一名互联网码农的潦草记录
   icons:
