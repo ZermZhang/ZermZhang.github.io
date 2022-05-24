@@ -149,3 +149,9 @@ archive:
 
 category:
   banner_img: /images/bg/trees-6207925__480.webp
+
+post:
+  math:
+    enable: true
+    specific: true
+    engine: mathjax
