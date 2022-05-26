@@ -155,3 +155,6 @@ post:
     enable: true
     specific: true
     engine: mathjax
+
+static_prefix:
+  mathjax: https://lib.baomitu.com/mathjax/3.2.1/
