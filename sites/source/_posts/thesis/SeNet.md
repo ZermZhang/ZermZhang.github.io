@@ -21,13 +21,13 @@ SENet是在文章《[Squeeze-and-Excitation Networks](https://arxiv.org/abs/1709
     $$
     \begin{align}
     & s = F_{ex}(z, W) = \sigma(g(z, W)) = \sigma(W_{2}\delta(W_{1}z))  \tag{1} \\\\
-    & W_{1} \in\mathbb{R}^{\frac{C}{r}\times C} \quad and \quad W_{2} \in \mathbb{R}^{C \times \frac{C}{r}}  \tag{2}\label{2} \\\\
+    & W_{1} \in\mathbb{R}^{\frac{C}{r}\times C} \quad and \quad W_{2} \in \mathbb{R}^{C \times \frac{C}{r}}  \tag{2} \\\\
     & \quad \\\\
     & x_c = F_{scale}(\textbf{u}_c, s_c) = s_c\textbf{u}_c \tag{3}
     \end{align}
     $$
     * 通过一个简单的门机制来计算每个channel对应的权重信息
-    * 为了捕捉每个通道的依赖关系，学习的函数需要满足两个条件$\eqref{2}$：
+    * 为了捕捉每个通道的依赖关系，学习的函数需要满足两个条件：
         1. 必须是可伸缩的，必须能够学习两个channel之间的非线性关系
         2. 不能是相互排斥的。需要能够同事对多个channel进行强化，而不能是简单的针对一个channel的单独强化
     
@@ -39,3 +39,45 @@ SE block的可伸缩性意味着它可以直接的应用到各类映射上。
 # 3. SEBlock在ctr任务中的使用
 SE Block的原始作用是为了解决图片中不同channel的权重强化问题，同样，我们可以将这个逻辑应用到ctr任务中，用来出来对不同的特征域的强弱关注度的学习使用中。
 ![seblock-for-ctr](https://s2.loli.net/2022/05/26/WrLVdEncBS49JqI.png)
+使用逻辑：
+1. 针对每个输入features生成input_embedding（经过preprocessing之后的embedding信息）
+2. 针对之前的输入进行SEBlock的处理，这里可以将原文中的channel概念替换为特征域进行Global pooling的处理
+3. 通过SEBlock之后，会生成一个和特征域个数相同维度weighted向量
+4. 将weighted向量分别加权到对应的特征域之后，将结果作为input信息输入到NN中。
+
+# 4. 代码实现
+```python
+class SeBlockLayer(tf.keras.layers.Layer):
+    """
+    the SeBlock layer for features
+    """
+    def __init__(self, out_dim, ratio=4.0, *args, **kwargs):
+        super(SeBlockLayer, self).__init__(*args, **kwargs)
+
+        self.out_dim = out_dim
+        self.mid_dim = tf.math.ceil(out_dim / ratio)
+        self.ratio = ratio
+
+        self.avg_weights = []
+
+    def build(self, input_shape):
+        super(SeBlockLayer, self).build(input_shape)
+
+    def call(self, feature_embs):
+        # 对每个特征域进行global pooling
+        for feature_emb in feature_embs:
+            self.avg_weights.append(tf.reduce_mean(feature_emb))
+        se_inputs = tf.convert_to_tensor([self.avg_weights])
+        # FC层
+        outputs = tf.keras.layers.Dense(self.mid_dim)(se_inputs)
+        # relu激活
+        outputs = tf.nn.relu(outputs)
+        # FC层
+        outputs = tf.keras.layers.Dense(self.out_dim)(outputs)
+        # sigmoid激活
+        outputs = tf.nn.sigmoid(outputs)
+        # scaled
+        se_outputs = feature_embs * outputs
+
+        return se_outputs
+```
