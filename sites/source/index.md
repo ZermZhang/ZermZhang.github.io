@@ -1,6 +1,6 @@
 ---
 title: 欢迎
-banner_img: /images/bg/mountains-6753786_1280.webp
+banner_img: /images/bg/mountains-440520_1280.jpeg
 banner_img_height: 40
 ---
 
