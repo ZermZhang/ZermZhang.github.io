@@ -23,7 +23,7 @@ SENet是在文章《[Squeeze-and-Excitation Networks](https://arxiv.org/abs/1709
     & s = F_{ex}(z, W) = \sigma(g(z, W)) = \sigma(W_{2}\delta(W_{1}z))  \tag{1} \\\\
     & W_{1} \in\mathbb{R}^{\frac{C}{r}\times C} \quad and \quad W_{2} \in \mathbb{R}^{C \times \frac{C}{r}}  \tag{2}\label{2} \\\\
     & \quad \\\\
-    & \widetilde{x}_c = F_{scale}(\textbf{u}_c, s_c) = s_c\textbf{u}_c \tag{3}
+    & x_c = F_{scale}(\textbf{u}_c, s_c) = s_c\textbf{u}_c \tag{3}
     \end{align}
     $$
     * 通过一个简单的门机制来计算每个channel对应的权重信息
