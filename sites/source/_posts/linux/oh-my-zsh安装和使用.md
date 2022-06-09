@@ -25,11 +25,24 @@ git clone \
 #### zsh-autosuggestions
 ```shell
 git clone \
-    git://github.com/zsh-users/zsh-autosuggestions \
+    git://github.com/zsh-users/zsh-autosuggestions.git \
     ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 ```
 
 插件clone完成后，重启zsh或者`source ~/.zshrc`即可。
 
 ## oh-my-zsh的更新
-oh-my-zsh更新检测命令`omz updateß`
+oh-my-zsh更新检测命令`omz update`
+
+## 常见的alias命令
+alias极大的简化了对日常常用命令的使用，可以将自己常用的命令通过alias进行简化使用。
+同时oh-my-zsh中内置了大量的alias方便使用，可以通过`alias`命令显示oh-my-zsh里内置的命令。
+常见的命令如下：
+```shell
+g=git
+ga='git add'
+gb='git branch'
+gc='git commit'
+gco='git checkout'
+gst='git status'
+```
