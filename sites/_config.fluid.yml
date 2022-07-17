@@ -156,6 +156,27 @@ post:
     enable: true
     specific: true
     engine: mathjax
+  
+  comments:
+    enable: true
+    type: valine
+
+valine:
+  appId: S8eucA2DyD8F5gpiLDyALbGN-MdYXbMMI
+  appKey: 33iTB6VQqNpGX7g5TInAtUtq
+  path: window.location.pathname
+  placeholder:
+  avatar: 'retro'
+  meta: ['nick', 'mail', 'link']
+  requiredFields: []
+  pageSize: 10
+  lang: 'zh-CN'
+  highlight: false
+  recordIP: false
+  serverURLs: ''
+  emojiCDN:
+  emojiMaps:
+  enableQQ: false
 
 static_prefix:
   mathjax: https://lib.baomitu.com/mathjax/3.2.1/
