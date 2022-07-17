@@ -173,7 +173,7 @@ valine:
   lang: 'zh-CN'
   highlight: false
   recordIP: false
-  serverURLs: ''
+  serverURLs: 'https://s8euca2d.api.lncldglobal.com'
   emojiCDN:
   emojiMaps:
   enableQQ: false
