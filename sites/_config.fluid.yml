@@ -108,13 +108,13 @@ deploy:
 navbar:
   blog_title: 潦草小窝
   menu:
-    - { key: 'BLOG', link: '/articles/', icon: 'iconfont icon-home-fill' }
+    - { key: '文章', link: '/articles/', icon: 'iconfont icon-book' }
     - {
-        key: '文章',
+        key: '归档',
         icon: 'iconfont icon-books',
         submenu: [
             { key: '分类', link: '/categories/' },
-            { key: '归档', link: '/archives/' },
+            { key: '时间线', link: '/archives/' },
             { key: '标签', link: '/tags/' }
         ]
     }
