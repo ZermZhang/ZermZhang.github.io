@@ -106,7 +106,7 @@ deploy:
   type: ''
 
 navbar:
-  blog_title: 潦草小窝
+  blog_title: 知白说
   menu:
     - { key: '文章', link: '/articles/', icon: 'iconfont icon-book' }
     - {
