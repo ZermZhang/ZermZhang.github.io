@@ -1,8 +1,9 @@
 ---
 title: 常见optimizers梳理
 tags: ['machine-learning','optimizer']
-date: 2022-05-10
+date: 2022-07-29
 categories: ['machine-learning']
+math: true
 ---
 
 > optimzer是在机器学习算法中的核心部分，针对常见的optimizer的具体实现原理和公式进行深入了解后，可以对使用模型训练过程中的问题分析有明显的帮助。
