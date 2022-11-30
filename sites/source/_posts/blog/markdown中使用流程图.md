@@ -48,14 +48,9 @@ flowchart LR
 	c --> D((result 1)) & E[result 2]
 ```
 
+![image-20221130181955501](https://raw.githubusercontent.com/ZermZhang/pictures/main/image-20221130181955501.png)
 
 
-```mermaid
-flowchart LR
-	a[hard] -->|relation| b(Round)
-	b --> c{Decision}
-	c --> D((result 1)) & E[result 2]
-```
 
 * 说明：
   * `flowchart LR`: 通过flowchart声明需要生成流程图，LR代码图的走向为从左到右
