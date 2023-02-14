@@ -116,7 +116,8 @@ navbar:
         key: '归档',
         icon: 'iconfont icon-books',
         submenu: [
-            { key: 'airflow', link: '/categories/airflow/'}
+            { key: 'airflow', link: '/categories/airflow/'},
+            { key: '推荐系统', link: '/categories/recommend-system/'}
         ]
     }
     - { key: '关于', link: '/about/', icon: 'iconfont icon-user-fill' }
