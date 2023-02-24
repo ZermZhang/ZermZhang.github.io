@@ -192,3 +192,5 @@ static_prefix:
 
 favicon: /images/avatar/avatar.PNG
 apple_touch_icon: /images/avatar/avatar.PNG
+
+custom_html: '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.css">'
