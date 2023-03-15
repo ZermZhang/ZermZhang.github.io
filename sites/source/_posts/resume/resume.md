@@ -11,9 +11,9 @@ td, th, tr {
 }
 </style>
 
-<!-- <head> 
-    <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"></script> 
-    <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/v4-shims.js"></script> 
+<!-- <head>
+    <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/v4-shims.js"></script>
 </head>  -->
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"> -->
 <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.css"> -->
