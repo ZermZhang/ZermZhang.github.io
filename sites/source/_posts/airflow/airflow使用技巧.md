@@ -19,3 +19,21 @@ var1 = dag_config["var1"]
 var2 = dag_config["var2"]
 var3 = dag_config["var3"]
 ```
+
+# 2. airflow的时间说明
+> airflow中存在多种时间信息，包括dag开始时间、结束时间、调度时间等
+> 比较容易产生混乱
+
+![image.png](https://raw.githubusercontent.com/ZermZhang/pictures/main/20230417133930.png)
+如上图：
+* Run：dag的调度时间，即execution_date，注意该时间相较当前的执行时间会早一个调度周期
+* Started：dag的启动时间，即当前dag启动时的系统时间
+* Ended：dag的结束时间，即当前dag运行结束时的系统时间
+
+**时间获取方法：**
+```python
+execution_date = "{{ execution_date }}" # yyyymmdd
+execution_date = "{{ ds }}" # yyyy-mm-dd
+execution_date = "{{ ds_nodash }}" # yyyymmdd
+beijing_today = "{{ (macros.datetime.utcnow() + macros.timedelta(hours=8)).strftime('%Y-%m-%d %H') }}"
+```
