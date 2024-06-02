@@ -4,7 +4,7 @@ date: 2023-02-22 19:09
 categories: ['resume']
 toc: false
 banner_img: https://raw.githubusercontent.com/ZermZhang/pictures/main/ruijia-wang-_cX76xaZB5A-unsplash.jpg
-banner_img_height: 40
+banner_img_height: 50
 ---
 
 <style>
