@@ -1,0 +1,830 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/images/avatar/avatar.PNG">
+  <link rel="icon" href="/images/avatar/avatar.PNG">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="知白">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="在airflow中，可以通过对pipeline中的不同task赋予不同的状态(state)说明当前任务的执行进度。通过airflow的状态机制，可以对当前的任务执行进度和状态进行很好的把控，及时了解指定任务的情况。 其中，airflow在更新到2.0版本后，相较于之前的1.9.0版本，airflow对任务状态进行了进一步的细化说明。本文主要是为了对airflow的基础状态信息进行一个简单的介绍和记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="airflow状态说明">
+<meta property="og:url" content="https://zermzhang.github.io/2022/04/23/airflow/airflow%E7%8A%B6%E6%80%81%E8%AF%B4%E6%98%8E/index.html">
+<meta property="og:site_name" content="知白说">
+<meta property="og:description" content="在airflow中，可以通过对pipeline中的不同task赋予不同的状态(state)说明当前任务的执行进度。通过airflow的状态机制，可以对当前的任务执行进度和状态进行很好的把控，及时了解指定任务的情况。 其中，airflow在更新到2.0版本后，相较于之前的1.9.0版本，airflow对任务状态进行了进一步的细化说明。本文主要是为了对airflow的基础状态信息进行一个简单的介绍和记">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ZermZhang/pictures@main/PicX/airflow-all-state.2g0opkilfqck.webp">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ZermZhang/pictures@main/PicX/airflow-success-state.2n720i3oq4u0.webp">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ZermZhang/pictures@main/PicX/airflow-running-state.2hjc0rbgou60.webp">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ZermZhang/pictures@main/PicX/airflow-failed-state.6vbtjqjxw8g0.webp">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ZermZhang/pictures@main/PicX/airflow-upstream-failed-state.3m701qkvfc80.webp">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ZermZhang/pictures@main/PicX/airflow-skipped-state.2oekru2jpa60.webp">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ZermZhang/pictures@main/PicX/airflow-up-for-retry-state.h2tpvfwe4lc.webp">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ZermZhang/pictures@main/PicX/airflow-up_for_reschedule-state.1bo58g36z6qo.webp">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ZermZhang/pictures@main/PicX/airflow-queued-state.13weqa9jfna8.webp">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ZermZhang/pictures@main/PicX/airflow-no_status-state.3b4t9j1ta8k0.webp">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ZermZhang/pictures@main/PicX/airflow-scheduled-state.7io0ibe2l5s0.webp">
+<meta property="article:published_time" content="2022-04-23T00:00:00.000Z">
+<meta property="article:modified_time" content="2024-06-02T11:41:23.885Z">
+<meta property="article:author" content="知白">
+<meta property="article:tag" content="airflow">
+<meta property="article:tag" content="调度器">
+<meta property="article:tag" content="状态">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/ZermZhang/pictures@main/PicX/airflow-all-state.2g0opkilfqck.webp">
+  
+  
+  
+  <title>airflow状态说明 - 知白说</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zermzhang.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>知白说</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/articles/" target="_self">
+                <i class="iconfont icon-book"></i>
+                <span>文章</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="icon-cliplist"></i>
+                <span>时间线</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-books"></i>
+                <span>归档</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/categories/airflow/" target="_self">
+                    
+                    <span>airflow</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/categories/recommend-system/" target="_self">
+                    
+                    <span>推荐系统</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/categories/thesis/" target="_self">
+                    
+                    <span>论文阅读</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="airflow状态说明"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-04-23 00:00" pubdate>
+          2022年4月23日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          10 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">airflow状态说明</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>在airflow中，可以通过对pipeline中的不同task赋予不同的状态(state)说明当前任务的执行进度。通过airflow的状态机制，可以对当前的任务执行进度和状态进行很好的把控，及时了解指定任务的情况。</p>
+<p>其中，airflow在更新到2.0版本后，相较于之前的1.9.0版本，airflow对任务状态进行了进一步的细化说明。本文主要是为了对airflow的基础状态信息进行一个简单的介绍和记录。</p>
+<span id="more"></span>
+
+<h1 id="1-airflow状态说明"><a href="#1-airflow状态说明" class="headerlink" title="1. airflow状态说明"></a>1. airflow状态说明</h1><p><img src="https://cdn.jsdelivr.net/gh/ZermZhang/pictures@main/PicX/airflow-all-state.2g0opkilfqck.webp" srcset="/img/loading.gif" lazyload alt="airflow-all-state"></p>
+<h2 id="1-1-通过颜色区分"><a href="#1-1-通过颜色区分" class="headerlink" title="1.1 通过颜色区分"></a>1.1 通过颜色区分</h2><p>airflow中的状态标识蕾丝红绿灯的状态区分，主要分成了红、黄、绿三种基础状态。在此基础上，针对三种不同的颜色范围，进行了进一步的细化标识来表明不同的细化状态。</p>
+<h2 id="1-2-通过粒度区分"><a href="#1-2-通过粒度区分" class="headerlink" title="1.2 通过粒度区分"></a>1.2 通过粒度区分</h2><p>除此之外，airflow状态还会根据标明级别，分成了dag状态和task状态两大类，不同类别的状态主要有如下几个小类：</p>
+<ol>
+<li>Dagrun：SUCCESS, RUNNING, FAILED</li>
+<li>Task：SUCCESS, RUNNING, FAILED, UPSTREAM_FAILED, SKIPPED, UP_FOR_RETRY, UP_FOR_RESCHEDULE, QUEUED, NONE, SCHEDULED</li>
+</ol>
+<p>其中，Task状态主要是针对Dagrun状态的细化说明，因为Dag中不同task因为执行时间、顺序和依赖的不同，会有不同的状态表现。</p>
+<h2 id="1-3-通过状态范围区分"><a href="#1-3-通过状态范围区分" class="headerlink" title="1.3 通过状态范围区分"></a>1.3 通过状态范围区分</h2><p>同时，可以通过是否会继续进行状态变更，分成完成（finished）和未完成（unfinished）两大类。</p>
+<ul>
+<li>完成状态代表airflow scheduler不会对当前task&#x2F;dagrun进行监控。</li>
+<li>未完成状态代表当前task&#x2F;dagrun的状态还会发生变更，最终会达到一个完成状态。</li>
+</ul>
+<h1 id="2-airflow状态的详细介绍"><a href="#2-airflow状态的详细介绍" class="headerlink" title="2. airflow状态的详细介绍"></a>2. airflow状态的详细介绍</h1><h3 id="2-1-SUCCESS（green｜dagrun｜task｜finished）"><a href="#2-1-SUCCESS（green｜dagrun｜task｜finished）" class="headerlink" title="2.1 SUCCESS（green｜dagrun｜task｜finished）"></a>2.1 SUCCESS（green｜dagrun｜task｜finished）</h3><p><img src="https://cdn.jsdelivr.net/gh/ZermZhang/pictures@main/PicX/airflow-success-state.2n720i3oq4u0.webp" srcset="/img/loading.gif" lazyload alt="airflow-success-state"></p>
+<ul>
+<li>success状态说明当前任务在执行过程中没有检测到错误信息，并正常完成。</li>
+<li>airflow scheduler上报状态后，释放针对当前任务的监控。</li>
+<li>excutor执行完成对应任务</li>
+<li>颜色：墨绿色</li>
+</ul>
+<h3 id="2-2-RUNNING（green｜dagrun｜task｜unfinished）"><a href="#2-2-RUNNING（green｜dagrun｜task｜unfinished）" class="headerlink" title="2.2 RUNNING（green｜dagrun｜task｜unfinished）"></a>2.2 RUNNING（green｜dagrun｜task｜unfinished）</h3><p><img src="https://cdn.jsdelivr.net/gh/ZermZhang/pictures@main/PicX/airflow-running-state.2hjc0rbgou60.webp" srcset="/img/loading.gif" lazyload alt="airflow-running-state"></p>
+<ul>
+<li>running状态代表当前的任务执行执行中</li>
+<li>airflow scheduler将该任务提交到了executor上，并对当前任务通过heartbeat进行监控</li>
+<li>executor正在对对应的实际任务进行执行</li>
+<li>颜色：浅绿色</li>
+<li>后续状态：SUCCESS、RETRY、FAILED</li>
+</ul>
+<h3 id="2-3-FAILED（red｜dagrun｜task｜finished）"><a href="#2-3-FAILED（red｜dagrun｜task｜finished）" class="headerlink" title="2.3 FAILED（red｜dagrun｜task｜finished）"></a>2.3 FAILED（red｜dagrun｜task｜finished）</h3><p><img src="https://cdn.jsdelivr.net/gh/ZermZhang/pictures@main/PicX/airflow-failed-state.6vbtjqjxw8g0.webp" srcset="/img/loading.gif" lazyload alt="airflow-failed-state"></p>
+<ul>
+<li>failed状态说明当前任务执行失败，返回了错误状态码，airflow监控到了当前错误，表现在web上</li>
+<li>airflow scheduler会上报当前任务failed壮体啊，和下游任务的UPSTREAM_FAILED状态</li>
+<li>executor执行完成对应任务</li>
+<li>颜色：红色</li>
+</ul>
+<h3 id="2-4-UPSTREAM-FAILED（red｜task｜finished）"><a href="#2-4-UPSTREAM-FAILED（red｜task｜finished）" class="headerlink" title="2.4 UPSTREAM_FAILED（red｜task｜finished）"></a>2.4 UPSTREAM_FAILED（red｜task｜finished）</h3><p><img src="https://cdn.jsdelivr.net/gh/ZermZhang/pictures@main/PicX/airflow-upstream-failed-state.3m701qkvfc80.webp" srcset="/img/loading.gif" lazyload alt="airflow-upstream_upfailed-state"></p>
+<ul>
+<li>upstream_failed状态说明当前任务的上游任务发生错误，上有task处于FAILED状态，当前任务并没有开始执行</li>
+<li>airflow scheduler会直接上报当前任务状态，不会再将当前任务进行调度</li>
+<li>executor没有执行对应的任务</li>
+<li>颜色：棕黄色</li>
+</ul>
+<h3 id="2-5-SKIPPED（red｜task｜finished）"><a href="#2-5-SKIPPED（red｜task｜finished）" class="headerlink" title="2.5 SKIPPED（red｜task｜finished）"></a>2.5 SKIPPED（red｜task｜finished）</h3><p><img src="https://cdn.jsdelivr.net/gh/ZermZhang/pictures@main/PicX/airflow-skipped-state.2oekru2jpa60.webp" srcset="/img/loading.gif" lazyload alt="airflow-skipped-state"></p>
+<ul>
+<li>skipped状态代表当前任务被跳过，没有进行执行，经常发生在branchOperator未触发的分支上</li>
+<li>airflow scheduler绕过了当前任务，并没有调度</li>
+<li>executor没有执行对应的任务</li>
+<li>颜色：浅红色</li>
+</ul>
+<h3 id="2-6-UP-FOR-RETRY（yellow｜task｜unfinished）"><a href="#2-6-UP-FOR-RETRY（yellow｜task｜unfinished）" class="headerlink" title="2.6 UP_FOR_RETRY（yellow｜task｜unfinished）"></a>2.6 UP_FOR_RETRY（yellow｜task｜unfinished）</h3><p><img src="https://cdn.jsdelivr.net/gh/ZermZhang/pictures@main/PicX/airflow-up-for-retry-state.h2tpvfwe4lc.webp" srcset="/img/loading.gif" lazyload alt="airflow-up_for_retry-state"></p>
+<ul>
+<li>up_for_retry代表当前任务执行失败并在等待重试中</li>
+<li>airflow scheduler会在retry interval之后，下一次heartbeat到达时重新调度该任务</li>
+<li>executor上次执行对应任务失败，上次执行过程已经结束，当前没有执行对应任务</li>
+<li>颜色：黄色</li>
+</ul>
+<h3 id="2-7-UP-FOR-RESCHEDULE（green｜task｜unfinished）"><a href="#2-7-UP-FOR-RESCHEDULE（green｜task｜unfinished）" class="headerlink" title="2.7 UP_FOR_RESCHEDULE（green｜task｜unfinished）"></a>2.7 UP_FOR_RESCHEDULE（green｜task｜unfinished）</h3><p><img src="https://cdn.jsdelivr.net/gh/ZermZhang/pictures@main/PicX/airflow-up_for_reschedule-state.1bo58g36z6qo.webp" srcset="/img/loading.gif" lazyload alt="airflow-up_for_reschedule-state"></p>
+<ul>
+<li>up_for_reschedule是在airflow1.10.2中引入的心状态，常用在Sensor中，可以防止过度消耗slots</li>
+<li>airflow scheduler会对当前的任务进行定时尝试，防止因为长时间处在调度过程中而占据worker slots，从而导致worker锁死，无法执行其他任务</li>
+<li>executor定时执行对应任务</li>
+<li>颜色：浅绿色</li>
+</ul>
+<h3 id="2-8-QUEUED（grey｜task｜unfinished）"><a href="#2-8-QUEUED（grey｜task｜unfinished）" class="headerlink" title="2.8 QUEUED（grey｜task｜unfinished）"></a>2.8 QUEUED（grey｜task｜unfinished）</h3><p><img src="https://cdn.jsdelivr.net/gh/ZermZhang/pictures@main/PicX/airflow-queued-state.13weqa9jfna8.webp" srcset="/img/loading.gif" lazyload alt="airflow-queued-state"></p>
+<ul>
+<li>queued状态代表当前任务已经被调度，但是正在等待一个可用的executor slots</li>
+<li>airflow scheduler已经将该任务调度，正在排队中，当前的pool中没用slots为0</li>
+<li>executor没有空闲的slots执行该任务，或者提交到指定的executor的concurrency已经最大，无法在接受新任务</li>
+<li>颜色：灰色</li>
+</ul>
+<h3 id="2-9-NO-STATUS（no｜task｜unfinished）"><a href="#2-9-NO-STATUS（no｜task｜unfinished）" class="headerlink" title="2.9 NO_STATUS（no｜task｜unfinished）"></a>2.9 NO_STATUS（no｜task｜unfinished）</h3><p><img src="https://cdn.jsdelivr.net/gh/ZermZhang/pictures@main/PicX/airflow-no_status-state.3b4t9j1ta8k0.webp" srcset="/img/loading.gif" lazyload alt="airflow-no_status-state"></p>
+<ul>
+<li>no_status代表当前任务还没有被调度到，前面任务正在执行</li>
+<li>颜色：无颜色</li>
+</ul>
+<h3 id="2-10-SCHEDULED（yellow｜task｜unfinished）"><a href="#2-10-SCHEDULED（yellow｜task｜unfinished）" class="headerlink" title="2.10 SCHEDULED（yellow｜task｜unfinished）"></a>2.10 SCHEDULED（yellow｜task｜unfinished）</h3><p><img src="https://cdn.jsdelivr.net/gh/ZermZhang/pictures@main/PicX/airflow-scheduled-state.7io0ibe2l5s0.webp" srcset="/img/loading.gif" lazyload alt="airflow-scheduled-state"></p>
+<ul>
+<li>scheduled状态代表该任务已经被触发</li>
+<li>airflow scheduler调度该任务，但是并没有open slots（&#x3D;all_slots - running_slots - queued_slots），正在轮询状态中</li>
+<li>excutor没有空闲的slots执行该任务</li>
+<li>颜色：棕色</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/airflow/" class="category-chain-item">airflow</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/airflow/" class="print-no-link">#airflow</a>
+      
+        <a href="/tags/%E8%B0%83%E5%BA%A6%E5%99%A8/" class="print-no-link">#调度器</a>
+      
+        <a href="/tags/%E7%8A%B6%E6%80%81/" class="print-no-link">#状态</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>airflow状态说明</div>
+      <div>https://zermzhang.github.io/2022/04/23/airflow/airflow状态说明/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>知白</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年4月23日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/04/24/linux/Linux%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE/" title="Linux命令行常用快捷键">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Linux命令行常用快捷键</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/04/22/airflow/airflow%E7%AE%80%E5%8D%95%E9%83%A8%E7%BD%B2/" title="airflow简单部署">
+                        <span class="hidden-mobile">airflow简单部署</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"S8eucA2DyD8F5gpiLDyALbGN-MdYXbMMI","appKey":"33iTB6VQqNpGX7g5TInAtUtq","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"https://s8euca2d.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+      <div class="col-lg-7 mx-auto nopadding-x-md">
+        <div class="container custom mx-auto">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.css">
+        </div>
+      </div>
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script  src="https://lib.baomitu.com/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js" ></script>
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

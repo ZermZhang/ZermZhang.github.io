@@ -1,0 +1,833 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/images/avatar/avatar.PNG">
+  <link rel="icon" href="/images/avatar/avatar.PNG">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="知白">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="数据在推荐系统的任务中是重中之重，不光是推荐系统，在整个深度学习体系中，“garbage in，garbage out”都是从业者的金科玉律。所以，数据处理永远都是ai从业者在日常工作中难以忽略的一项极为重要的工作内容。  1. 数据构成推荐系统的数据构成相较其他的nlp、cv等机器学习领域，具有自己独特的特点，因为推荐系统的数据是来自于用户在前端的行为实时产生的数据，所以这些数据天然是具有标注">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据基本介绍">
+<meta property="og:url" content="https://zermzhang.github.io/2022/08/25/RecommendSystem/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%9F%BA%E6%9C%AC%E4%BB%8B%E7%BB%8D/index.html">
+<meta property="og:site_name" content="知白说">
+<meta property="og:description" content="数据在推荐系统的任务中是重中之重，不光是推荐系统，在整个深度学习体系中，“garbage in，garbage out”都是从业者的金科玉律。所以，数据处理永远都是ai从业者在日常工作中难以忽略的一项极为重要的工作内容。  1. 数据构成推荐系统的数据构成相较其他的nlp、cv等机器学习领域，具有自己独特的特点，因为推荐系统的数据是来自于用户在前端的行为实时产生的数据，所以这些数据天然是具有标注">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/ZermZhang/pictures/main/20230214091440.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/ZermZhang/pictures/main/20230220200419.png">
+<meta property="article:published_time" content="2022-08-25T15:21:00.000Z">
+<meta property="article:modified_time" content="2024-06-02T11:41:23.885Z">
+<meta property="article:author" content="知白">
+<meta property="article:tag" content="recommend-system">
+<meta property="article:tag" content="datas">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/ZermZhang/pictures/main/20230214091440.png">
+  
+  
+  
+  <title>数据基本介绍 - 知白说</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zermzhang.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>知白说</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/articles/" target="_self">
+                <i class="iconfont icon-book"></i>
+                <span>文章</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="icon-cliplist"></i>
+                <span>时间线</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-books"></i>
+                <span>归档</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/categories/airflow/" target="_self">
+                    
+                    <span>airflow</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/categories/recommend-system/" target="_self">
+                    
+                    <span>推荐系统</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/categories/thesis/" target="_self">
+                    
+                    <span>论文阅读</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="数据基本介绍"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-08-25 15:21" pubdate>
+          2022年8月25日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          16 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">数据基本介绍</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <blockquote>
+<p>数据在推荐系统的任务中是重中之重，不光是推荐系统，在整个深度学习体系中，“garbage in，garbage out”都是从业者的金科玉律。<br>所以，数据处理永远都是ai从业者在日常工作中难以忽略的一项极为重要的工作内容。</p>
+</blockquote>
+<h1 id="1-数据构成"><a href="#1-数据构成" class="headerlink" title="1. 数据构成"></a>1. 数据构成</h1><p>推荐系统的数据构成相较其他的nlp、cv等机器学习领域，具有自己独特的特点，因为推荐系统的数据是来自于用户在前端的行为实时产生的数据，所以这些数据天然是具有标注的性质的。比如，用户发生了点击的行为大概率是要优于用户看过但是没有点击的item的，用户收藏的item大概率是要优于只是点进来看了看的item的。<br>那么，我们要怎么样才能将用户在前端的行为恰当的表现在数据中呢？这就是在构建推荐系统的特征的时候极为重要，也极为困难的一个部分了。<br>这涉及到了数据的基本构成和我们在数据生成的过程中需要注意到的方方面面的内容。<br>这里，我们先简单介绍一下推荐系统数据的基本构成情况。</p>
+<h2 id="1-1-特征"><a href="#1-1-特征" class="headerlink" title="1.1 特征"></a>1.1 特征</h2><p>推荐系统中，不可或缺的三个部分是用户(user)，物品(item), 环境(context)。<br>这三者构成了推荐系统下的整体循环。<br><img src="https://raw.githubusercontent.com/ZermZhang/pictures/main/20230214091440.png" srcset="/img/loading.gif" lazyload alt="推荐系统三者关系"><br>这三者的循环构成了整个推荐系统数据中必不可少的三类特征，而在日常使用中，这三类特征也是最常见，最需要先入手的三类特征。<br>针对这三类特征的介绍，在下问题<a href="#2.1">根据不同来源进行分类</a>中进行详细介绍。</p>
+<h2 id="1-2-行为漏斗"><a href="#1-2-行为漏斗" class="headerlink" title="1.2 行为漏斗"></a>1.2 行为漏斗</h2><p>行为漏斗是推荐系统数据构建过程中必不可缺的一个部分。因为这部分信息天然的将我们需要的特征做好了正负样本的区分。<br>在线上推荐系统环境下，用户的行为漏斗根据具体场景不同分成了曝光、点击、收藏、加车、购买、不喜欢、屏蔽等等信息。当然，我们最常用是下面几种：<br><img src="https://raw.githubusercontent.com/ZermZhang/pictures/main/20230220200419.png" srcset="/img/loading.gif" lazyload alt="常见漏斗数据"></p>
+<h4 id="曝光："><a href="#曝光：" class="headerlink" title="曝光："></a>曝光：</h4><p>曝光特征行为在线上推荐系统中，是必然会发生的一种行为。<br>当用户出现在我们的环境下，曝光的行为就已经发生了。这种行为是推荐系统数据中最基础也是最大量的组成部分。</p>
+<h4 id="点击："><a href="#点击：" class="headerlink" title="点击："></a>点击：</h4><p>点击行为使用户在线上环境中自主发生的一种正向行为，这种行为代表了用户对当前物品的感兴趣的程度要高于其他没有发生点击行为的物品，是推荐系统重常用的正样本来源之一。</p>
+<h1 id="2-特征"><a href="#2-特征" class="headerlink" title="2. 特征"></a>2. 特征</h1><p>推荐系统的特征有多种分类方式，包括根据不同的来源进行分析，根据生成逻辑进行分类等等。</p>
+<h2 id="2-1-根据不同来源进行分类"><a href="#2-1-根据不同来源进行分类" class="headerlink" title="2.1 根据不同来源进行分类"></a>2.1 根据不同来源进行分类</h2><p>根据不同的来源进行分类主要是从特征的生成方来区分特征，这是特征天然的区分方式，而且是大部分推荐系统环境下必然可以进行的分类方案。<br>根据这种方法，可以将特征分成用户，物品，环境（也叫上下文）三大类。</p>
+<h3 id="2-1-1-上下文特征"><a href="#2-1-1-上下文特征" class="headerlink" title="2.1.1 上下文特征"></a>2.1.1 上下文特征</h3><p>上下文特征主要是指用户在推荐系统的环境下发生行为时的环境信息。从这一段描述中我们可以看出，上下文特征其实也可以分成两大类，其一：时间上下文特征；其二：空间上下文特征。</p>
+<h4 id="时间上下文特征"><a href="#时间上下文特征" class="headerlink" title="时间上下文特征"></a>时间上下文特征</h4><ul>
+<li>热门物品的相关时间</li>
+<li>季节属性的影响</li>
+<li>商品生命周期</li>
+<li>用户兴趣变化</li>
+<li>站点、环境的生命周期变更</li>
+</ul>
+<h4 id="空间上下文特征"><a href="#空间上下文特征" class="headerlink" title="空间上下文特征"></a>空间上下文特征</h4><ul>
+<li>行为发生的位置<ul>
+<li>站点页面展示位置</li>
+<li>具体的物理空间位置（ip、经纬度等等）</li>
+</ul>
+</li>
+<li>行为发生时的环境信息<ul>
+<li>当前页面的关联信息</li>
+<li>当前页面的具体位置</li>
+<li>用户来到当前页面前的行为路径</li>
+<li>···</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-1-2-物品特征"><a href="#2-1-2-物品特征" class="headerlink" title="2.1.2 物品特征"></a>2.1.2 物品特征</h3><p>物品特征主要指的是能够从各个角度对商品进行恰当描述的信息和特征。<br>通过这些描述，我们能够对物品有一个基础的认知，能够通过当前认知将不同的商品进行区分，同时又能够将具体相同信息的物品有一个鉴别的逻辑。</p>
+<ul>
+<li>物品的标题</li>
+<li>物品的描述信息</li>
+<li>物品的类目表述</li>
+<li>物品的各类统计特征</li>
+<li>物品的图像</li>
+<li>物品的作者、提供商</li>
+<li>···</li>
+</ul>
+<h3 id="2-1-3-用户特征"><a href="#2-1-3-用户特征" class="headerlink" title="2.1.3 用户特征"></a>2.1.3 用户特征</h3><p>用户特征和物品特征类似，主要是为了对当前系统面对的用户进行多维度的区分和认知。<br>同时，因为用户是行为的主动发起方，同时也是推荐系统中的重中之重，所以为了能够清晰的认知到不同用户之间的区别，恰当的构造用户特征也是特征构造过程中极为重要的一点。为了完成这种需求，用户特征需要从各个方面进行构造和处理。</p>
+<ul>
+<li>用户基础描述（用户的年龄、性别等基本信息）</li>
+<li>用户的兴趣偏好</li>
+<li>用户的兴趣变化</li>
+</ul>
+<h2 id="2-2-根据生成逻辑进行分类"><a href="#2-2-根据生成逻辑进行分类" class="headerlink" title="2.2 根据生成逻辑进行分类"></a>2.2 根据生成逻辑进行分类</h2><h3 id="2-2-1-单值特征"><a href="#2-2-1-单值特征" class="headerlink" title="2.2.1 单值特征"></a>2.2.1 单值特征</h3><p>单值特征，指的是一般情况下的离散特征，多是来自于一些环境和用户的静态特征，比如用户的性别，当前网络状态是否是wifi等等。<br>这一类特征相对而言比较简单，因为取值唯一，多用<code>1</code>来表示该特征存在，用<code>0</code>表示该特征不存在。</p>
+<h3 id="2-2-2-多值特征"><a href="#2-2-2-多值特征" class="headerlink" title="2.2.2 多值特征"></a>2.2.2 多值特征</h3><p>多值特征是相对单值特征而言，特征项的取值部分有多个选项的特征，该类特征在上线文特征、物品特征、用户特征里都有存在，是推荐系统中较为常见的特征类型。比如：当前网页环境的页面标识，用户的年龄段、物品的标题、描述等等。<br>多值特征在使用过程中很难直接利用，因为伴随着特征生成过程中可能存在的各种问题，多值特征开会存在不同的缺失、异常等问题。随之衍生的针对特征的处理技巧也是推荐系统特征工程中的一大难题。</p>
+<h3 id="2-2-3-统计值特征"><a href="#2-2-3-统计值特征" class="headerlink" title="2.2.3 统计值特征"></a>2.2.3 统计值特征</h3><p>统计值大多是从原始特征基础上经过数数学统计之后得到的一些数值类特征，这些特征能够很好的展示某个基础特征的指定维度组合信息，能够给到模型很好的先验信息。</p>
+<h3 id="2-2-4-序列特征"><a href="#2-2-4-序列特征" class="headerlink" title="2.2.4 序列特征"></a>2.2.4 序列特征</h3><p>序列特征大多是和用户的行为强绑定在一起的一种特征信息。这一类特征表示了用户的近期兴趣变化情况。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/recommend-system/" class="category-chain-item">recommend-system</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/recommend-system/" class="print-no-link">#recommend-system</a>
+      
+        <a href="/tags/datas/" class="print-no-link">#datas</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>数据基本介绍</div>
+      <div>https://zermzhang.github.io/2022/08/25/RecommendSystem/数据/数据基本介绍/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>知白</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年8月25日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/08/31/spark/spark.read%E7%9A%84%E4%BD%BF%E7%94%A8/" title="spark.read的使用">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">spark.read的使用</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/07/29/MachineLearning/%E5%B8%B8%E8%A7%81optimizers%E6%A2%B3%E7%90%86/" title="常见optimizers梳理">
+                        <span class="hidden-mobile">常见optimizers梳理</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"S8eucA2DyD8F5gpiLDyALbGN-MdYXbMMI","appKey":"33iTB6VQqNpGX7g5TInAtUtq","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"https://s8euca2d.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+      <div class="col-lg-7 mx-auto nopadding-x-md">
+        <div class="container custom mx-auto">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.css">
+        </div>
+      </div>
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script  src="https://lib.baomitu.com/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js" ></script>
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.1/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

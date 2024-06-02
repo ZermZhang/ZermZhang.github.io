@@ -1,0 +1,811 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/images/avatar/avatar.PNG">
+  <link rel="icon" href="/images/avatar/avatar.PNG">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="知白">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="近期在整理个人简历的时候，突发奇想，准备将我自己的简历放到github-pages上部署的blog里。所以就研究了一下如何在hexo中配置个人简历，一番折腾下来，确实配好了，但是却达不到完全通过markdown就可以实现我想要的效果。最终的结果就是在markdown里面增加了许多的html相关的配置，才达到了一个简单的效果。折腾过程就记录在这里，方便后续查阅吧。 最终效果  1. 前期准备为了实现">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hexo-blog中配置个人简历">
+<meta property="og:url" content="https://zermzhang.github.io/2023/02/24/blog/hexo-blog%E4%B8%AD%E9%85%8D%E7%BD%AE%E4%B8%AA%E4%BA%BA%E7%AE%80%E5%8E%86/index.html">
+<meta property="og:site_name" content="知白说">
+<meta property="og:description" content="近期在整理个人简历的时候，突发奇想，准备将我自己的简历放到github-pages上部署的blog里。所以就研究了一下如何在hexo中配置个人简历，一番折腾下来，确实配好了，但是却达不到完全通过markdown就可以实现我想要的效果。最终的结果就是在markdown里面增加了许多的html相关的配置，才达到了一个简单的效果。折腾过程就记录在这里，方便后续查阅吧。 最终效果  1. 前期准备为了实现">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/ZermZhang/pictures/main/20230224085327.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/ZermZhang/pictures/main/20230224085040.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/ZermZhang/pictures/main/20230224091017.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/ZermZhang/pictures/main/20230224093242.png">
+<meta property="article:published_time" content="2023-02-24T00:00:00.000Z">
+<meta property="article:modified_time" content="2024-06-02T11:41:23.885Z">
+<meta property="article:author" content="知白">
+<meta property="article:tag" content="Hexo">
+<meta property="article:tag" content="blog">
+<meta property="article:tag" content="resume">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/ZermZhang/pictures/main/20230224085327.png">
+  
+  
+  
+  <title>hexo-blog中配置个人简历 - 知白说</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zermzhang.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>知白说</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/articles/" target="_self">
+                <i class="iconfont icon-book"></i>
+                <span>文章</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="icon-cliplist"></i>
+                <span>时间线</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-books"></i>
+                <span>归档</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/categories/airflow/" target="_self">
+                    
+                    <span>airflow</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/categories/recommend-system/" target="_self">
+                    
+                    <span>推荐系统</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/categories/thesis/" target="_self">
+                    
+                    <span>论文阅读</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="hexo-blog中配置个人简历"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-02-24 00:00" pubdate>
+          2023年2月24日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          11 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">hexo-blog中配置个人简历</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>近期在整理个人简历的时候，突发奇想，准备将我自己的简历放到github-pages上部署的blog里。所以就研究了一下如何在hexo中配置个人简历，一番折腾下来，确实配好了，但是却达不到完全通过markdown就可以实现我想要的效果。<br>最终的结果就是在markdown里面增加了许多的html相关的配置，才达到了一个简单的效果。<br>折腾过程就记录在这里，方便后续查阅吧。</p>
+<h2 id="最终效果"><a href="#最终效果" class="headerlink" title="最终效果"></a>最终效果</h2><img src='https://raw.githubusercontent.com/ZermZhang/pictures/main/20230224085327.png' width=40% alt="简历效果">
+
+<h1 id="1-前期准备"><a href="#1-前期准备" class="headerlink" title="1. 前期准备"></a>1. 前期准备</h1><p>为了实现我想要的简历效果，最主要的难点在于如何通过markdown控制简历中各类型信息的排版问题，最常见的方法就是通过表格。但是markdown中的表格无法自由的控制单元格宽度和表格宽度，最终只能通过空单元格解决。</p>
+<h3 id="1-1-表格排版"><a href="#1-1-表格排版" class="headerlink" title="1.1 表格排版"></a>1.1 表格排版</h3><blockquote>
+<p>通过空单元格对信息排版进行控制</p>
+</blockquote>
+<ul>
+<li><p>正常的单元格配置</p>
+<figure><div class="code-wrapper"><pre class="line-numbers language-markdown" data-language="markdown"><code class="language-markdown"><span class="token table"><span class="token table-header-row"><span class="token punctuation">|</span><span class="token table-header important">name1</span><span class="token punctuation">|</span><span class="token table-header important">name2</span><span class="token punctuation">|</span>
+</span><span class="token table-line"><span class="token punctuation">|</span><span class="token punctuation">---</span><span class="token punctuation">|</span><span class="token punctuation">---</span><span class="token punctuation">|</span>
+</span><span class="token table-data-rows"><span class="token punctuation">|</span><span class="token table-data">age1</span><span class="token punctuation">|</span><span class="token table-data">age2</span><span class="token punctuation">|</span></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div></figure>
+<table>
+<thead>
+<tr>
+<th>name1</th>
+<th>name2</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>age1</td>
+<td>age2</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>具有空单元格的表格</p>
+<figure><div class="code-wrapper"><pre class="line-numbers language-markdown" data-language="markdown"><code class="language-markdown">|name1||name2|
+|---|---|--|
+|age1||age2|<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div></figure>
+<table>
+<thead>
+<tr>
+<th>name1</th>
+<th></th>
+<th>name2</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>age1</td>
+<td></td>
+<td>age2</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>通过增加一个空单元格的方法，可以让简历中的信息不用都聚集在屏幕的左侧，但是当前表格的边框影响了么美观，为了将单元格的边框去掉，只好通过当前页面的自定义style信息配置实现。</p>
+<figure><div class="code-wrapper"><pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span><span class="token punctuation">></span></span><span class="token style"><span class="token language-css">
+<span class="token selector">td, th, tr</span> <span class="token punctuation">&#123;</span>
+   <span class="token property">border</span><span class="token punctuation">:</span> none<span class="token important">!important</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
+<p>在文档的开始部分增加如上配置，可以使当前页面的所有表格隐藏边框，提升信息排版的美观度。<br><img src="https://raw.githubusercontent.com/ZermZhang/pictures/main/20230224085040.png" srcset="/img/loading.gif" lazyload alt="无边框表格"></p>
+</li>
+</ul>
+<h3 id="1-2-图标配置"><a href="#1-2-图标配置" class="headerlink" title="1.2 图标配置"></a>1.2 图标配置</h3><p>在上面的简历图片中可以看到使用了很多的矢量图图标，提升了简体整体的丰富度。因为我觉着再web端不需要像纸质简历那么严肃，可以加一些有趣的东西在里面，所以我在简历中将本来用文字描述的部分增加了一些图标。<br>在图标的选择上，可以根据个人喜好来定，常见的iconfont、makrdown-emoji都可以，我这里选用了<a target="_blank" rel="noopener" href="https://fontawesome.com/search">font-awesome</a>来用，因为我觉这款图标比较符合我的审美，而且使用简单。</p>
+<ul>
+<li>使用方法：<figure><div class="code-wrapper"><pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>stylesheet<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.css<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></figure></li>
+<li>在文档开始部分增加如上配置，就可以在文档里随时使用font-awesome的矢量图标<br><img src="https://raw.githubusercontent.com/ZermZhang/pictures/main/20230224091017.png" srcset="/img/loading.gif" lazyload alt="font-awesome图标"><br>将图中的html标签复制下来，就可以在文档里显示了，就像这样<i class="fa-solid fa-house"></i></li>
+</ul>
+<h1 id="2-增加页面"><a href="#2-增加页面" class="headerlink" title="2. 增加页面"></a>2. 增加页面</h1><p>在hexo中增加简历页面有两种方法：</p>
+<ol>
+<li>正常的把简历当成一个普通文档插入到blog中</li>
+<li>把简历当做一个独立页面配置到blog中</li>
+</ol>
+<h3 id="2-1-正常插入"><a href="#2-1-正常插入" class="headerlink" title="2.1 正常插入"></a>2.1 正常插入</h3><p>正常插入的方法很简单，直接在<code>_posts</code>文件夹下你指定的位置建一个存放简历markdown文档的位置即可。<br>但是这样的配置方法会面临一个麻烦的问题——无法再你希望的位置进行展示，为了解决这个问题，只好在一些常见页面上配置通过简历页面的超链接，比如配置在about页面上：<br><img src="https://raw.githubusercontent.com/ZermZhang/pictures/main/20230224093242.png" srcset="/img/loading.gif" lazyload alt="指向resume页面的超链接"><br>这里要注意超链接的配置方法：</p>
+<ol>
+<li>最简单的配置方法当然是将blog发布后复制简历页面的web端超链接配置，但是当你调整了页面或者是blog的一些配置后就有可能会影响到当前超链接的位置导致失效。</li>
+<li>另外一种相对比较稳定的方法就是配置简历页面在blog里的相对位置，这里推荐大家看一下hexo生成页面的逻辑。<br>当你通过<code>hexo g</code>生成blog的时候，hexo会根据你的文章元信息生成文章对应的html的存储位置，主要信息就是<code>date</code>这个参数，比如你文章的配置是<code>date: 2022-02-22</code>，那么你的文章就会存储在<code>/public/2022/02/22/</code>文件夹下面。<br>如果你同时在元信息中也配置了<code>categories</code>信息，比如<code>categories: [&#39;resume&#39;]</code>，那么生成的文章就会存储在<code>/public/2022/02/22/resume/</code>下面<br>那么你配置的超链接只要是<code>$&#123;date&#125;/$&#123;categories&#125;/$&#123;title&#125;</code>就好了，注意<code>public</code>不需要配置</li>
+</ol>
+<h3 id="2-2-独立配置"><a href="#2-2-独立配置" class="headerlink" title="2.2 独立配置"></a>2.2 独立配置</h3><p>独立配置就是在<code>source</code>文件夹下生成一个独立文件夹，将resume文档放到这个文件夹下，这样做的好处是更自由。<br>注意，默认独立文件夹下的文档的正文没有markdown样式，为了实现和文章相同的样式的话，需要增加如下配置：</p>
+<figure><div class="code-wrapper"><pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>markdown-body<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+正文
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div></figure>
+
+<h1 id="3-结束"><a href="#3-结束" class="headerlink" title="3. 结束"></a>3. 结束</h1><p>好了，如何在hexo下配置个人简历的方法是记好了，如果你也感兴趣的话，可以自己动手试一下了。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/blog/" class="category-chain-item">blog</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Hexo/" class="print-no-link">#Hexo</a>
+      
+        <a href="/tags/blog/" class="print-no-link">#blog</a>
+      
+        <a href="/tags/resume/" class="print-no-link">#resume</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>hexo-blog中配置个人简历</div>
+      <div>https://zermzhang.github.io/2023/02/24/blog/hexo-blog中配置个人简历/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>知白</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年2月24日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/02/24/RecommendSystem/%E6%9E%B6%E6%9E%84/%E5%8F%AC%E5%9B%9E/%E5%8F%AC%E5%9B%9E%E7%AE%97%E6%B3%95%E6%BC%94%E8%BF%9B-1/" title="召回算法演进-1">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">召回算法演进-1</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/02/22/resume/resume/" title="Resume">
+                        <span class="hidden-mobile">Resume</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"S8eucA2DyD8F5gpiLDyALbGN-MdYXbMMI","appKey":"33iTB6VQqNpGX7g5TInAtUtq","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"https://s8euca2d.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+      <div class="col-lg-7 mx-auto nopadding-x-md">
+        <div class="container custom mx-auto">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.css">
+        </div>
+      </div>
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script  src="https://lib.baomitu.com/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js" ></script>
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

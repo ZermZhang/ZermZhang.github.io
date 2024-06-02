@@ -1,0 +1,932 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/images/avatar/avatar.PNG">
+  <link rel="icon" href="/images/avatar/avatar.PNG">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="知白">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="airflow是airbnb开源的一套可以灵活管理工作流的自动化和调度系统">
+<meta property="og:type" content="article">
+<meta property="og:title" content="airflow简单部署">
+<meta property="og:url" content="https://zermzhang.github.io/2022/04/22/airflow/airflow%E7%AE%80%E5%8D%95%E9%83%A8%E7%BD%B2/index.html">
+<meta property="og:site_name" content="知白说">
+<meta property="og:description" content="airflow是airbnb开源的一套可以灵活管理工作流的自动化和调度系统">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ZermZhang/pictures@main/PicX/airflow-show.59g4ioncbzs0.webp">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ZermZhang/pictures@main/PicX/struct-airflow.6fhpplr7k640.webp">
+<meta property="article:published_time" content="2022-04-22T00:00:00.000Z">
+<meta property="article:modified_time" content="2024-06-02T11:41:23.885Z">
+<meta property="article:author" content="知白">
+<meta property="article:tag" content="airflow">
+<meta property="article:tag" content="调度器">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/ZermZhang/pictures@main/PicX/airflow-show.59g4ioncbzs0.webp">
+  
+  
+  
+  <title>airflow简单部署 - 知白说</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zermzhang.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>知白说</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/articles/" target="_self">
+                <i class="iconfont icon-book"></i>
+                <span>文章</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="icon-cliplist"></i>
+                <span>时间线</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-books"></i>
+                <span>归档</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/categories/airflow/" target="_self">
+                    
+                    <span>airflow</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/categories/recommend-system/" target="_self">
+                    
+                    <span>推荐系统</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/categories/thesis/" target="_self">
+                    
+                    <span>论文阅读</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="airflow简单部署"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-04-22 00:00" pubdate>
+          2022年4月22日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          917 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          8 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">airflow简单部署</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <blockquote>
+<p>airflow是airbnb开源的一套可以灵活管理工作流的自动化和调度系统</p>
+</blockquote>
+<span id="more"></span>
+<p><img src="https://cdn.jsdelivr.net/gh/ZermZhang/pictures@main/PicX/airflow-show.59g4ioncbzs0.webp" srcset="/img/loading.gif" lazyload alt="airflow-show"></p>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><h4 id="基本功能"><a href="#基本功能" class="headerlink" title="基本功能"></a>基本功能</h4><p>airflow是一个apache孵化的开源的基于有向无环图调度和监控平台。具有以下的优点</p>
+<ol>
+<li>灵活易用。工作流定义通过python编写，容易定制化，而且代码可读性较高</li>
+<li>支持任务丰富。通过Operator支持常见的任务类型，类似shell，python，ssh···</li>
+<li>方便拓展。支持热式扩展执行节点。通过Celery可以部署多个worker，几乎可以做到无限扩展。<ol>
+<li>分布式部署worker的时候运行工作流上的每个task在不同的worker上执行</li>
+</ol>
+</li>
+<li>task粒度的操作：<ol>
+<li>工作流上的每个task都是可以独立重试的。一个工作流的某个task失败不需要从头开始</li>
+</ol>
+</li>
+</ol>
+<h4 id="主要组成部分"><a href="#主要组成部分" class="headerlink" title="主要组成部分"></a>主要组成部分</h4><p><img src="https://cdn.jsdelivr.net/gh/ZermZhang/pictures@main/PicX/struct-airflow.6fhpplr7k640.webp" srcset="/img/loading.gif" lazyload alt="airflow-struct"></p>
+<ol>
+<li>界面展示和监控（webserver）<ol>
+<li>进行web段的dag&#x2F;task，log等信息的展示</li>
+</ol>
+</li>
+<li>执行器（worker）<ol>
+<li>执行具体的任务（task）</li>
+<li>主要分成SequentiaExecutor, LocalExecutor, CeleryExecutor三种</li>
+</ol>
+</li>
+<li>调度器（scheduler）<ol>
+<li>任务调度器，根据dags生成要执行的任务，并控制任务队列（类似crontab）</li>
+<li>使用CeleryExecutor的时候也负责提交消息到中间件队列（redis或rabbitMq）</li>
+</ol>
+</li>
+<li>数据库（database）<ol>
+<li>存储任务、dags、变量、连接等信息</li>
+</ol>
+</li>
+<li>celery<ol>
+<li>分布式队列控制器</li>
+<li>主要由Broker（代理）和Result Backend（结果后端）构成<ol>
+<li>Broker 负责存储执行的命令</li>
+<li>Result Backend存储完成执行命令的状态信息</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h4 id="各组件之间的通信逻辑"><a href="#各组件之间的通信逻辑" class="headerlink" title="各组件之间的通信逻辑"></a>各组件之间的通信逻辑</h4><ul>
+<li>数字和上图一一对应</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>服务</th>
+<th>链接服务</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Web server</td>
+<td>Workers</td>
+<td>获取任务执行的日志信息</td>
+</tr>
+<tr>
+<td>Webserver</td>
+<td>DAG file</td>
+<td>从dags文件夹的dag配置文件中读取dag结构并展示</td>
+</tr>
+<tr>
+<td>Webserver</td>
+<td>Database</td>
+<td>获取任务状态信息</td>
+</tr>
+<tr>
+<td>Workers</td>
+<td>DAG files</td>
+<td>执行任务</td>
+</tr>
+<tr>
+<td>Workers</td>
+<td>Database</td>
+<td>读取和写入connections、Xcoms等信息</td>
+</tr>
+<tr>
+<td>Workers</td>
+<td>Celery’s Result backend</td>
+<td>存储任务执行信息，任务状态等</td>
+</tr>
+<tr>
+<td>Workers</td>
+<td>Celery’s Queue broker</td>
+<td>存储执行的命令</td>
+</tr>
+<tr>
+<td>Scheduler</td>
+<td>DAG files</td>
+<td>存储DAG的结构和任务调度时间等，并控制任务执行</td>
+</tr>
+<tr>
+<td>Scheduler</td>
+<td>Database</td>
+<td>存储DAG运行的信息和相关任务</td>
+</tr>
+<tr>
+<td>Scheduler</td>
+<td>Celery’s Result backend</td>
+<td>获取已经执行的的任务信息，状态</td>
+</tr>
+<tr>
+<td>Scheduler</td>
+<td>Celery’s Queue broker</td>
+<td>发送任务执行命令到Celery’s broker</td>
+</tr>
+</tbody></table>
+<h2 id="本地docker部署"><a href="#本地docker部署" class="headerlink" title="本地docker部署"></a>本地docker部署</h2><figure><div class="code-wrapper"><pre class="line-numbers language-docker" data-language="docker"><code class="language-docker"><span class="token instruction"><span class="token keyword">FROM</span> ubuntu:latest  # 拉取基础镜像</span>
+<span class="token instruction"><span class="token keyword">MAINTAINER</span> *** <span class="token string">"***@foxmail.com"</span></span>
+
+<span class="token instruction"><span class="token keyword">RUN</span> apt-get update  # 更新软件源</span>
+<span class="token instruction"><span class="token keyword">RUN</span> apt-get -y install python   # 安装python</span>
+<span class="token instruction"><span class="token keyword">RUN</span> ln -fs /usr/bin/python3 /usr/bin/python   # 更新python对应的软连接到python3</span>
+<span class="token instruction"><span class="token keyword">RUN</span> apt-get -y install python3-pip    # 安装pip</span>
+<span class="token instruction"><span class="token keyword">RUN</span> /usr/bin/pip3 install --upgrade pip   # 更行pip到最新版本，防止后续安装过程中出现问题</span>
+
+<span class="token instruction"><span class="token keyword">RUN</span> export AIRFLOW_HOME=/home/darren/airflow</span>
+<span class="token instruction"><span class="token keyword">RUN</span> export SLUGIFY_USES_TEXT_UNIDECODE=yes</span>
+<span class="token instruction"><span class="token keyword">RUN</span> /usr/local/bin/pip3 install apache-airflow  # 安装airflow</span>
+
+<span class="token instruction"><span class="token keyword">EXPOSE</span> 8080   # 暴漏指定端口</span>
+
+<span class="token instruction"><span class="token keyword">CMD</span> [<span class="token string">'airflow db init'</span>]</span>
+<span class="token instruction"><span class="token keyword">CMD</span> [<span class="token string">'airflow users create --username admin --password admin --firstname ** --lastname ** --role Admin --email ****@foxmail.com'</span>]</span>
+<span class="token instruction"><span class="token keyword">CMD</span> [<span class="token string">'airflow webserver -D -p 8080'</span>]</span>
+<span class="token instruction"><span class="token keyword">CMD</span> [<span class="token string">'airflow scheduler -D'</span>]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
+
+<h2 id="airflow的dag例子"><a href="#airflow的dag例子" class="headerlink" title="airflow的dag例子"></a>airflow的dag例子</h2><figure><div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> random
+
+<span class="token keyword">from</span> airflow <span class="token keyword">import</span> DAG
+<span class="token keyword">from</span> airflow<span class="token punctuation">.</span>operators<span class="token punctuation">.</span>dummy <span class="token keyword">import</span> DummyOperator
+<span class="token keyword">from</span> airflow<span class="token punctuation">.</span>operators<span class="token punctuation">.</span>python <span class="token keyword">import</span> BranchPythonOperator
+<span class="token keyword">from</span> airflow<span class="token punctuation">.</span>utils<span class="token punctuation">.</span>dates <span class="token keyword">import</span> days_ago
+
+args <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+    <span class="token string">'owner'</span><span class="token punctuation">:</span> <span class="token string">'airflow'</span><span class="token punctuation">,</span>
+<span class="token punctuation">&#125;</span>
+
+dag <span class="token operator">=</span> DAG<span class="token punctuation">(</span>
+    dag_id<span class="token operator">=</span><span class="token string">'example_branch_operator'</span><span class="token punctuation">,</span>	<span class="token comment"># dag名字，即显示在airflow上的名字</span>
+    default_args<span class="token operator">=</span>args<span class="token punctuation">,</span>					<span class="token comment"># 默认参数</span>
+    start_date<span class="token operator">=</span>days_ago<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    schedule_interval<span class="token operator">=</span><span class="token string">"@daily"</span><span class="token punctuation">,</span>			<span class="token comment"># 调度循环时间</span>
+    tags<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">'example'</span><span class="token punctuation">,</span> <span class="token string">'example2'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>		<span class="token comment"># 当前dag的tag，方便查询标注</span>
+<span class="token punctuation">)</span>
+
+<span class="token comment"># 初始化的operator, dag的开头</span>
+run_this_first <span class="token operator">=</span> DummyOperator<span class="token punctuation">(</span>
+    task_id<span class="token operator">=</span><span class="token string">'run_this_first'</span><span class="token punctuation">,</span>
+    dag<span class="token operator">=</span>dag<span class="token punctuation">,</span>
+<span class="token punctuation">)</span>
+
+<span class="token comment"># 候选的分支大operator的task_id</span>
+options <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'branch_a'</span><span class="token punctuation">,</span> <span class="token string">'branch_b'</span><span class="token punctuation">,</span> <span class="token string">'branch_c'</span><span class="token punctuation">,</span> <span class="token string">'branch_d'</span><span class="token punctuation">]</span>
+
+<span class="token comment"># 创建分支operator, python callable的结果返回要执行的task_id，可以是自定义函数</span>
+branching <span class="token operator">=</span> BranchPythonOperator<span class="token punctuation">(</span>
+    task_id<span class="token operator">=</span><span class="token string">'branching'</span><span class="token punctuation">,</span>
+    python_callable<span class="token operator">=</span><span class="token keyword">lambda</span><span class="token punctuation">:</span> random<span class="token punctuation">.</span>choice<span class="token punctuation">(</span>options<span class="token punctuation">)</span><span class="token punctuation">,</span>
+    dag<span class="token operator">=</span>dag<span class="token punctuation">,</span>
+<span class="token punctuation">)</span>
+run_this_first <span class="token operator">>></span> branching
+
+join <span class="token operator">=</span> DummyOperator<span class="token punctuation">(</span>
+    task_id<span class="token operator">=</span><span class="token string">'join'</span><span class="token punctuation">,</span>
+    trigger_rule<span class="token operator">=</span><span class="token string">'none_failed_or_skipped'</span><span class="token punctuation">,</span>
+    dag<span class="token operator">=</span>dag<span class="token punctuation">,</span>
+<span class="token punctuation">)</span>
+
+<span class="token comment"># 针对不同的分支情况创建不同的任务</span>
+<span class="token keyword">for</span> option <span class="token keyword">in</span> options<span class="token punctuation">:</span>
+    t <span class="token operator">=</span> DummyOperator<span class="token punctuation">(</span>
+        task_id<span class="token operator">=</span>option<span class="token punctuation">,</span>
+        dag<span class="token operator">=</span>dag<span class="token punctuation">,</span>
+    <span class="token punctuation">)</span>
+
+    dummy_follow <span class="token operator">=</span> DummyOperator<span class="token punctuation">(</span>
+        task_id<span class="token operator">=</span><span class="token string">'follow_'</span> <span class="token operator">+</span> option<span class="token punctuation">,</span>
+        dag<span class="token operator">=</span>dag<span class="token punctuation">,</span>
+    <span class="token punctuation">)</span>
+
+    branching <span class="token operator">>></span> t <span class="token operator">>></span> dummy_follow <span class="token operator">>></span> join<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
+
+
+<h2 id="airflow使用过程的注意事项"><a href="#airflow使用过程的注意事项" class="headerlink" title="airflow使用过程的注意事项"></a>airflow使用过程的注意事项</h2><h4 id="时区问题"><a href="#时区问题" class="headerlink" title="时区问题"></a>时区问题</h4><ul>
+<li>为了防止不同集群内部时区的差异，airflow全局统一使用UTC时间。</li>
+<li>2.0中可以通过配置实现指定时区</li>
+</ul>
+<h4 id="execute-date"><a href="#execute-date" class="headerlink" title="execute date"></a>execute date</h4><ul>
+<li>execute date 并不是当前任务的执行时间，而是airflow前一个运行周期的运行时间</li>
+<li>例如：dag1每天11:00开始运行，那么在 ​2021-04-01 11:00​ 启动的任务对应的execute_date应该是 ​2021-03-31 11:00​</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/airflow/" class="category-chain-item">airflow</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/airflow/" class="print-no-link">#airflow</a>
+      
+        <a href="/tags/%E8%B0%83%E5%BA%A6%E5%99%A8/" class="print-no-link">#调度器</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>airflow简单部署</div>
+      <div>https://zermzhang.github.io/2022/04/22/airflow/airflow简单部署/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>知白</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年4月22日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/04/23/airflow/airflow%E7%8A%B6%E6%80%81%E8%AF%B4%E6%98%8E/" title="airflow状态说明">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">airflow状态说明</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/04/21/linux/oh-my-zsh%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/" title="oh-my-zsh安装和使用">
+                        <span class="hidden-mobile">oh-my-zsh安装和使用</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"S8eucA2DyD8F5gpiLDyALbGN-MdYXbMMI","appKey":"33iTB6VQqNpGX7g5TInAtUtq","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"https://s8euca2d.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+      <div class="col-lg-7 mx-auto nopadding-x-md">
+        <div class="container custom mx-auto">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.css">
+        </div>
+      </div>
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script  src="https://lib.baomitu.com/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js" ></script>
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,819 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/images/avatar/avatar.PNG">
+  <link rel="icon" href="/images/avatar/avatar.PNG">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="知白">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="大家在平常的生活中，肯定经历过刷手机刷到停不下来的时候，最常见的就是在刷淘宝、抖音、小红书的时候，那么你有没有考虑过是什么原因导致你拿起手机就放不下呢？这篇文章主要就是为了探讨这些策略背后的秘密，让你了解到到底有多少人为了你在他们的app上花掉更多时间而努力着。 1. 什么是推荐系统？现在常提到的推荐系统其实是一种基于个性化的信息过滤系统。 那么这里就会出现两个问题：  什么是 个性化？  为什么">
+<meta property="og:type" content="article">
+<meta property="og:title" content="综述">
+<meta property="og:url" content="https://zermzhang.github.io/2023/01/16/RecommendSystem/%E7%BB%BC%E8%BF%B0/%E7%BB%BC%E8%BF%B0/index.html">
+<meta property="og:site_name" content="知白说">
+<meta property="og:description" content="大家在平常的生活中，肯定经历过刷手机刷到停不下来的时候，最常见的就是在刷淘宝、抖音、小红书的时候，那么你有没有考虑过是什么原因导致你拿起手机就放不下呢？这篇文章主要就是为了探讨这些策略背后的秘密，让你了解到到底有多少人为了你在他们的app上花掉更多时间而努力着。 1. 什么是推荐系统？现在常提到的推荐系统其实是一种基于个性化的信息过滤系统。 那么这里就会出现两个问题：  什么是 个性化？  为什么">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/ZermZhang/pictures/main/image-20230116193855105-3869205.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/ZermZhang/pictures/main/image-20230117084201668.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/ZermZhang/pictures/main/image-20230117084350927.png">
+<meta property="article:published_time" content="2023-01-16T19:37:00.000Z">
+<meta property="article:modified_time" content="2024-06-02T11:41:23.885Z">
+<meta property="article:author" content="知白">
+<meta property="article:tag" content="recommend-system">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/ZermZhang/pictures/main/image-20230116193855105-3869205.png">
+  
+  
+  
+  <title>综述 - 知白说</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zermzhang.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>知白说</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/articles/" target="_self">
+                <i class="iconfont icon-book"></i>
+                <span>文章</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="icon-cliplist"></i>
+                <span>时间线</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-books"></i>
+                <span>归档</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/categories/airflow/" target="_self">
+                    
+                    <span>airflow</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/categories/recommend-system/" target="_self">
+                    
+                    <span>推荐系统</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/categories/thesis/" target="_self">
+                    
+                    <span>论文阅读</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="综述"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-01-16 19:37" pubdate>
+          2023年1月16日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          20 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">综述</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p><img src="https://raw.githubusercontent.com/ZermZhang/pictures/main/image-20230116193855105-3869205.png" srcset="/img/loading.gif" lazyload alt="基本结构"><br>大家在平常的生活中，肯定经历过刷手机刷到停不下来的时候，最常见的就是在刷淘宝、抖音、小红书的时候，那么你有没有考虑过是什么原因导致你拿起手机就放不下呢？这篇文章主要就是为了探讨这些策略背后的秘密，让你了解到到底有多少人为了你在他们的app上花掉更多时间而努力着。</p>
+<h2 id="1-什么是推荐系统？"><a href="#1-什么是推荐系统？" class="headerlink" title="1. 什么是推荐系统？"></a>1. 什么是推荐系统？</h2><p>现在常提到的推荐系统其实是一种基于个性化的信息过滤系统。</p>
+<p>那么这里就会出现两个问题：</p>
+<ol>
+<li><p>什么是 个性化？</p>
+</li>
+<li><p>为什么要进行 信息过滤？</p>
+</li>
+</ol>
+<p>我们先解释为什么要进行<strong>信息过滤。</strong></p>
+<p>这里一个难以避免的概念是<strong>信息过载</strong>(information overload)。这个词是Alvin Toffler在1970年于他的著作Future Shock中创造出来的。通常是指接受太多信息，反而影响正常的理解和决策。</p>
+<p>信息的形式载体从最初原始部落时代的象形文字，笔画等，随着科技的发展，逐步经历羊皮纸，纸张等，最终升级到现代的互联网。技术的升级降低了信息创造和传递的成本，同时带来了信息数量级的爆炸性增长。面临每天都在暴涨的互联网信息，如何找到用户真正感兴趣或者是对用户真正有用的信息就变成了一件极负挑战性的任务。与此同时，推荐系统和搜索引擎应运而生，当然，我们这里主要集中在推荐系统的介绍上。</p>
+<p>然后我们介绍一下为什么需要<strong>个性化</strong>。</p>
+<p>不知道大家有没有关注过国内网民人均app每日使用时长对比的情况，下图来自于极光的行业研究报告。为什么要在这里提到app的使用时长呢？因为在用户存量的时期，用户时长决定了最终的变现能力。为了达到这个目标，运营、产品、营销都在朝这个方向努力着。</p>
+<p>那么个性化推荐系统在这个方向上的发力点在哪里呢？最直观的方向就是通过个性化的内容展示拉起用户的兴趣，不断地拉高用户在当前app上的用户黏性，从而实现掠夺用户可用的碎片化时间的目的。说到这里，你有没有发现和你在抖音、快手等短视频上的体会比较相似，本来说好了刷20min就睡觉的，结果刷着刷着，2个小时就过去了。</p>
+<p><img src="https://raw.githubusercontent.com/ZermZhang/pictures/main/image-20230117084201668.png" srcset="/img/loading.gif" lazyload alt="移动网民人均app每日使用时长top8"></p>
+<p>接下来，我会从常见的个性化推荐系统的结构出发，结合我几年来在推荐系统上的工作经验，谈一谈我个人对个性化推荐系统的看法和理解。一家之言，如有缺漏之处，欢迎大家补充。</p>
+<h2 id="2-线下的推荐系统是什么样的？"><a href="#2-线下的推荐系统是什么样的？" class="headerlink" title="2. 线下的推荐系统是什么样的？"></a>2. 线下的推荐系统是什么样的？</h2><p>想必大家都听过尿布与啤酒的故事，这是关联分析的一个经典案例。</p>
+<p>据说超市经常会将啤酒和婴儿的尿不湿放在比较接近的地方，原因是从销售小票上发现经常会有人在超市购买尿布的时候顺手拿一瓶啤酒。这样就可以显著的提升啤酒的销售量。</p>
+<p>这个例子就是线下的推荐系统的典型表现，对线下的商超来说，因为物理空间的原因，商品的展示空间有限，不可能将商品的种类进行无限量的增加，所以解决类似推荐问题的办法比较简单，通过留存的销售小票就可以分析出相关性很高的商品种类，从而实现关联销售的目的。但是线上推荐的时候会有这么简单么？</p>
+<p>当然不会，在互联网的场景下，不存在物理空间的限制，商品的展示空间成本被无限压缩，与之对应的，可展示的被商品数目也会爆炸性的增长，这种情况下如何给用户展示可能引起他兴趣的内容便成为了一个系统性的问题，个性化推荐系统的主要目标也就是为了解决这个问题。</p>
+<h2 id="3-线上的推荐系统是什么样的？"><a href="#3-线上的推荐系统是什么样的？" class="headerlink" title="3. 线上的推荐系统是什么样的？"></a>3. 线上的推荐系统是什么样的？</h2><p><img src="https://raw.githubusercontent.com/ZermZhang/pictures/main/image-20230117084350927.png" srcset="/img/loading.gif" lazyload alt="推荐系统基本结构"></p>
+<h3 id="推荐系统的整体结构简述"><a href="#推荐系统的整体结构简述" class="headerlink" title="推荐系统的整体结构简述"></a>推荐系统的整体结构简述</h3><p>推荐系统一般包括四个主要环节，分别是召回(recall)，粗排(pre-rank)，精排(rank)和重排(re-rank)。</p>
+<p>不同的部分在整个推荐系统中扮演的角色都不尽相同，</p>
+<ul>
+<li>召回(recall): 负责从庞大的商品集合中选出用户可能感兴趣的子集</li>
+<li>粗排(pre-rank): 对召回选择出的商品子集进行初排序，选出用户可能最喜欢的topN的商品，主要为了给精排降低压力</li>
+<li>精排(rank): 基于粗排提供的侯选池对商品进行兴趣偏好的排序</li>
+<li>重排(re-rank): 将奖牌返回的结果进行重新排序，常见的是用来处理一些业务需求</li>
+</ul>
+<h4 id="召回"><a href="#召回" class="headerlink" title="召回"></a>召回</h4><p>从上面四个环节来看，召回处在整个推荐系统的入口处，决定了有哪些备选的商品可以流入到推荐系统中，天然决定了推荐系统所能达到的上限。自然，从效果的目的来说，召回的目的是能尽量多的召回用户感兴趣的商品，但是实际的使用过程中，存在着难以避免的商品体验性的问题，因此，召回同事还需要考虑和上下文的相关性问题。</p>
+<p>同时，召回层面对的输入是十万、百万、甚至更多的商品集合，所以线上使用的时候对这一部分的复杂度和耗时情况都比较敏感。因此，召回层所使用的的特征、模型、策略都不会太复杂，通过相对后续的排序层较少的特征或规则实现对被选集的快速筛选，减少后续排序的耗时情况。同时，排序层考虑的目标通常比较单一，比如ctr、cvr等，这是，召回层就可以通过多路召回的方式进行一些热度、时效等方向的召回，增加推荐系统最终输出结果的多样性，防止陷入信息茧房中。</p>
+<h4 id="粗排"><a href="#粗排" class="headerlink" title="粗排"></a>粗排</h4><p>粗排层嵌在召回和精排之间，起到的是承前启后的作用，主要目的是为了降低精排的压力。</p>
+<p>经过了召回的筛选之后，商品备选集的数目从10e5<del>6降到了10e4</del>5，但是这个量级的商品对精排来说话排序压力依旧存在，所以需要通过粗排对它们进行一次简略的排序，这次排序并不需要强调排序在商品粒度上的准确性，而是要实现尽量排序序列的topN的准确性。</p>
+<p>粗排的桥接作用就体现在了topN准确性的保证上，如果无法正常的进行筛选，后续的精排就很难实现更优的排序结果，如果粗排能够实现商品粒度的准确排序的话，那和精排就没有功能上的区别了。</p>
+<h4 id="精排"><a href="#精排" class="headerlink" title="精排"></a>精排</h4><p>精排是推荐系统各层级中最纯粹的一层，他的目标比较单一且集中，一门心思的实现目标的调优即可。最开始的时候精排模型的常见目标是ctr,后续逐渐发展了cvr等多类目标。但是现在比较常见的优化指标还是ctr比较多。</p>
+<p>精排和粗排层的基本目标是一致的，都是对商品集合进行排序，但是和粗排不同的是，精排只需要对少量的商品(即粗排输出的商品集合的topN)进行排序即可。因此，精排中可以使用比粗排更多的特征，更复杂的模型和更精细的策略（用户的特征和行为在该层的大量使用和参与也是基于这个原因）。这一个模块也是现在各位从业任务从事最多，竞争最激烈的模块，大部分和推荐系统相关的论文最初可能都是在精排层上取得的效果然后进行了逐步的推广。</p>
+<p>从这里也可以看出，粗排和精排的区分并没有那么的泾渭分明，如果精排可以在一次请求中完全吞下所有的商品集合，其实是不需要粗排的。</p>
+<h4 id="重排"><a href="#重排" class="headerlink" title="重排"></a>重排</h4><p>重排主要用来处理一些业务逻辑和策略，不过最近几年也有越来越多指向重排的模型化工作在进行。</p>
+<h2 id="4-结语"><a href="#4-结语" class="headerlink" title="4. 结语"></a>4. 结语</h2><p>这篇文章算是我对个性化推荐系统的各个模块的一个简单认知，后续会对各层中的详情和常用模型以及算法进行一个更深入的介绍，作为一个在工作生涯上走了一段时间的人的总结。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/recommend-system/" class="category-chain-item">recommend-system</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/recommend-system/" class="print-no-link">#recommend-system</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>综述</div>
+      <div>https://zermzhang.github.io/2023/01/16/RecommendSystem/综述/综述/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>知白</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年1月16日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/02/22/resume/resume/" title="Resume">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Resume</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/11/30/blog/markdown%E4%B8%AD%E4%BD%BF%E7%94%A8%E6%B5%81%E7%A8%8B%E5%9B%BE/" title="markdown中使用流程图">
+                        <span class="hidden-mobile">markdown中使用流程图</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"S8eucA2DyD8F5gpiLDyALbGN-MdYXbMMI","appKey":"33iTB6VQqNpGX7g5TInAtUtq","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"https://s8euca2d.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+      <div class="col-lg-7 mx-auto nopadding-x-md">
+        <div class="container custom mx-auto">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.css">
+        </div>
+      </div>
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script  src="https://lib.baomitu.com/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js" ></script>
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.1/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
