@@ -7,8 +7,11 @@
 
 <head>
   <meta charset="UTF-8">
+
   <link rel="apple-touch-icon" sizes="76x76" href="/images/avatar/avatar.PNG">
   <link rel="icon" href="/images/avatar/avatar.PNG">
+  
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -25,7 +28,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/ZermZhang/pictures@main/PicX/livy-submit-return.4gg7kd0zu8w0.webp">
 <meta property="article:published_time" content="2022-04-20T00:00:00.000Z">
-<meta property="article:modified_time" content="2024-06-02T11:41:23.889Z">
+<meta property="article:modified_time" content="2026-01-14T03:14:03.304Z">
 <meta property="article:author" content="知白">
 <meta property="article:tag" content="livy">
 <meta property="article:tag" content="spark">
@@ -53,11 +56,11 @@
 <!-- 主题依赖的图标库，不要自行修改 -->
 <!-- Do not modify the link that theme dependent icons -->
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
 
 
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
 
 
 <link  rel="stylesheet" href="/css/main.css" />
@@ -74,7 +77,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"zermzhang.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"zermzhang.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -87,7 +90,7 @@
 
 
   
-<meta name="generator" content="Hexo 7.2.0"></head>
+<meta name="generator" content="Hexo 8.1.1"></head>
 
 
 <body>
@@ -322,14 +325,18 @@
 <ul>
 <li>通过livy提交的spark任务，对原始的spark脚本没有任何入侵</li>
 <li>livy支持多用户、多任务并行的和spark集群进行交互</li>
-<li>可以在python、scala、java中通过livy进行spark批任务的处理<span id="more"></span></li>
+<li>可以在python、scala、java中通过livy进行spark批任务的处理</li>
 </ul>
+<span id="more"></span>
+
+
 <h2 id="Livy部署"><a href="#Livy部署" class="headerlink" title="Livy部署"></a>Livy部署</h2><p>Livy的部署只需要在spark集群的master节点上进行部署即可。<br>这里默认依赖的spark和hadoop都已经就位，并不需要从头安装。</p>
 <h3 id="下载livy"><a href="#下载livy" class="headerlink" title="下载livy"></a>下载livy</h3><figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 下载地址：http://livy.incubator.apache.org/download/</span>
 <span class="token function">wget</span> https://www.apache.org/dyn/closer.lua/incubator/livy/0.7.1-incubating/apache-livy-0.7.1-incubating-bin.zip<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div></figure>
 
 <h3 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h3><ol>
-<li><p>修改livy.conf</p>
+<li>修改livy.conf</li>
+</ol>
 <figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">cp</span> livy.conf.template livy.conf <span class="token operator">&amp;</span> <span class="token function">vim</span> livy.conf<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></figure>
 <p>需要调整的基础信息如下：</p>
 <figure><div class="code-wrapper"><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token comment">#Livy会话所使用的Spark集群运行模式</span>
@@ -347,15 +354,17 @@ livy.impersonation.enabled = true
 livy.server.session.timeout = 1h
 <span class="token comment">#yarn/local本地模式或者yarn模式</span>
 livy.server.session.factory = yarn<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
-</li>
-<li><p>修改livy-env.sh</p>
+
+<ol start="2">
+<li>修改livy-env.sh</li>
+</ol>
 <figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">cp</span> livy-env.sh.template livy-env.sh <span class="token operator">&amp;</span> <span class="token function">vim</span> livy-env.sh<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></figure>
 <p>需要调整的基础信息如下：</p>
 <figure><div class="code-wrapper"><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token comment">#Spark安装目录</span>
 HADOOP_CONF_DIR=/opt/software/hadoop<span class="token punctuation">-</span>3.0.0/etc/hadoop
 <span class="token comment">#Hadoo配置目录</span>
-SPARK_HOME=/opt/software/spark<span class="token punctuation">-</span>2.5.2<span class="token punctuation">-</span>bin<span class="token punctuation">-</span>without<span class="token punctuation">-</span>hadoop<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div></figure></li>
-</ol>
+SPARK_HOME=/opt/software/spark<span class="token punctuation">-</span>2.5.2<span class="token punctuation">-</span>bin<span class="token punctuation">-</span>without<span class="token punctuation">-</span>hadoop<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
+
 <h3 id="启动Livy"><a href="#启动Livy" class="headerlink" title="启动Livy"></a>启动Livy</h3><figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 启动livy</span>
 ./apache-livy-0.7.1-incubating-bin/bin/livy-server start
 
@@ -444,7 +453,7 @@ SPARK_HOME=/opt/software/spark<span class="token punctuation">-</span>2.5.2<span
               
                 <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
                   <span class="hint--top hint--rounded" aria-label="BY - 署名">
-                    <i class="iconfont icon-by"></i>
+                    <i class="iconfont icon-cc-by"></i>
                   </span>
                 </a>
               
@@ -619,7 +628,6 @@ SPARK_HOME=/opt/software/spark<span class="token punctuation">-</span>2.5.2<span
   
   
   
-  
 </div>
 
   </footer>
@@ -718,7 +726,7 @@ SPARK_HOME=/opt/software/spark<span class="token punctuation">-</span>2.5.2<span
 
   
 <script>
-  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
     window.anchors.options = {
       placement: CONFIG.anchorjs.placement,
       visible  : CONFIG.anchorjs.visible

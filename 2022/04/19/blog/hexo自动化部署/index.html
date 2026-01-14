@@ -7,8 +7,11 @@
 
 <head>
   <meta charset="UTF-8">
+
   <link rel="apple-touch-icon" sizes="76x76" href="/images/avatar/avatar.PNG">
   <link rel="icon" href="/images/avatar/avatar.PNG">
+  
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -27,13 +30,13 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/ZermZhang/pictures@main/PicX/github.3xvjh9pmt1w0.webp">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/ZermZhang/pictures@main/PicX/source-files-struct.4axb9h4v4bw0.webp">
 <meta property="article:published_time" content="2022-04-19T00:00:00.000Z">
-<meta property="article:modified_time" content="2024-06-02T11:41:23.885Z">
+<meta property="article:modified_time" content="2026-01-14T03:14:03.304Z">
 <meta property="article:author" content="知白">
+<meta property="article:tag" content="CICD">
 <meta property="article:tag" content="Hexo">
 <meta property="article:tag" content="blog">
 <meta property="article:tag" content="github">
 <meta property="article:tag" content="自动化">
-<meta property="article:tag" content="CICD">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/ZermZhang/pictures@main/PicX/github-actions.67mq8c0v6xk0.webp">
   
@@ -58,11 +61,11 @@
 <!-- 主题依赖的图标库，不要自行修改 -->
 <!-- Do not modify the link that theme dependent icons -->
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
 
 
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
 
 
 <link  rel="stylesheet" href="/css/main.css" />
@@ -79,7 +82,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"zermzhang.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"zermzhang.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -92,7 +95,7 @@
 
 
   
-<meta name="generator" content="Hexo 7.2.0"></head>
+<meta name="generator" content="Hexo 8.1.1"></head>
 
 
 <body>
@@ -270,7 +273,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          822 字
+          812 字
         
       </span>
     
@@ -330,16 +333,16 @@
 
 <p><img src="https://cdn.jsdelivr.net/gh/ZermZhang/pictures@main/PicX/github-actions.67mq8c0v6xk0.webp" srcset="/img/loading.gif" lazyload alt="github action官方仓库"></p>
 <p>我们可以通过github action的逻辑自动化部署位于git-pages上的个人博客，省去频繁的个人同步的操作。<br>而且针对其他难以在个人电脑上进行编译的庞大宫成，也可以历史github action提供的runner进行编译。<br>接下来的内容是我通过github action进行自动化部署hexo个人blog的经验。</p>
-<h2 id="依赖准备"><a href="#依赖准备" class="headerlink" title="依赖准备"></a>依赖准备</h2><p>针对hexo，我们需要提供必要的md文件，剩余的内容可以通过hexo进行自动生成和部署，具体需要部署的内容是经过了<code>hexo generate</code>之后生成<code>public</code>文件夹。<br>将生成完成的<code>public</code>文件夹同步到名为<code>$&#123;user-name&#125;.github.io</code>github工程的master分支后，github会自动将该内容发布到<code>http://$&#123;user-name&#125;.github.io</code>的网页上，方便进行查看。<br><img src="https://cdn.jsdelivr.net/gh/ZermZhang/pictures@main/PicX/github.3xvjh9pmt1w0.webp" srcset="/img/loading.gif" lazyload alt="github.io"></p>
+<h2 id="依赖准备"><a href="#依赖准备" class="headerlink" title="依赖准备"></a>依赖准备</h2><p>针对hexo，我们需要提供必要的md文件，剩余的内容可以通过hexo进行自动生成和部署，具体需要部署的内容是经过了<code>hexo generate</code>之后生成<code>public</code>文件夹。<br>将生成完成的<code>public</code>文件夹同步到名为<code>${user-name}.github.io</code>github工程的master分支后，github会自动将该内容发布到<code>http://${user-name}.github.io</code>的网页上，方便进行查看。<br><img src="https://cdn.jsdelivr.net/gh/ZermZhang/pictures@main/PicX/github.3xvjh9pmt1w0.webp" srcset="/img/loading.gif" lazyload alt="github.io"></p>
 <h3 id="仓库准备"><a href="#仓库准备" class="headerlink" title="仓库准备"></a>仓库准备</h3><p>因此，我们至少需要准备两个仓库（或者分支）。</p>
 <ol>
 <li>存储<code>public</code>文件夹<ol>
-<li>使用<code>$&#123;user-name&#125;.github.io</code>仓库的<code>master</code>分支</li>
+<li>使用<code>${user-name}.github.io</code>仓库的<code>master</code>分支</li>
 </ol>
 </li>
 <li>存储md文件源代码和相关配置文件<ol>
 <li>可以使用任务仓库的任意分支</li>
-<li>我这里使用的是<code>$&#123;user-name&#125;.github.io</code>的<code>source-files</code>分支</li>
+<li>我这里使用的是<code>${user-name}.github.io</code>的<code>source-files</code>分支</li>
 </ol>
 </li>
 </ol>
@@ -350,7 +353,7 @@
 </ol>
 </li>
 <li>主题配置文件<ol>
-<li>如果你安装了自己的主题的话，会处于<code>./themes/$&#123;theme-name&#125;/</code>下，用来控制主题的相关配置</li>
+<li>如果你安装了自己的主题的话，会处于<code>./themes/${theme-name}/</code>下，用来控制主题的相关配置</li>
 </ol>
 </li>
 </ol>
@@ -504,7 +507,7 @@
               
                 <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
                   <span class="hint--top hint--rounded" aria-label="BY - 署名">
-                    <i class="iconfont icon-by"></i>
+                    <i class="iconfont icon-cc-by"></i>
                   </span>
                 </a>
               
@@ -673,7 +676,6 @@
   
   
   
-  
 </div>
 
   </footer>
@@ -772,7 +774,7 @@
 
   
 <script>
-  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
     window.anchors.options = {
       placement: CONFIG.anchorjs.placement,
       visible  : CONFIG.anchorjs.visible
