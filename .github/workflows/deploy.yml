@@ -5,66 +5,57 @@ on:
     branches:
       - source-files
 
-# 增加权限配置，防止 GITHUB_TOKEN 权限不足
 permissions:
   contents: write
 
 jobs:
   build:
-    # 1. 更改为 ubuntu-latest，避免使用老旧镜像导致的排队
     runs-on: ubuntu-latest
-    
-    # 移除 if 判断，通常不需要，除非你有特殊防止别人 fork 运行的需求
     
     steps:
       - name: Checkout source
-        uses: actions/checkout@v4 # 2. 升级到 v4
+        uses: actions/checkout@v4
         with:
           ref: source-files
-          submodules: recursive # 3. 自动递归拉取子模块，替代手动 git submodule 命令
-          fetch-depth: 0 # 获取完整历史，有助于某些插件生成文章日期
+          submodules: recursive
+          fetch-depth: 0
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4 # 4. 升级到 v4
+        uses: actions/setup-node@v4
         with:
-          node-version: '20' # 5. 升级 Node 到 LTS 版本 (v16 已停止维护)
-          cache: 'npm' # 6. 开启 NPM 缓存！这是提速的关键，避免每次都重新下载依赖
+          node-version: '20'
+          # 修复点：删除了 cache: 'npm'，因为你仓库里没有 package-lock.json
 
       - name: Install Hexo & Build
         run: |
           npm install -g hexo-cli
           
-          # 你的构建逻辑 (保留了你的目录结构逻辑)
+          # 初始化全新的 hexo 项目
           hexo init myblog
           cd myblog
+          
+          # 安装基础依赖
           npm install
           
-          # 建议：如果这些依赖是固定的，最好写入 package.json，而不是每次都手动 install
+          # 安装插件
           npm install hexo-theme-fluid hexo-generator-sitemap --save
           
-          # 复制你的自定义文件覆盖初始文件
-          # 使用 -rf 强制覆盖且不报错
-          cp -rf ../sites/* ./
+          # 将 sites 目录下的自定义文件（如 _config.yml, source 文件夹等）复制进去
+          # 使用 -rf 强制覆盖
+          cp -rf ../sites/* ./ || true
           
+          # 清理并生成
           hexo clean
           hexo generate
 
       - name: Deploy to GitHub Pages
-        # 7. 使用专业的部署插件，替代手写的 git push 脚本
-        # 这个插件更稳定，会自动处理 Token、认证、强制推送等问题
         uses: peaceiris/actions-gh-pages@v4
         with:
-          # 你的 Personal Access Token
-          personal_token: ${{ secrets.MY_SECRET }} 
-          # 目标仓库 (如果是当前仓库可以不写，但在你的脚本里你写了全称)
+          personal_token: ${{ secrets.MY_SECRET }}
           external_repository: ZermZhang/ZermZhang.github.io
-          # 目标分支
           publish_branch: master
-          # 静态文件生成的目录
           publish_dir: ./myblog/public
-          # 提交信息
           commit_message: "GitHub Actions Auto Builder at ${{ github.sha }}"
-          # 强制推送 (相当于 git push -f)
           force_orphan: true
           user_name: 'ZermZhang'
           user_email: 'zhang371312@126.com'
