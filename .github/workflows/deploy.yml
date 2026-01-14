@@ -1,68 +1,70 @@
 name: Hexo Deploy
+
 on:
   push:
     branches:
       - source-files
 
+# 增加权限配置，防止 GITHUB_TOKEN 权限不足
+permissions:
+  contents: write
+
 jobs:
   build:
-    runs-on: ubuntu-20.04
-    if: github.event.repository.owner.id == github.event.sender.id
-
+    # 1. 更改为 ubuntu-latest，避免使用老旧镜像导致的排队
+    runs-on: ubuntu-latest
+    
+    # 移除 if 判断，通常不需要，除非你有特殊防止别人 fork 运行的需求
+    
     steps:
       - name: Checkout source
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4 # 2. 升级到 v4
         with:
           ref: source-files
-
-      - name: Configration hexo repo
-        env:
-          ACTION_DEPLOY_KEY: ${{ secrets.MY_SECRET }}
-        run: |
-          mkdir -p ~/.ssh/
-          echo "$ACTION_DEPLOY_KEY" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan github.com >> ~/.ssh/known_hosts
-          git config --global user.email "zhang371312@126.com"
-          git config --global user.name "ZermZhang"
-
-      - name: Checkout submodules
-        run: |
-          git submodule init
-          git submodule update
+          submodules: recursive # 3. 自动递归拉取子模块，替代手动 git submodule 命令
+          fetch-depth: 0 # 获取完整历史，有助于某些插件生成文章日期
 
       - name: Setup Node.js
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v4 # 4. 升级到 v4
         with:
-          node-version: '16'
+          node-version: '20' # 5. 升级 Node 到 LTS 版本 (v16 已停止维护)
+          cache: 'npm' # 6. 开启 NPM 缓存！这是提速的关键，避免每次都重新下载依赖
 
-      - name: Setup Hexo
+      - name: Install Hexo & Build
         run: |
           npm install -g hexo-cli
-
-      - name: Generate files
-        run: |
+          
+          # 你的构建逻辑 (保留了你的目录结构逻辑)
           hexo init myblog
           cd myblog
           npm install
-          npm install hexo-theme-fluid --save
-          npm install hexo-generator-sitemap --save
-
-          cp -r ../sites/* ./
-          rm ./source/_posts/hello-world.md
+          
+          # 建议：如果这些依赖是固定的，最好写入 package.json，而不是每次都手动 install
+          npm install hexo-theme-fluid hexo-generator-sitemap --save
+          
+          # 复制你的自定义文件覆盖初始文件
+          # 使用 -rf 强制覆盖且不报错
+          cp -rf ../sites/* ./
+          
           hexo clean
           hexo generate
 
-      - name: Deploy hexo blog
-        env:
-          # Github 仓库
-          GITHUB_REPO: github.com/ZermZhang/ZermZhang.github.io
-        # 将编译后的博客文件推送到指定仓库
-        run: |
-          ls
-          cd ./myblog/public && git init && git add .
-          git config user.name "ZermZhang"
-          git config user.email "zhang371312@126.com"
-          git add .
-          git commit -m "GitHub Actions Auto Builder at $(date +'%Y-%m-%d %H:%M:%S')"
-          git push --force --quiet "https://${{ secrets.MY_SECRET }}@$GITHUB_REPO" master:master
+      - name: Deploy to GitHub Pages
+        # 7. 使用专业的部署插件，替代手写的 git push 脚本
+        # 这个插件更稳定，会自动处理 Token、认证、强制推送等问题
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          # 你的 Personal Access Token
+          personal_token: ${{ secrets.MY_SECRET }} 
+          # 目标仓库 (如果是当前仓库可以不写，但在你的脚本里你写了全称)
+          external_repository: ZermZhang/ZermZhang.github.io
+          # 目标分支
+          publish_branch: master
+          # 静态文件生成的目录
+          publish_dir: ./myblog/public
+          # 提交信息
+          commit_message: "GitHub Actions Auto Builder at ${{ github.sha }}"
+          # 强制推送 (相当于 git push -f)
+          force_orphan: true
+          user_name: 'ZermZhang'
+          user_email: 'zhang371312@126.com'
