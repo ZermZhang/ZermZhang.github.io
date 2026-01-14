@@ -5,6 +5,7 @@ on:
     branches:
       - source-files
 
+# 核心修正1：必须显式声明写权限，否则内置 GITHUB_TOKEN 无法 push
 permissions:
   contents: write
 
@@ -24,38 +25,33 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          # 修复点：删除了 cache: 'npm'，因为你仓库里没有 package-lock.json
 
       - name: Install Hexo & Build
         run: |
           npm install -g hexo-cli
-          
-          # 初始化全新的 hexo 项目
           hexo init myblog
           cd myblog
-          
-          # 安装基础依赖
           npm install
-          
-          # 安装插件
           npm install hexo-theme-fluid hexo-generator-sitemap --save
           
-          # 将 sites 目录下的自定义文件（如 _config.yml, source 文件夹等）复制进去
-          # 使用 -rf 强制覆盖
+          # 复制文件
           cp -rf ../sites/* ./ || true
           
-          # 清理并生成
           hexo clean
           hexo generate
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
-          personal_token: ${{ secrets.MY_SECRET }}
-          external_repository: ZermZhang/ZermZhang.github.io
+          # 核心修正2：改用 github_token，删除 personal_token
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          
+          # 核心修正3：如果是同一个仓库，删除 external_repository
+          # 插件会自动识别当前仓库
+          # external_repository: ZermZhang/ZermZhang.github.io  <-- 删掉这一行
+          
           publish_branch: master
           publish_dir: ./myblog/public
           commit_message: "GitHub Actions Auto Builder at ${{ github.sha }}"
-          force_orphan: true
           user_name: 'ZermZhang'
           user_email: 'zhang371312@126.com'
