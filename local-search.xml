@@ -4,6 +4,44 @@
   
   
   <entry>
+    <title>20260120</title>
+    <link href="/2026/01/20/journal/20260120/"/>
+    <url>/2026/01/20/journal/20260120/</url>
+    
+    <content type="html"><![CDATA[<p>今日南京大雪，其实昨天晚上雨花这边就已经开始下了，晚上下班回去的路上，还遇到了在应天大街上撒盐的工程车，但是今天出门的时候还是遇到了完全没想到的情况。<br>出发的时候刚出小区门，车辆就出现了前轮打滑的情况，但是等从小路上拐到浦口大道，行驶的时候就基本恢复了正常，因为浦口大道上已经充分的进行了融雪，驾车的时候完全没问题，所以就没有扭头回家，还以为是因为小区门口的路属于小路，还没来得及处理导致的。<br>但是这一切等到了软件大道都变成了虚妄了。<br>车还没拐到软件大道，就已经体会到今天的雪对行车的影响了。在立交上，所有的车辆已经拥挤在一起几乎完全无法动弹，好几位警察在一旁指挥交通，但是看起来完全发挥不了什么作用。软件大道上的积雪完全没有处理，经过了车辆的连续碾压，已经结成冰层，车辆行驶在路上，不断出现打滑的情况，所有的车都慢慢悠悠的超前挪着，就像一个个缺了引导员的绝望的冰壶。<br>但是即使面对如此艰难的路况，依旧是有不少车保持了原有的驾驶习惯，有空就插，没空也要挤出空来插队，完全不考虑就在他的旁边就有几起因为插队刹车不及时导致的车祸。<br>南京人的素质真差！</p><p>今天的路况确实难走，在网上刷到了许多今天开车人的异常情况，对比起来，我看到的那些已经都算是小case了。<br>有车辆不受控制冲上墙的，有警车撞墙叫救援的，还有铁骑摔倒之后转地铁的，真真是人生百态，世事无常啊。<br>不管怎么说，在路上开车，还是要以安全为上，毕竟出了车祸之后，先不说责任的问题，光是修车带来的时间浪费就很麻烦了。<br>之前修车的经验，金钱的成本都已经算最小的损失了，反而是修车过程中的时间、出行带来的扩大成本反而是无法接受的。<br>出了两次车祸之后，基本上就处于能让就让的地步，顶多是嘴上过过瘾，其他的也没什么办法。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>journal</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>diary</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="/2026/01/20/hello-world/"/>
+    <url>/2026/01/20/hello-world/</url>
+    
+    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo new <span class="token string">"My New Post"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo server<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo generate<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo deploy<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>2026年1月</title>
     <link href="/2026/01/14/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/2026/2026%E5%B9%B41%E6%9C%88/"/>
     <url>/2026/01/14/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/2026/2026%E5%B9%B41%E6%9C%88/</url>
@@ -23,19 +61,6 @@
       <tag>阅读</tag>
       
     </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>Hello World</title>
-    <link href="/2026/01/14/hello-world/"/>
-    <url>/2026/01/14/hello-world/</url>
-    
-    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo new <span class="token string">"My New Post"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo server<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo generate<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo deploy<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
-    
-    
     
   </entry>
   
@@ -382,7 +407,7 @@
     <link href="/2023/02/22/resume/resume/"/>
     <url>/2023/02/22/resume/resume/</url>
     
-    <content type="html"><![CDATA[<style>td, th, tr {   border: none!important;}</style><!-- <head>    <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"></script>    <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/v4-shims.js"></script></head>  --><!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"> --><!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.css"> --><!-- 简历说明表头 --><table><thead><tr><th align="left"><h1>XXX</h1></th><th><div style="width:300px"></th><th><img src='/images/avatar/avatar.PNG' style="border-radius: 50%; width: 30%"></th></tr></thead></table><!-- 个人信息部分 --><h2 id="个人信息"><a href="#个人信息" class="headerlink" title=" 个人信息"></a><i class="fa-solid fa-user"></i> 个人信息</h2><table><thead><tr><th align="left"><i class="fa-solid fa-mars"></i>: 男</th><th><div style="width:200px"></th><th align="left"><i class="fa-solid fa-school-flag"></i>: 南京大学</th></tr></thead><tbody><tr><td align="left"><i class="fa-solid fa-phone"></i>: 198-xxxx-xxxx</td><td></td><td align="left"><i class="fa-solid fa-envelope"></i>: <a href="mailto:&#x78;&#120;&#120;&#x78;&#120;&#x40;&#49;&#x36;&#x33;&#x2e;&#99;&#x6f;&#x6d;">xxxxx@163.com</a></td></tr><tr><td align="left"><i class="fa-solid fa-briefcase"></i>: 算法工程师</td><td></td><td align="left"><i class="fa-solid fa-yen-sign"></i>: xxx</td></tr></tbody></table><!-- 教育、工作经历介绍 --><h2 id="教育-工作经历"><a href="#教育-工作经历" class="headerlink" title=" 教育&#x2F;工作经历"></a><i class="fa-solid fa-graduation-cap"></i> 教育&#x2F;工作经历</h2><table><thead><tr><th align="left"></th><th><div style="width:20%"></th><th align="left"></th><th><div style="width:20%"></th><th align="left"></th><th><div style="width:20%"></th><th align="left"></th></tr></thead><tbody><tr><td align="left">希音</td><td></td><td align="left">2018.10 ~ 至今</td><td><div style="width:20%"></td><td align="left">搜索、推荐</td><td><div style='width:20%'></td><td align="left">资深算法工程师</td></tr><tr><td align="left">腾讯</td><td></td><td align="left">2016.07 ~ 2018.10</td><td></td><td align="left">游戏广告、短视频推荐</td><td></td><td align="left">算法工程师</td></tr><tr><td align="left">南京大学</td><td></td><td align="left">2013.09 ~ 2016.07</td><td></td><td align="left">计算数学</td><td></td><td align="left">研究生</td></tr><tr><td align="left">SDNU</td><td></td><td align="left">2009.09 ~ 2013.06</td><td></td><td align="left">计算数学</td><td></td><td align="left">本科</td></tr></tbody></table><!-- 项目经历 --><h2 id="项目经历"><a href="#项目经历" class="headerlink" title=" 项目经历"></a><i class="fa-solid fa-folder"></i> 项目经历</h2><h3 id="项目1"><a href="#项目1" class="headerlink" title="项目1"></a>项目1</h3><blockquote><p>公司, 时间段，收益</p></blockquote><ol><li>背景</li><li>工作内容</li><li>收益详情说明</li></ol><h3 id="项目2"><a href="#项目2" class="headerlink" title="项目2"></a>项目2</h3><blockquote><p>公司，时间段，收益</p></blockquote><ol><li>背景</li><li>工作内容</li><li>收益详情说明</li></ol>]]></content>
+    <content type="html"><![CDATA[<style>td, th, tr {   border: none!important;}</style><!-- <head>    <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"></script>    <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/v4-shims.js"></script></head>  --><!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"> --><!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.css"> --><!-- 简历说明表头 --><table><thead><tr><th align="left"><h1>XXX</h1></th><th><div style="width:300px"></th><th><img src='/images/avatar/avatar.PNG' style="border-radius: 50%; width: 30%"></th></tr></thead></table><!-- 个人信息部分 --><h2 id="个人信息"><a href="#个人信息" class="headerlink" title=" 个人信息"></a><i class="fa-solid fa-user"></i> 个人信息</h2><table><thead><tr><th align="left"><i class="fa-solid fa-mars"></i>: 男</th><th><div style="width:200px"></th><th align="left"><i class="fa-solid fa-school-flag"></i>: 南京大学</th></tr></thead><tbody><tr><td align="left"><i class="fa-solid fa-phone"></i>: 198-xxxx-xxxx</td><td></td><td align="left"><i class="fa-solid fa-envelope"></i>: <a href="mailto:&#120;&#120;&#120;&#x78;&#120;&#x40;&#x31;&#x36;&#x33;&#46;&#x63;&#111;&#x6d;">xxxxx@163.com</a></td></tr><tr><td align="left"><i class="fa-solid fa-briefcase"></i>: 算法工程师</td><td></td><td align="left"><i class="fa-solid fa-yen-sign"></i>: xxx</td></tr></tbody></table><!-- 教育、工作经历介绍 --><h2 id="教育-工作经历"><a href="#教育-工作经历" class="headerlink" title=" 教育&#x2F;工作经历"></a><i class="fa-solid fa-graduation-cap"></i> 教育&#x2F;工作经历</h2><table><thead><tr><th align="left"></th><th><div style="width:20%"></th><th align="left"></th><th><div style="width:20%"></th><th align="left"></th><th><div style="width:20%"></th><th align="left"></th></tr></thead><tbody><tr><td align="left">希音</td><td></td><td align="left">2018.10 ~ 至今</td><td><div style="width:20%"></td><td align="left">搜索、推荐</td><td><div style='width:20%'></td><td align="left">资深算法工程师</td></tr><tr><td align="left">腾讯</td><td></td><td align="left">2016.07 ~ 2018.10</td><td></td><td align="left">游戏广告、短视频推荐</td><td></td><td align="left">算法工程师</td></tr><tr><td align="left">南京大学</td><td></td><td align="left">2013.09 ~ 2016.07</td><td></td><td align="left">计算数学</td><td></td><td align="left">研究生</td></tr><tr><td align="left">SDNU</td><td></td><td align="left">2009.09 ~ 2013.06</td><td></td><td align="left">计算数学</td><td></td><td align="left">本科</td></tr></tbody></table><!-- 项目经历 --><h2 id="项目经历"><a href="#项目经历" class="headerlink" title=" 项目经历"></a><i class="fa-solid fa-folder"></i> 项目经历</h2><h3 id="项目1"><a href="#项目1" class="headerlink" title="项目1"></a>项目1</h3><blockquote><p>公司, 时间段，收益</p></blockquote><ol><li>背景</li><li>工作内容</li><li>收益详情说明</li></ol><h3 id="项目2"><a href="#项目2" class="headerlink" title="项目2"></a>项目2</h3><blockquote><p>公司，时间段，收益</p></blockquote><ol><li>背景</li><li>工作内容</li><li>收益详情说明</li></ol>]]></content>
     
     
     <categories>

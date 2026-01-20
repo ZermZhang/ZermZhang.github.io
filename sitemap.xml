@@ -2,72 +2,18 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://zermzhang.github.io/index.html</loc>
-    
-    <lastmod>2026-01-14</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://zermzhang.github.io/tags/index.html</loc>
     
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://zermzhang.github.io/2023/03/28/tensorflow/tensorflow%E5%B8%B8%E7%94%A8%E8%AE%A1%E7%AE%97%E9%80%BB%E8%BE%91/</loc>
+    <loc>https://zermzhang.github.io/index.html</loc>
     
-    <lastmod>2026-01-14</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://zermzhang.github.io/2022/04/25/tensorflow/tf2%E4%B8%ADsubclassing%E8%87%AA%E5%AE%9A%E4%B9%89%E6%A8%A1%E5%9E%8B/</loc>
-    
-    <lastmod>2026-01-14</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://zermzhang.github.io/2022/04/29/tensorflow/tf2%E4%B8%AD%E6%9E%84%E5%BB%BA%E6%A8%A1%E5%9E%8B%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E6%B3%95/</loc>
-    
-    <lastmod>2026-01-14</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://zermzhang.github.io/2022/05/03/tensorflow/tf%E4%B8%ADProfilerHook%E7%9A%84%E4%BD%BF%E7%94%A8/</loc>
-    
-    <lastmod>2026-01-14</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://zermzhang.github.io/2022/04/29/tensorflow/tf2%E9%87%8C%E5%AF%BC%E5%85%A5pretrain-embedding%E7%9A%84%E6%96%B9%E6%B3%95/</loc>
-    
-    <lastmod>2026-01-14</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://zermzhang.github.io/2022/04/26/tensorflow/%E9%80%9A%E8%BF%87preprocessing%E6%9E%84%E5%BB%BAtf2%E6%A8%A1%E5%9E%8B/</loc>
-    
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -76,7 +22,7 @@
   <url>
     <loc>https://zermzhang.github.io/2022/06/30/thesis/MISS/</loc>
     
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -85,7 +31,7 @@
   <url>
     <loc>https://zermzhang.github.io/2022/05/23/thesis/SeNet/</loc>
     
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -94,7 +40,7 @@
   <url>
     <loc>https://zermzhang.github.io/2023/05/24/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/%E5%8F%8C%E6%8B%BC%E4%BB%8B%E7%BB%8D/</loc>
     
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -103,16 +49,7 @@
   <url>
     <loc>https://zermzhang.github.io/2023/09/04/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/%E5%8F%8C%E6%8B%BC%E8%BF%9B%E9%98%B6/</loc>
     
-    <lastmod>2026-01-14</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://zermzhang.github.io/2022/07/22/tensorflow/tensorflow%E7%A0%94%E8%AF%BB/tf.keras.Model%E7%A0%94%E8%AF%BB/</loc>
-    
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -121,16 +58,7 @@
   <url>
     <loc>https://zermzhang.github.io/2026/01/14/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/2026/2026%E5%B9%B41%E6%9C%88/</loc>
     
-    <lastmod>2026-01-14</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://zermzhang.github.io/2022/06/16/tensorflow/tensorflow%E7%A0%94%E8%AF%BB/tf.lookup%E7%A0%94%E8%AF%BB/</loc>
-    
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -139,7 +67,7 @@
   <url>
     <loc>https://zermzhang.github.io/google72b43fe91d56ff4e.html</loc>
     
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -148,7 +76,7 @@
   <url>
     <loc>https://zermzhang.github.io/about/index.html</loc>
     
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -157,61 +85,7 @@
   <url>
     <loc>https://zermzhang.github.io/categories/index.html</loc>
     
-    <lastmod>2026-01-14</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://zermzhang.github.io/2023/02/24/blog/hexo-blog%E4%B8%AD%E9%85%8D%E7%BD%AE%E4%B8%AA%E4%BA%BA%E7%AE%80%E5%8E%86/</loc>
-    
-    <lastmod>2026-01-14</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://zermzhang.github.io/2022/04/19/blog/hexo%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2/</loc>
-    
-    <lastmod>2026-01-14</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://zermzhang.github.io/2022/05/16/blog/hexo%E8%87%AA%E5%AE%9A%E4%B9%89%E4%B8%BB%E9%A1%B5/</loc>
-    
-    <lastmod>2026-01-14</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://zermzhang.github.io/2022/11/30/blog/markdown%E4%B8%AD%E4%BD%BF%E7%94%A8%E6%B5%81%E7%A8%8B%E5%9B%BE/</loc>
-    
-    <lastmod>2026-01-14</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://zermzhang.github.io/2022/06/20/git/git-rebase-merge%E8%AF%B4%E6%98%8E/</loc>
-    
-    <lastmod>2026-01-14</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://zermzhang.github.io/2022/05/21/git/git%E5%90%8C%E6%AD%A5%E5%BC%82%E5%B8%B8%E9%97%AE%E9%A2%98/</loc>
-    
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -220,16 +94,7 @@
   <url>
     <loc>https://zermzhang.github.io/2022/04/24/linux/Linux%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE/</loc>
     
-    <lastmod>2026-01-14</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://zermzhang.github.io/2022/04/30/git/github%E5%9B%BE%E5%BA%8A%E6%9C%8D%E5%8A%A1/</loc>
-    
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -238,7 +103,7 @@
   <url>
     <loc>https://zermzhang.github.io/2022/06/23/linux/find%E5%91%BD%E4%BB%A4%E7%9A%84%E3%80%8C%E4%B8%83%E7%A7%8D%E6%AD%A6%E5%99%A8%E3%80%8D/</loc>
     
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -247,25 +112,7 @@
   <url>
     <loc>https://zermzhang.github.io/2023/03/08/linux/linux%E4%B8%8B%E8%BF%9B%E8%A1%8C%E5%AD%97%E7%AC%A6%E6%88%AA%E6%96%AD/</loc>
     
-    <lastmod>2026-01-14</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://zermzhang.github.io/2022/04/21/linux/oh-my-zsh%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/</loc>
-    
-    <lastmod>2026-01-14</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://zermzhang.github.io/2022/05/10/linux/ssh%E7%99%BB%E9%99%86%E4%BF%A1%E6%81%AF%E9%85%8D%E7%BD%AE/</loc>
-    
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -274,7 +121,25 @@
   <url>
     <loc>https://zermzhang.github.io/2022/04/20/linux/livy%E7%9A%84%E9%83%A8%E7%BD%B2%E5%92%8C%E4%BD%BF%E7%94%A8/</loc>
     
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zermzhang.github.io/2022/04/21/linux/oh-my-zsh%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/</loc>
+    
+    <lastmod>2026-01-20</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zermzhang.github.io/2022/05/10/linux/ssh%E7%99%BB%E9%99%86%E4%BF%A1%E6%81%AF%E9%85%8D%E7%BD%AE/</loc>
+    
+    <lastmod>2026-01-20</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -283,7 +148,7 @@
   <url>
     <loc>https://zermzhang.github.io/2022/05/10/linux/%E9%80%9A%E8%BF%87expect%E8%BF%9B%E8%A1%8C%E8%87%AA%E5%8A%A8ssh%E7%99%BB%E9%99%86/</loc>
     
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -292,7 +157,7 @@
   <url>
     <loc>https://zermzhang.github.io/2022/05/02/python/%E5%AF%B9dataframe%E4%BD%BF%E7%94%A8%E8%87%AA%E5%AE%9A%E4%B9%89%E5%87%BD%E6%95%B0/</loc>
     
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -301,16 +166,7 @@
   <url>
     <loc>https://zermzhang.github.io/2023/02/22/resume/resume/</loc>
     
-    <lastmod>2026-01-14</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://zermzhang.github.io/2022/08/31/spark/spark.read%E7%9A%84%E4%BD%BF%E7%94%A8/</loc>
-    
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -319,7 +175,7 @@
   <url>
     <loc>https://zermzhang.github.io/2023/03/20/spark/Hive-join%E6%93%8D%E4%BD%9C%E4%BC%98%E5%8C%96/</loc>
     
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -328,7 +184,16 @@
   <url>
     <loc>https://zermzhang.github.io/2023/03/29/spark/spark%E4%B8%AD%E4%BD%BF%E7%94%A8left-semi-join/</loc>
     
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zermzhang.github.io/2022/08/31/spark/spark.read%E7%9A%84%E4%BD%BF%E7%94%A8/</loc>
+    
+    <lastmod>2026-01-20</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -337,7 +202,61 @@
   <url>
     <loc>https://zermzhang.github.io/2023/03/27/spark/spark%E7%9A%84udf%E5%87%BD%E6%95%B0%E5%A3%B0%E6%98%8E/</loc>
     
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zermzhang.github.io/2023/03/28/tensorflow/tensorflow%E5%B8%B8%E7%94%A8%E8%AE%A1%E7%AE%97%E9%80%BB%E8%BE%91/</loc>
+    
+    <lastmod>2026-01-20</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zermzhang.github.io/2022/04/25/tensorflow/tf2%E4%B8%ADsubclassing%E8%87%AA%E5%AE%9A%E4%B9%89%E6%A8%A1%E5%9E%8B/</loc>
+    
+    <lastmod>2026-01-20</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zermzhang.github.io/2022/04/29/tensorflow/tf2%E4%B8%AD%E6%9E%84%E5%BB%BA%E6%A8%A1%E5%9E%8B%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E6%B3%95/</loc>
+    
+    <lastmod>2026-01-20</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zermzhang.github.io/2022/04/29/tensorflow/tf2%E9%87%8C%E5%AF%BC%E5%85%A5pretrain-embedding%E7%9A%84%E6%96%B9%E6%B3%95/</loc>
+    
+    <lastmod>2026-01-20</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zermzhang.github.io/2022/05/03/tensorflow/tf%E4%B8%ADProfilerHook%E7%9A%84%E4%BD%BF%E7%94%A8/</loc>
+    
+    <lastmod>2026-01-20</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zermzhang.github.io/2022/04/26/tensorflow/%E9%80%9A%E8%BF%87preprocessing%E6%9E%84%E5%BB%BAtf2%E6%A8%A1%E5%9E%8B/</loc>
+    
+    <lastmod>2026-01-20</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -346,7 +265,25 @@
   <url>
     <loc>https://zermzhang.github.io/2024/05/24/python/udf/python%E5%B8%B8%E7%94%A8%E7%9A%84udf%E7%9A%84%E7%AE%80%E8%A6%81%E8%AF%B4%E6%98%8E/</loc>
     
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zermzhang.github.io/2022/07/22/tensorflow/tensorflow%E7%A0%94%E8%AF%BB/tf.keras.Model%E7%A0%94%E8%AF%BB/</loc>
+    
+    <lastmod>2026-01-20</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zermzhang.github.io/2022/06/16/tensorflow/tensorflow%E7%A0%94%E8%AF%BB/tf.lookup%E7%A0%94%E8%AF%BB/</loc>
+    
+    <lastmod>2026-01-20</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -355,7 +292,7 @@
   <url>
     <loc>https://zermzhang.github.io/2023/02/24/MachineLearning/transformer%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/</loc>
     
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -364,7 +301,7 @@
   <url>
     <loc>https://zermzhang.github.io/2022/07/29/MachineLearning/%E5%B8%B8%E8%A7%81optimizers%E6%A2%B3%E7%90%86/</loc>
     
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -373,7 +310,7 @@
   <url>
     <loc>https://zermzhang.github.io/2023/04/24/airflow/airflow%E4%BD%BF%E7%94%A8mysql%E4%BD%9C%E4%B8%BAdb/</loc>
     
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -382,7 +319,7 @@
   <url>
     <loc>https://zermzhang.github.io/2022/05/31/airflow/airflow%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/</loc>
     
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -391,16 +328,7 @@
   <url>
     <loc>https://zermzhang.github.io/2022/04/23/airflow/airflow%E7%8A%B6%E6%80%81%E8%AF%B4%E6%98%8E/</loc>
     
-    <lastmod>2026-01-14</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://zermzhang.github.io/2022/04/22/airflow/airflow%E7%AE%80%E5%8D%95%E9%83%A8%E7%BD%B2/</loc>
-    
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -409,7 +337,88 @@
   <url>
     <loc>https://zermzhang.github.io/2022/04/24/airflow/airflow%E8%87%AA%E5%AE%9A%E4%B9%89operator/</loc>
     
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zermzhang.github.io/2022/04/22/airflow/airflow%E7%AE%80%E5%8D%95%E9%83%A8%E7%BD%B2/</loc>
+    
+    <lastmod>2026-01-20</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zermzhang.github.io/2023/02/24/blog/hexo-blog%E4%B8%AD%E9%85%8D%E7%BD%AE%E4%B8%AA%E4%BA%BA%E7%AE%80%E5%8E%86/</loc>
+    
+    <lastmod>2026-01-20</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zermzhang.github.io/2022/04/19/blog/hexo%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2/</loc>
+    
+    <lastmod>2026-01-20</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zermzhang.github.io/2022/05/16/blog/hexo%E8%87%AA%E5%AE%9A%E4%B9%89%E4%B8%BB%E9%A1%B5/</loc>
+    
+    <lastmod>2026-01-20</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zermzhang.github.io/2022/11/30/blog/markdown%E4%B8%AD%E4%BD%BF%E7%94%A8%E6%B5%81%E7%A8%8B%E5%9B%BE/</loc>
+    
+    <lastmod>2026-01-20</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zermzhang.github.io/2022/06/20/git/git-rebase-merge%E8%AF%B4%E6%98%8E/</loc>
+    
+    <lastmod>2026-01-20</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zermzhang.github.io/2022/04/30/git/github%E5%9B%BE%E5%BA%8A%E6%9C%8D%E5%8A%A1/</loc>
+    
+    <lastmod>2026-01-20</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zermzhang.github.io/2022/05/21/git/git%E5%90%8C%E6%AD%A5%E5%BC%82%E5%B8%B8%E9%97%AE%E9%A2%98/</loc>
+    
+    <lastmod>2026-01-20</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zermzhang.github.io/2026/01/20/journal/20260120/</loc>
+    
+    <lastmod>2026-01-20</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -418,7 +427,7 @@
   <url>
     <loc>https://zermzhang.github.io/2022/08/25/RecommendSystem/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%9F%BA%E6%9C%AC%E4%BB%8B%E7%BB%8D/</loc>
     
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -427,7 +436,7 @@
   <url>
     <loc>https://zermzhang.github.io/2023/01/16/RecommendSystem/%E7%BB%BC%E8%BF%B0/%E7%BB%BC%E8%BF%B0/</loc>
     
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -436,16 +445,16 @@
   <url>
     <loc>https://zermzhang.github.io/2023/02/24/RecommendSystem/%E6%9E%B6%E6%9E%84/%E5%8F%AC%E5%9B%9E/%E5%8F%AC%E5%9B%9E%E7%AE%97%E6%B3%95%E6%BC%94%E8%BF%9B-1/</loc>
     
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://zermzhang.github.io/2026/01/14/hello-world/</loc>
+    <loc>https://zermzhang.github.io/2026/01/20/hello-world/</loc>
     
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -454,7 +463,7 @@
 
   <url>
     <loc>https://zermzhang.github.io/</loc>
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -462,504 +471,511 @@
   
   <url>
     <loc>https://zermzhang.github.io/tags/machine-learning/</loc>
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://zermzhang.github.io/tags/transformer/</loc>
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://zermzhang.github.io/tags/interview/</loc>
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://zermzhang.github.io/tags/optimizer/</loc>
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://zermzhang.github.io/tags/airflow/</loc>
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://zermzhang.github.io/tags/%E8%B0%83%E5%BA%A6%E5%99%A8/</loc>
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://zermzhang.github.io/tags/trick/</loc>
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://zermzhang.github.io/tags/%E7%8A%B6%E6%80%81/</loc>
-    <lastmod>2026-01-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://zermzhang.github.io/tags/Hexo/</loc>
-    <lastmod>2026-01-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://zermzhang.github.io/tags/blog/</loc>
-    <lastmod>2026-01-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://zermzhang.github.io/tags/resume/</loc>
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://zermzhang.github.io/tags/custom/</loc>
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://zermzhang.github.io/tags/operator/</loc>
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://zermzhang.github.io/tags/Hexo/</loc>
+    <lastmod>2026-01-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://zermzhang.github.io/tags/blog/</loc>
+    <lastmod>2026-01-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://zermzhang.github.io/tags/resume/</loc>
+    <lastmod>2026-01-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://zermzhang.github.io/tags/github/</loc>
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://zermzhang.github.io/tags/%E8%87%AA%E5%8A%A8%E5%8C%96/</loc>
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://zermzhang.github.io/tags/CICD/</loc>
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://zermzhang.github.io/tags/index/</loc>
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://zermzhang.github.io/tags/markdown/</loc>
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://zermzhang.github.io/tags/%E6%B5%81%E7%A8%8B%E5%9B%BE/</loc>
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://zermzhang.github.io/tags/mermaid/</loc>
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://zermzhang.github.io/tags/%E5%91%BD%E4%BB%A4/</loc>
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://zermzhang.github.io/tags/rebase/</loc>
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://zermzhang.github.io/tags/merge/</loc>
-    <lastmod>2026-01-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://zermzhang.github.io/tags/%E5%90%8C%E6%AD%A5/</loc>
-    <lastmod>2026-01-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://zermzhang.github.io/tags/%E5%BF%AB%E6%8D%B7%E9%94%AE/</loc>
-    <lastmod>2026-01-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://zermzhang.github.io/tags/linux/</loc>
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://zermzhang.github.io/tags/%E5%9B%BE%E5%BA%8A/</loc>
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://zermzhang.github.io/tags/%E5%90%8C%E6%AD%A5/</loc>
+    <lastmod>2026-01-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://zermzhang.github.io/tags/diary/</loc>
+    <lastmod>2026-01-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://zermzhang.github.io/tags/%E5%BF%AB%E6%8D%B7%E9%94%AE/</loc>
+    <lastmod>2026-01-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://zermzhang.github.io/tags/linux/</loc>
+    <lastmod>2026-01-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://zermzhang.github.io/tags/shell/</loc>
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://zermzhang.github.io/tags/find/</loc>
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://zermzhang.github.io/tags/Linux/</loc>
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://zermzhang.github.io/tags/string/</loc>
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://zermzhang.github.io/tags/cut/</loc>
-    <lastmod>2026-01-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://zermzhang.github.io/tags/zsh/</loc>
-    <lastmod>2026-01-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://zermzhang.github.io/tags/ssh/</loc>
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://zermzhang.github.io/tags/livy/</loc>
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://zermzhang.github.io/tags/spark/</loc>
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://zermzhang.github.io/tags/zsh/</loc>
+    <lastmod>2026-01-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://zermzhang.github.io/tags/ssh/</loc>
+    <lastmod>2026-01-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://zermzhang.github.io/tags/expect/</loc>
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://zermzhang.github.io/tags/python/</loc>
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://zermzhang.github.io/tags/dataframe/</loc>
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://zermzhang.github.io/tags/apply/</loc>
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://zermzhang.github.io/tags/custom-function/</loc>
-    <lastmod>2026-01-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://zermzhang.github.io/tags/read/</loc>
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://zermzhang.github.io/tags/hive/</loc>
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://zermzhang.github.io/tags/join/</loc>
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://zermzhang.github.io/tags/left-semi-join/</loc>
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://zermzhang.github.io/tags/tensorflow/</loc>
-    <lastmod>2026-01-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://zermzhang.github.io/tags/method/</loc>
-    <lastmod>2026-01-14</lastmod>
+    <loc>https://zermzhang.github.io/tags/read/</loc>
+    <lastmod>2026-01-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://zermzhang.github.io/tags/udf/</loc>
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://zermzhang.github.io/tags/tensorflow/</loc>
+    <lastmod>2026-01-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://zermzhang.github.io/tags/method/</loc>
+    <lastmod>2026-01-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://zermzhang.github.io/tags/subclassing/</loc>
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://zermzhang.github.io/tags/save-model/</loc>
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://zermzhang.github.io/tags/sequenctial/</loc>
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://zermzhang.github.io/tags/functional/</loc>
-    <lastmod>2026-01-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://zermzhang.github.io/tags/profilerhook/</loc>
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://zermzhang.github.io/tags/custom-layers/</loc>
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://zermzhang.github.io/tags/preprocessing/</loc>
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://zermzhang.github.io/tags/pre-train/</loc>
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://zermzhang.github.io/tags/embedding/</loc>
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://zermzhang.github.io/tags/profilerhook/</loc>
+    <lastmod>2026-01-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://zermzhang.github.io/tags/custom-model/</loc>
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://zermzhang.github.io/tags/preprocessin/</loc>
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://zermzhang.github.io/tags/Multi-Interest-Self-Supervised/</loc>
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://zermzhang.github.io/tags/Squeeze-and-Excitation/</loc>
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://zermzhang.github.io/tags/attention/</loc>
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://zermzhang.github.io/tags/%E5%B7%A5%E5%85%B7/</loc>
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://zermzhang.github.io/tags/%E6%95%88%E7%8E%87/</loc>
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://zermzhang.github.io/tags/recommend-system/</loc>
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://zermzhang.github.io/tags/datas/</loc>
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://zermzhang.github.io/tags/Model/</loc>
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://zermzhang.github.io/tags/Module/</loc>
-    <lastmod>2026-01-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://zermzhang.github.io/tags/%E9%98%85%E8%AF%BB/</loc>
-    <lastmod>2026-01-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://zermzhang.github.io/tags/struct/</loc>
-    <lastmod>2026-01-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://zermzhang.github.io/tags/recall/</loc>
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://zermzhang.github.io/tags/lookup/</loc>
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://zermzhang.github.io/tags/%E9%98%85%E8%AF%BB/</loc>
+    <lastmod>2026-01-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://zermzhang.github.io/tags/struct/</loc>
+    <lastmod>2026-01-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://zermzhang.github.io/tags/recall/</loc>
+    <lastmod>2026-01-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -968,105 +984,112 @@
   
   <url>
     <loc>https://zermzhang.github.io/categories/machine-learning/</loc>
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://zermzhang.github.io/categories/airflow/</loc>
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://zermzhang.github.io/categories/blog/</loc>
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://zermzhang.github.io/categories/git/</loc>
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://zermzhang.github.io/categories/journal/</loc>
+    <lastmod>2026-01-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://zermzhang.github.io/categories/linux/</loc>
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://zermzhang.github.io/categories/Linux/</loc>
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://zermzhang.github.io/categories/livy/</loc>
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://zermzhang.github.io/categories/python/</loc>
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://zermzhang.github.io/categories/resume/</loc>
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://zermzhang.github.io/categories/spark/</loc>
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://zermzhang.github.io/categories/tensorflow/</loc>
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://zermzhang.github.io/categories/thesis/</loc>
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://zermzhang.github.io/categories/%E5%B7%A5%E5%85%B7/</loc>
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://zermzhang.github.io/categories/recommend-system/</loc>
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://zermzhang.github.io/categories/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/</loc>
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>

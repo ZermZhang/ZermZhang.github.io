@@ -19,23 +19,22 @@
   <meta name="author" content="知白">
   <meta name="keywords" content="">
   
-    <meta name="description" content="spark在读取csv文件的时候，会涉及到许多参数，这些参数的作用各有不同，这里进行一个简单的介绍。  1. spark读取csv文件df &#x3D; spark.read.format(&#39;csv&#39;).option(&#39;sep&#39;, &#39;\t&#39;).schema(schemas).load(path)  2. option参数介绍   参数 解释 默认值    sep 读取文件内容后，对同一行内容实用该参数指定">
+    <meta name="description" content="今日南京大雪，其实昨天晚上雨花这边就已经开始下了，晚上下班回去的路上，还遇到了在应天大街上撒盐的工程车，但是今天出门的时候还是遇到了完全没想到的情况。出发的时候刚出小区门，车辆就出现了前轮打滑的情况，但是等从小路上拐到浦口大道，行驶的时候就基本恢复了正常，因为浦口大道上已经充分的进行了融雪，驾车的时候完全没问题，所以就没有扭头回家，还以为是因为小区门口的路属于小路，还没来得及处理导致的。但是这一切">
 <meta property="og:type" content="article">
-<meta property="og:title" content="spark.read的使用">
-<meta property="og:url" content="https://zermzhang.github.io/2022/08/31/spark/spark.read%E7%9A%84%E4%BD%BF%E7%94%A8/index.html">
+<meta property="og:title" content="20260120">
+<meta property="og:url" content="https://zermzhang.github.io/2026/01/20/journal/20260120/index.html">
 <meta property="og:site_name" content="知白说">
-<meta property="og:description" content="spark在读取csv文件的时候，会涉及到许多参数，这些参数的作用各有不同，这里进行一个简单的介绍。  1. spark读取csv文件df &#x3D; spark.read.format(&#39;csv&#39;).option(&#39;sep&#39;, &#39;\t&#39;).schema(schemas).load(path)  2. option参数介绍   参数 解释 默认值    sep 读取文件内容后，对同一行内容实用该参数指定">
+<meta property="og:description" content="今日南京大雪，其实昨天晚上雨花这边就已经开始下了，晚上下班回去的路上，还遇到了在应天大街上撒盐的工程车，但是今天出门的时候还是遇到了完全没想到的情况。出发的时候刚出小区门，车辆就出现了前轮打滑的情况，但是等从小路上拐到浦口大道，行驶的时候就基本恢复了正常，因为浦口大道上已经充分的进行了融雪，驾车的时候完全没问题，所以就没有扭头回家，还以为是因为小区门口的路属于小路，还没来得及处理导致的。但是这一切">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-08-31T19:53:00.000Z">
-<meta property="article:modified_time" content="2026-01-20T03:55:24.564Z">
+<meta property="article:published_time" content="2026-01-20T11:53:43.000Z">
+<meta property="article:modified_time" content="2026-01-20T03:55:24.563Z">
 <meta property="article:author" content="知白">
-<meta property="article:tag" content="read">
-<meta property="article:tag" content="spark">
+<meta property="article:tag" content="diary">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>spark.read的使用 - 知白说</title>
+  <title>20260120 - 知白说</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -243,7 +242,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="spark.read的使用"></span>
+            <span id="subtitle" data-typed-text="20260120"></span>
           
         </div>
 
@@ -254,8 +253,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-08-31 19:53" pubdate>
-          2022年8月31日 晚上
+        <time datetime="2026-01-20 11:53" pubdate>
+          2026年1月20日 中午
         </time>
       </span>
     
@@ -266,7 +265,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          168 字
+          661 字
         
       </span>
     
@@ -277,7 +276,7 @@
         
         
         
-          2 分钟
+          6 分钟
         
       </span>
     
@@ -314,55 +313,13 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">spark.read的使用</h1>
+            <h1 id="seo-header">20260120</h1>
             
             
               <div class="markdown-body">
                 
-                <blockquote>
-<p>spark在读取csv文件的时候，会涉及到许多参数，这些参数的作用各有不同，这里进行一个简单的介绍。</p>
-</blockquote>
-<h2 id="1-spark读取csv文件"><a href="#1-spark读取csv文件" class="headerlink" title="1. spark读取csv文件"></a>1. spark读取csv文件</h2><figure><div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python">df <span class="token operator">=</span> spark<span class="token punctuation">.</span>read<span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span><span class="token string">'csv'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>option<span class="token punctuation">(</span><span class="token string">'sep'</span><span class="token punctuation">,</span> <span class="token string">'\t'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>schema<span class="token punctuation">(</span>schemas<span class="token punctuation">)</span><span class="token punctuation">.</span>load<span class="token punctuation">(</span>path<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></figure>
-
-<h2 id="2-option参数介绍"><a href="#2-option参数介绍" class="headerlink" title="2. option参数介绍"></a>2. option参数介绍</h2><table>
-<thead>
-<tr>
-<th>参数</th>
-<th>解释</th>
-<th>默认值</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>sep</td>
-<td>读取文件内容后，对同一行内容实用该参数指定的分割符进行分割</td>
-<td><code>,</code></td>
-</tr>
-<tr>
-<td>encoding</td>
-<td>解码方式</td>
-<td><code>utf-8</code></td>
-</tr>
-<tr>
-<td>quote</td>
-<td>通过当前配置值包裹的内容，不通过sep进行分割</td>
-<td><code>&quot;</code></td>
-</tr>
-<tr>
-<td>escape</td>
-<td>当quote字符内部还有quote字符时，可以通过当前字符进行转义</td>
-<td><code>\</code></td>
-</tr>
-<tr>
-<td>header</td>
-<td>是否将文件的第一行作为列名</td>
-<td><code>false</code></td>
-</tr>
-<tr>
-<td>inferSchema</td>
-<td>从数据进行schema推断</td>
-<td><code>false</code></td>
-</tr>
-</tbody></table>
+                <p>今日南京大雪，其实昨天晚上雨花这边就已经开始下了，晚上下班回去的路上，还遇到了在应天大街上撒盐的工程车，但是今天出门的时候还是遇到了完全没想到的情况。<br>出发的时候刚出小区门，车辆就出现了前轮打滑的情况，但是等从小路上拐到浦口大道，行驶的时候就基本恢复了正常，因为浦口大道上已经充分的进行了融雪，驾车的时候完全没问题，所以就没有扭头回家，还以为是因为小区门口的路属于小路，还没来得及处理导致的。<br>但是这一切等到了软件大道都变成了虚妄了。<br>车还没拐到软件大道，就已经体会到今天的雪对行车的影响了。在立交上，所有的车辆已经拥挤在一起几乎完全无法动弹，好几位警察在一旁指挥交通，但是看起来完全发挥不了什么作用。软件大道上的积雪完全没有处理，经过了车辆的连续碾压，已经结成冰层，车辆行驶在路上，不断出现打滑的情况，所有的车都慢慢悠悠的超前挪着，就像一个个缺了引导员的绝望的冰壶。<br>但是即使面对如此艰难的路况，依旧是有不少车保持了原有的驾驶习惯，有空就插，没空也要挤出空来插队，完全不考虑就在他的旁边就有几起因为插队刹车不及时导致的车祸。<br>南京人的素质真差！</p>
+<p>今天的路况确实难走，在网上刷到了许多今天开车人的异常情况，对比起来，我看到的那些已经都算是小case了。<br>有车辆不受控制冲上墙的，有警车撞墙叫救援的，还有铁骑摔倒之后转地铁的，真真是人生百态，世事无常啊。<br>不管怎么说，在路上开车，还是要以安全为上，毕竟出了车祸之后，先不说责任的问题，光是修车带来的时间浪费就很麻烦了。<br>之前修车的经验，金钱的成本都已经算最小的损失了，反而是修车过程中的时间、出行带来的扩大成本反而是无法接受的。<br>出了两次车祸之后，基本上就处于能让就让的地步，顶多是嘴上过过瘾，其他的也没什么办法。</p>
 
                 
               </div>
@@ -381,7 +338,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/spark/" class="category-chain-item">spark</a>
+  <a href="/categories/journal/" class="category-chain-item">journal</a>
   
   
 
@@ -396,9 +353,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/spark/" class="print-no-link">#spark</a>
-      
-        <a href="/tags/read/" class="print-no-link">#read</a>
+        <a href="/tags/diary/" class="print-no-link">#diary</a>
       
     </div>
   
@@ -410,8 +365,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>spark.read的使用</div>
-      <div>https://zermzhang.github.io/2022/08/31/spark/spark.read的使用/</div>
+      <div>20260120</div>
+      <div>https://zermzhang.github.io/2026/01/20/journal/20260120/</div>
     </div>
     <div class="license-meta">
       
@@ -423,7 +378,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年8月31日</div>
+          <div>2026年1月20日</div>
         </div>
       
       
@@ -455,18 +410,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/11/30/blog/markdown%E4%B8%AD%E4%BD%BF%E7%94%A8%E6%B5%81%E7%A8%8B%E5%9B%BE/" title="markdown中使用流程图">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">markdown中使用流程图</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/08/25/RecommendSystem/%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E5%9F%BA%E6%9C%AC%E4%BB%8B%E7%BB%8D/" title="数据基本介绍">
-                        <span class="hidden-mobile">数据基本介绍</span>
+                      <a href="/2026/01/20/hello-world/" title="Hello World">
+                        <span class="hidden-mobile">Hello World</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -554,6 +503,12 @@
 
 
   
+
+
+  
+  
+
+
 
 
 
@@ -754,6 +709,49 @@
 
 
   <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.1/es5/tex-mml-chtml.js" ></script>
 
   <script  src="/js/local-search.js" ></script>
 
