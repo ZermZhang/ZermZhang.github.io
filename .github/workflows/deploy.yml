@@ -31,6 +31,7 @@ jobs:
           npm install -g hexo-cli
           hexo init myblog
           cd myblog
+          rm -f source/_posts/hello-world.md
           npm install
           npm install hexo-theme-fluid hexo-generator-sitemap --save
           
